@@ -1,0 +1,23 @@
+.header {
+    height: 300px;
+    background-color: red;
+}
+.top-header{
+    background-color: #1e1f29;
+    padding: 20px 0px;
+  
+   
+}
+.header-link a{
+    margin: 0 10px;
+    color: white;
+    font-size: 13px;
+    font-weight: 550;
+}
+.header-link a i{
+    color: red;
+    margin-right: 5px;
+}
+
+ 
+  
