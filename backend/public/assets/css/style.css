@@ -1,0 +1,96 @@
+:root{
+    --primary-color:#1e1f29;
+    --sub-color:#f2f7fb;
+    --top-height:150px;
+    --submenu-height:120px;
+    --main-transition:all 0.3s ease;
+ }
+ 
+ 
+ *{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ 
+ }
+ 
+ a {
+     text-decoration: none;
+     color: unset;
+ }
+ li{
+     list-style: none;
+ }
+ /*MAIN_ADMIN*/
+ /*SIDEBAR*/
+ .admin-sidebar{
+    margin: 10px;
+     height: 98vh;
+     border-radius: 15px;
+     background-color: var(--primary-color);
+ }
+ .admin-sidebar-top {
+    margin: 0 40px;
+     text-align: center;
+     height: var(--top-height);
+     border-bottom: 1px solid #fff;
+ }
+ .admin-sidebar-top img{
+     width: 230px;
+ }
+ .admin-sidebar-content ul li a i {
+     margin-right: 16px;
+     font-size: 20px!important;
+     color: #fff;
+ }
+ .admin-sidebar-content ul li{
+     padding: 6px 0;
+     transition: var(--main-transition);
+ }
+ .admin-sidebar-content ul li a{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    display: block;
+   
+}
+ .admin-sidebar-content ul li a:hover,.admin-sidebar-content ul li a:focus{
+     background-color:var(--sub-color);
+     border-radius: 10px 0 0 10px;
+     color:#000;
+ }
+ .admin-sidebar-content ul li a:hover i, .admin-sidebar-content ul li a:focus i{
+    background-color:var(--sub-color);
+    border-radius: 10px 0 0 10px;
+    color:#000000;
+}
+ .admin-sidebar-content ul li:hover > .sub-menu {
+    display: block;
+}
+.admin-sidebar-content ul li:hover > .sub-menu a{
+    width: 100%;
+  
+}
+ .admin-sidebar-content{
+     padding: 30px 0 0 30px;
+     color: whitesmoke;
+ }
+ .sub-menu{
+     display: none;
+     overflow: hidden;
+     transition: var(--main-transition);
+
+ }
+ 
+ .sub-menu.active{
+     display: block;
+     height: var(--submenu-height);
+     overflow: hidden;
+     
+ }
+ .sub-menu a {
+    width: 100%;
+ }
+ .admin-content{
+     background-color: var(--sub-color);
+ }
