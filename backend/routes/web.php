@@ -14,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.app');
+});
+Route::get('/home', function () {
+    return view('home');
+});
+Route::get('/auth', function () {
+    return view('auth.register');
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Định nghĩa route với tên 'dashboard'
+
