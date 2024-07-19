@@ -8,10 +8,7 @@
 
   
 [![Instagram: Hieuaptech](https://img.shields.io/badge/-Hieuaptech-red?style=flat-square&logo=instagram&logoColor=white)](https://www.facebook.com/profile.php?id=100008227480460)
-
-
 [![Facebook: Hieuaptech](https://img.shields.io/badge/-Hieuaptech-blue?style=flat-square&logo=Facebook&logoColor=white&link=https://www.facebook.com/profile.php?id=100008227480460)](https://www.facebook.com/profile.php?id=100008227480460/)
-
 [![GitHub Thaiane](https://img.shields.io/github/followers/thaiane?label=follow&style=social)](https://github.com/hieuaptechw)
 
   
