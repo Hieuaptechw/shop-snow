@@ -13,7 +13,8 @@
                </div>
                <div class="col-md-9">
                 @include('admin.layouts.navbar')
-               </div>
+               @yield('content')
+              </div>
           </div>
     </div>
 </body>
