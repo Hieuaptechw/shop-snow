@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\CategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,21 +13,29 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
 
-Route::get('/admin', function () {
-    return view('admin.app');
+    return view('admin.categories');
+
 });
+
 Route::get('/home', function () {
     return view('home');
 });
 Route::get('/auth', function () {
     return view('auth.register');
 });
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+    Route::get('/categories', [CategoriController::class, 'viewList']);
+
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
 });
-
 
 // Định nghĩa route với tên 'dashboard'
 

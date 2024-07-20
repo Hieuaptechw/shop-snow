@@ -32,6 +32,15 @@ CREATE TABLE brand (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+CREATE TABLE store (
+    store_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    address TEXT,
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -91,15 +100,7 @@ CREATE TABLE payment (
     payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
-CREATE TABLE store (
-    store_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    address TEXT,
-    phone VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+
 INSERT INTO user (username, password, email, phone, address, role)
 VALUES
     ('john_doe', 'password123', 'john.doe@example.com', '123456789', '123 Main St, City', 'admin'),
@@ -129,6 +130,14 @@ VALUES
     ('IKEA', 'Home furniture and decor brand'),
     ('Apple', 'Technology and electronics brand'),
     ('Adidas', 'Sportswear and athletic shoes brand');
+    INSERT INTO store (name, description, address, phone)
+VALUES
+    ('ElectroTech', 'Electronics and gadgets store', '123 Main St, City', '1234567890'),
+    ('SportsGear', 'Sports equipment and apparel store', '456 Oak Ave, Town', '9876543210'),
+    ('HomeDecor Plus', 'Home decor and furniture store', '789 Elm Rd, Village', '5555555555'),
+    ('Bookworm Books', 'Bookstore specializing in various genres', '321 Pine Ln, Hamlet', '7777777777'),
+    ('FashionHub', 'Clothing and fashion store', '654 Birch Dr, County', '9998887777');
+
 INSERT INTO products (name, description, price, category_id, brand_id, store_id)
 VALUES
     ('Smartphone X', 'Latest smartphone model', 899.99, 1, 4, 1),
@@ -171,10 +180,3 @@ VALUES
     (3, 'Cash on Delivery', 'Pending'),
     (4, 'Credit Card', 'Cancelled'),
     (5, 'Bank Transfer', 'Paid');
-INSERT INTO store (name, description, address, phone)
-VALUES
-    ('ElectroTech', 'Electronics and gadgets store', '123 Main St, City', '1234567890'),
-    ('SportsGear', 'Sports equipment and apparel store', '456 Oak Ave, Town', '9876543210'),
-    ('HomeDecor Plus', 'Home decor and furniture store', '789 Elm Rd, Village', '5555555555'),
-    ('Bookworm Books', 'Bookstore specializing in various genres', '321 Pine Ln, Hamlet', '7777777777'),
-    ('FashionHub', 'Clothing and fashion store', '654 Birch Dr, County', '9998887777');

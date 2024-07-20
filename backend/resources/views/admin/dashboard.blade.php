@@ -47,38 +47,42 @@
     </div>
     <div class="dashboard-content row">
 
-        <div class="col-12 product-performance">
-            <table class="table">
+        <div class="col-6 product-performance">
+            <h3>Top's Sales Product</h3>
+            <table class="table product-performance-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>TV</td>
+                        <td>1200</td>
+                        <td>21</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>Tu Lanh</td>
+                        <td>3000</td>
+                        <td>20</td>
                     </tr>
                     <tr>
                    
                         <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
+                        <td>Dieu Hoa</td>
+                        <td>5000</td>
+                        <td>34</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="col-6 dashboard-content-map">
+        <div id="regions_div" style="width: 500px; height: 250px;"></div>
         </div>
     </div>
 </div>
@@ -105,6 +109,24 @@
 
         chart.draw(data, options);
     }
+    google.charts.load('current', {
+        'packages':['geochart'],
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['vietnam', 600],
+
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
 
 </script>
 @endsection
