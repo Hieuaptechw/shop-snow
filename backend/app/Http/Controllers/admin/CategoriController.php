@@ -17,7 +17,7 @@ class CategoriController extends Controller
     }
 //   VIEW LIST
     public function viewList(){
-        $perPage = 6;
+        $perPage = 5;
         $categories = Categori::orderBy('category_id', 'desc')->paginate($perPage);
         return view('admin.categories', compact('categories'));
     
@@ -45,9 +45,41 @@ class CategoriController extends Controller
     public function delete($id)
     {
         $category = Categori::find($id);
-        $category->delete();
 
-        return redirect('/admin/categories')->with('success', 'Category deleted successfully');
+        if ($category) {
+            $category->delete();
+            return redirect('/admin/categories')->with('success', 'Category deleted successfully');
+        } else {
+            return redirect('/admin/categories')->with('fail', 'Category not found');
+        }
+    }
+    public function edit($id)
+    {
+        $category = Categori::find($id);
+
+        if ($category) {
+            $categories = Categori::orderBy('category_id', 'desc')->paginate(5);
+            return view('admin.categories', compact('categories', 'category'));
+        } else {
+            return redirect()->route('categories.index')->with('fail', 'Category not found');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:category,name,' . $id . ',category_id',
+        ]);
+
+        $category = Categori::find($id);
+
+        if ($category) {
+            $category->name = $request->name;
+            $category->save();
+            return redirect('/admin/categories')->with('success', 'Category updated successfully');
+        } else {
+            return redirect('/admin/categories')->with('fail', 'Category not found');
+        }
     }
 
 }

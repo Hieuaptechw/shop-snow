@@ -29,14 +29,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     });
-
     Route::get('/categories', [CategoriController::class, 'viewList']);
     Route::post('/categories/add', [CategoriController::class, 'insert']);
-    Route::get('/categories/delete/{id}', [CategoriController::class, 'delete']);
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
+    Route::delete('/categories/delete/{id}', [CategoriController::class, 'delete']);
+    Route::get('/categories/edit/{id}', [CategoriController::class, 'edit']);
+    Route::post('/categories/update/{id}', [CategoriController::class, 'update']);
+    
+
 });
 
-// Định nghĩa route với tên 'dashboard'
+
 

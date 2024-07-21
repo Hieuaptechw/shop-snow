@@ -13,17 +13,18 @@
     @endif
     <div class="categorie-from">
         <div class="row">
-            <H3>Add Categori</H3>
-            <form method="POST" action="{{ url('/admin/categories/add') }}">
+            <h3>{{ isset($category) ? 'Edit Category' : 'Add Category' }}</h3>
+            <form method="POST" action="{{ isset($category) ? url('/admin/categories/add/'. $category->category_id) : url('/admin/categories/update/.') }}">
                 @csrf
+                @if(isset($category))
+                    @method('POST')
+                @endif
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Category Name"
-                        Required>
+                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Category Name" value="{{ isset($category) ? $category->name : '' }}" required>
                     <label for="floatingInput">Category:</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">{{ isset($category) ? 'Update' : 'Add' }}</button>
             </form>
-
         </div>
     </div>
     <div class="categorie-list">
@@ -39,10 +40,13 @@
                     <td>{{ $category->category_id }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                     <form action="" method="post">
-                     <a href="delete/{{ $category->category_id }}">Delete</a> | <a
-                            href="edit/{{ $category->category_id }}">Edit</a>
-                     </form>
+                        <form action="{{ url('/admin/categories/delete/' . $category->category_id) }}" method="POST"
+                            style="display:inline;"  onsubmit="return confirmDelete();">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        <a href="{{  url('/admin/categories/edit/' . $category->category_id) }}" class="btn btn-primary btn-sm">Edit</a>
                     </td>
                 </tr>
             @endforeach
@@ -52,4 +56,9 @@
         {{ $categories->links() }}
     </div>
 </div>
+<script>
+    function confirmDelete() {
+    return confirm('Bạn có chắc chắn muốn xoá ?');
+}
+</script>
 @endsection
