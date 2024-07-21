@@ -5,14 +5,12 @@ namespace App\Models\admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-
-class Categori extends Model
+class Brand extends Model
 {
     use HasFactory;
-    protected $table = "category";
+    protected $table = "brand";
     protected $fillable = ['name'];
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = 'brand_id';
     public function getlist()
     {
         $sql = "SELECT * FROM " . $this->table;
@@ -22,6 +20,6 @@ class Categori extends Model
 
     public function insert($arrData)
     {
-       DB::table($this->table)->insert($arrData);
+       DB::table("category")->insert($arrData);
     }
 }

@@ -14,10 +14,10 @@
     <div class="categorie-from">
         <div class="row">
             <h3>{{ isset($category) ? 'Edit Category' : 'Add Category' }}</h3>
-            <form method="POST" action="{{ isset($category) ? url('/admin/categories/add/'. $category->category_id) : url('/admin/categories/update/.') }}">
+            <form method="POST" action="{{ isset($category) ? url('/admin/categories/update/'. $category->category_id) : url('/admin/categories/add') }}"  onsubmit="return confirmUpdate()">
                 @csrf
                 @if(isset($category))
-                    @method('POST')
+                    @method('PUT')
                 @endif
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Category Name" value="{{ isset($category) ? $category->name : '' }}" required>
@@ -26,6 +26,7 @@
                 <button type="submit" class="btn btn-primary">{{ isset($category) ? 'Update' : 'Add' }}</button>
             </form>
         </div>
+        
     </div>
     <div class="categorie-list">
         <h3>List Category</h3>
@@ -35,18 +36,18 @@
                 <td>Name</td>
                 <td>Option</td>
             </tr>
-            @foreach ($categories as $category)
+            @foreach ($categories as $categorys)
                 <tr>
-                    <td>{{ $category->category_id }}</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $categorys->category_id }}</td>
+                    <td>{{ $categorys->name }}</td>
                     <td>
-                        <form action="{{ url('/admin/categories/delete/' . $category->category_id) }}" method="POST"
+                        <form action="{{ url('/admin/categories/delete/' . $categorys->category_id) }}" method="POST"
                             style="display:inline;"  onsubmit="return confirmDelete();">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
-                        <a href="{{  url('/admin/categories/edit/' . $category->category_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{  url('/admin/categories/edit/' . $categorys->category_id) }}" class="btn btn-primary btn-sm">Edit</a>
                     </td>
                 </tr>
             @endforeach
@@ -58,7 +59,15 @@
 </div>
 <script>
     function confirmDelete() {
-    return confirm('Bạn có chắc chắn muốn xoá ?');
+        return confirm('Bạn có chắc chắn muốn xoá');
 }
+function confirmUpdate() {
+    var isEdit = {{ isset($category) ? 'true' : 'false' }};
+    if (isEdit) {
+        return confirm('Bạn có chắc chắn muốn cập nhật?');
+    };
+    return true;
+    }
+
 </script>
 @endsection

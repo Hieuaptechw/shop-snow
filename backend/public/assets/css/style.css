@@ -119,6 +119,7 @@ li {
 
 /*NAVBAR*/
 .navbar {
+    height: 10vh!important;
     width: 96.5%;
     margin-top: 10px;
     background-color: rgb(255, 255, 255);
@@ -162,6 +163,7 @@ li {
 }
 
 .dashboard-content .col-7 {
+    height: 30vh;
     padding: 20px;
     border-radius: 15px;
     background-color: #fff;
@@ -169,6 +171,7 @@ li {
 }
 
 .dashboard-content .col-5 {
+    height: 30vh;
     margin-left: 15px;
     width: 35.5%;
     padding: 20px;
@@ -240,6 +243,7 @@ li {
 }
 
 .product-performance {
+    height: 51vh!important;
     padding: 20px;
     background-color: #fff;
     width: 49%;
@@ -251,6 +255,7 @@ li {
     background-color: #000000!important;
 }
 .dashboard-content-map{
+    height: 51vh!important;
     width: 45%;
     padding: 10px;
     background-color: #fff;
@@ -286,6 +291,7 @@ li {
     color: #fff;
 }
 .categorie-from{
+    height: 22vh!important;
     border-radius: 15px;
     padding: 20px;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
@@ -295,7 +301,7 @@ li {
 
 }
 .categorie-list{
-    height: 55vh;
+    height: 60vh;
     border-radius: 15px;
     margin-top: 15px;
     padding: 20px;
@@ -312,7 +318,7 @@ li {
 .categorie-list-table-header  td {
     font-weight: bold;
 }
-.tabcategorie-list-tablel th, .categorie-list-table td {
+ .categorie-list-table td {
     border: 1px solid #ddd; 
     padding: 8px; 
     text-align: left;
@@ -346,6 +352,98 @@ li {
    text-decoration: underline;
 }
 .categorie-list .pagination {
+    position: absolute;
+    margin-top: 20px;
+    bottom: 0px;
+  
+}
+
+
+/*Brand*/
+.brand{
+   
+    border-radius: 15px;
+    width: 96.5%;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+.alert {
+        position: fixed;
+        bottom: 20px;
+        right: 40px;
+        z-index: 1000;
+        width: auto;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 5px;
+ }
+.alert-fail{
+    background-color: rgb(184, 87, 87);
+    color: #fff;
+}
+.brand-from{
+    height: 22vh!important;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    background-color: #fff;
+}
+.brand-from label{
+
+}
+.brand-list{
+    height: 60vh;
+    border-radius: 15px;
+    margin-top: 15px;
+    padding: 20px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    background-color: #fff;
+    position: relative;
+}
+
+.brand-list-table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-radius: 15px;
+}
+.brand-list-table-header  td {
+    font-weight: bold;
+}
+ .brand-list-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left;
+}
+
+.brand-list-table th {
+    font-weight: bold; 
+}
+.brand-list-table tr td:first-child{
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+.brand-list-table tr td:nth-child(2){
+    text-align: center;
+    width: 20%;
+}
+.brand-list-table tr td:nth-child(3){
+    text-align: center;
+    width: 20%;
+}
+.brand-list-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.brand-list-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.brand-list-table a:hover {
+   text-decoration: underline;
+}
+.brand-list .pagination {
     position: absolute;
     margin-top: 20px;
     bottom: 0px;
