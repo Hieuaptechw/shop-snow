@@ -31,7 +31,7 @@ Chạy các lệnh sau với thư mục frontend
 
 ### **Bước 3: Tiến hành code theo mục công việc được giao**
 
-Mục công việc được giao   [ở đây ! ](https://lotus.vn/w/) 
+Mục công việc được giao   [ở đây ! ](https://docs.google.com/spreadsheets/d/1JG5Byow_HZ_T5juyp5gRzgHd74a0UcCB6ixVBDehBMI/edit?usp=sharing) 
 ## 3. Lưu ý
 
 ### **Những điểm cần lưu ý thêm:**
