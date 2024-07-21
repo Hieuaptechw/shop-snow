@@ -269,7 +269,21 @@ li {
     width: 96.5%;
     margin-left: 5px;
     margin-top: 10px;
-   
+}
+
+.alert {
+        position: fixed;
+        bottom: 20px;
+        right: 40px;
+        z-index: 1000;
+        width: auto;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 5px;
+ }
+.alert-fail{
+    background-color: rgb(184, 87, 87);
+    color: #fff;
 }
 .categorie-from{
     border-radius: 15px;
@@ -281,10 +295,59 @@ li {
 
 }
 .categorie-list{
-    height: 61vh;
+    height: 55vh;
     border-radius: 15px;
     margin-top: 15px;
     padding: 20px;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     background-color: #fff;
+    position: relative;
+}
+
+.categorie-list-table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-radius: 15px;
+}
+.categorie-list-table-header  td {
+    font-weight: bold;
+}
+.tabcategorie-list-tablel th, .categorie-list-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left;
+}
+
+.categorie-list-table th {
+    font-weight: bold; 
+}
+.categorie-list-table tr td:first-child{
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+.categorie-list-table tr td:nth-child(2){
+    text-align: center;
+    width: 20%;
+}
+.categorie-list-table tr td:nth-child(3){
+    text-align: center;
+    width: 20%;
+}
+.categorie-list-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.categorie-list-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.categorie-list-table a:hover {
+   text-decoration: underline;
+}
+.categorie-list .pagination {
+    position: absolute;
+    margin-top: 20px;
+    bottom: 0px;
+  
 }

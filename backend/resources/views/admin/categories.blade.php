@@ -1,46 +1,55 @@
 @extends('admin.app')
 @section('content')
 <div class="categories">
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('fail'))
+        <div class="alert alert-fail">
+            {{ session('fail') }}
+        </div>
+    @endif
     <div class="categorie-from">
         <div class="row">
             <H3>Add Categori</H3>
-            <form action="">
+            <form method="POST" action="{{ url('/admin/categories/add') }}">
+                @csrf
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Categori:</label>
+                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Category Name"
+                        Required>
+                    <label for="floatingInput">Category:</label>
                 </div>
+                <button type="submit" class="btn btn-primary">Add</button>
             </form>
+
         </div>
     </div>
     <div class="categorie-list">
-    <H3>List Categori</H3>
-        <table class="table">
-            <thead>
+        <h3>List Category</h3>
+        <table class="categorie-list-table">
+            <tr class="categorie-list-table-header">
+                <td>ID</td>
+                <td>Name</td>
+                <td>Option</td>
+            </tr>
+            @foreach ($categories as $category)
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Option</th>
+                    <td>{{ $category->category_id }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>
+                     <form action="" method="post">
+                     <a href="delete/{{ $category->category_id }}">Delete</a> | <a
+                            href="edit/{{ $category->category_id }}">Edit</a>
+                     </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>TV</td>
-                    <td><a href="#">Delete</a>|<a href="#">Edit</a>
-                </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Tu Lanh</td>
-                    <td><a href="#">Delete</a>|<a href="#">Edit</a>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Dieu Hoa</td>
-                    <td><a href="#">Delete</a>|<a href="#">Edit</a>
-                </tr>
-            </tbody>
+            @endforeach
         </table>
+
+        <!-- Phân trang -->
+        {{ $categories->links() }}
     </div>
 </div>
 @endsection

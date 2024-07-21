@@ -31,7 +31,8 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::get('/categories', [CategoriController::class, 'viewList']);
-
+    Route::post('/categories/add', [CategoriController::class, 'insert']);
+    Route::get('/categories/delete/{id}', [CategoriController::class, 'delete']);
     Route::get('/', function () {
         return view('admin.dashboard');
     });
