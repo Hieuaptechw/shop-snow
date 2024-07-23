@@ -4,6 +4,9 @@ import { ROUTERS } from "./utils/router";
 import MasterLayoutUser from "./pages/users/Theme/MasterLayout/index";
 import HomePage from "./pages/users/HomePage";
 import ShopPage from "./pages/users/ShopPage";
+import StorePage from "./pages/users/StorePage";
+import CheckoutPage from "./pages/users/CheckoutPage";
+import ProductPage from "./pages/users/ProductPage";
 
 const routes = [
   {
@@ -17,6 +20,18 @@ const routes = [
   {
     path: ROUTERS.USER.SHOP,
     component: <ShopPage />,
+  },
+  {
+    path: ROUTERS.USER.STORE,
+    component: <StorePage />,
+  },
+  {
+    path: ROUTERS.USER.PRODUCT,
+    component: <ProductPage />,
+  },
+  {
+    path: ROUTERS.USER.CHECKOUT,
+    component: <CheckoutPage />,
   },
 ];
 

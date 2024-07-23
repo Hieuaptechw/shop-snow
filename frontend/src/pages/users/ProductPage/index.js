@@ -1,11 +1,11 @@
 import React from 'react';
 import './style.css';
-const ShopPage = () => {
+const ProductPage = () => {
     return (
         <div>
-            SHopppp
+            Đây là trang product
         </div>
     );
 };
 
-export default ShopPage;
+export default ProductPage;
