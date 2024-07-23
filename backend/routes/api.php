@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
+use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\ListProductController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,7 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['prefix' => ''], function () {
-    
+    //CATEGORIS
     Route::get('/admin/categories', [CategoriController::class, 'getlist']);
     Route::post('/admin/categories/add', [CategoriController::class, 'insert']);
+//BRAND
+Route::get('/admin/brand', [BrandController::class, 'getlist']);
+Route::post('/admin/brand/add', [BrandController::class, 'insert']);
+//Product
+Route::get('/admin/products', [ListProductController::class, 'getlist']);
+Route::post('/admin/prducts/add', [ListProductController::class, 'insert']);
 });

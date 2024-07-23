@@ -13,7 +13,7 @@
           </li>
           <li><a href="/admin/products" class="item1"><i class="bi bi-clipboard-data"></i>Product<i class="ri-add-line"></i></a>
               <ul class="sub-menu">
-                <li><a href="/admin/products/list"><i class="bi bi-chevron-double-left"></i>List</a></li>
+          
                 <li><a href="/admin/products/add"><i class="bi bi-chevron-double-left"></i>Add</a></li>
               </ul>
           </li>

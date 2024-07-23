@@ -30,7 +30,7 @@
 
         </div>
         <div class="brand-list">
-            <h3>List Branch</h3>
+            <h3>List Brand</h3>
             <table class="brand-list-table">
                 <tr class="brand-list-table-header">
                     <td>ID</td>

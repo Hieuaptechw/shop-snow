@@ -25,11 +25,20 @@ li {
 
 /*MAIN_ADMIN*/
 /*SIDEBAR*/
+.admin{
+    margin-top:-25px;
+    
+        overflow-x: hidden;
+    
+}
 .admin-sidebar {
     margin: 10px;
-    height: 95vh;
+    height: 98vh;
+    width: 48vh; /* Chỉnh lại width theo nhu cầu của bạn */
     border-radius: 15px;
     background-color: var(--primary-color);
+    position: fixed;
+    left: 10px; /* Điều chỉnh left nếu cần */
 }
 
 .admin-sidebar-top {
@@ -126,6 +135,7 @@ li {
     margin-left: 5px;
     border-radius: 10px;
     height: 70px;
+
 }
 
 .header-content form input {
@@ -444,6 +454,125 @@ li {
    text-decoration: underline;
 }
 .brand-list .pagination {
+    position: absolute;
+    margin-top: 20px;
+    bottom: 0px;
+  
+}
+.add-product{
+margin-top: 15px;
+margin-left:5px
+}
+.product-information
+{
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    padding: 20px;
+    
+}
+.product-img{
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    padding: 20px;
+    margin-top: 15px;
+}
+.product-price{
+    height: 27vh;
+    width: 90%;
+    border-radius: 15px;
+    background-color:#fff;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    padding: 20px;
+}
+.product-variant{
+    margin-top: 15px;
+    width: 90%;
+    height: 27vh;
+    border-radius: 15px;
+    background-color:#fff;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    padding: 20px;
+}
+.product-organize{
+    margin-top: 15px;
+    width: 90%;
+    height: 45vh;
+    border-radius: 15px;
+    background-color:#fff;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    padding: 20px;
+}
+
+/*Listproduct*/
+.list-product{
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-left: 5px;
+    width: 96.5%;
+    height: 85vh;
+    padding: 20px;
+}
+.product-list-table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+.product-list-table-header  td {
+    font-weight: bold;
+}
+ .product-list-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left;
+}
+
+.product-list-table th {
+    font-weight: bold; 
+}
+.product-list-table tr td:first-child{
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+.product-list-table tr td:nth-child(2){
+    text-align: center;
+    width: 15%;
+}
+.product-list-table tr td:nth-child(3){
+    text-align: center;
+    width: 15%;
+}
+.product-list-table tr td:nth-child(4){
+    text-align: center;
+    width: 15%;
+}
+.product-list-table tr td:nth-child(5){
+    text-align: center;
+    width: 15%;
+}
+.product-list-table tr td:nth-child(6){
+    text-align: center;
+    width: 15%;
+}
+
+
+/* .product-list-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+ */
+
+.product-list-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.product-list-table a:hover {
+   text-decoration: underline;
+}
+.product-list .pagination {
     position: absolute;
     margin-top: 20px;
     bottom: 0px;

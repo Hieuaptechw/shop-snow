@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\BrandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
+use App\Http\Controllers\admin\ListProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,7 @@ use App\Http\Controllers\admin\CategoriController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
 
-    return view('admin.categories');
-
-});
 
 Route::get('/home', function () {
     return view('home');
@@ -37,13 +34,24 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('/categories/delete/{id}', [CategoriController::class, 'delete']);
     Route::get('/categories/edit/{id}', [CategoriController::class, 'edit']);
     Route::put('/categories/update/{id}', [CategoriController::class, 'update']);
-    //BRANCH
+    //BRAND
     Route::get('/brand', [BrandController::class, 'viewList']);
     Route::post('/brand/add', [BrandController::class, 'insert']);
     Route::delete('/brand/delete/{id}', [BrandController::class, 'delete']);
     Route::get('/brand/edit/{id}', [BrandController::class, 'edit']);
     Route::put('/brand/update/{id}', [BrandController::class, 'update']);
+//PRODUCT
+    // Route::get('/products', [BrandController::class, 'viewList']);
+    Route::get('/products', [ListProductController::class, 'viewList']);
+    Route::get('/products/add', function () {
 
+        return view('admin.addproduct');
+    
+    });
+    // Route::post('/brand/add', [BrandController::class, 'insert']);
+    // Route::delete('/brand/delete/{id}', [BrandController::class, 'delete']);
+    // Route::get('/brand/edit/{id}', [BrandController::class, 'edit']);
+    // Route::put('/brand/update/{id}', [BrandController::class, 'update']);
 });
 
 
