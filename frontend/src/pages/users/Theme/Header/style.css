@@ -1,21 +1,127 @@
-.header {
-}
-.top-header{
-    background-color: #1e1f29;
-    padding: 20px 0px;
+/* START TOP-HEADER */
+.header{
+    height: 250px;
+  }
   
-   
-}
-.header-link a{
-    margin: 0 10px;
+  .top-header {
+    background-color: #1e1f29;
+    padding: 10px 0;
+  }
+  
+  .header-link a {
+    margin: 0 15px;
     color: white;
-    font-size: 13px;
-    font-weight: 550;
-}
-.header-link a i{
+    font-size: 11px;
+    font-weight: 600;
+  }
+  
+  .header-link a i {
     color: red;
     margin-right: 5px;
-}
-
- 
+  }
+  /* END TOP-HEADER */
+  /* START HEADER-MAIN */
+  .header-main {
+    background-color: #15161d;
+    padding: 15px;
+  }
   
+  .header-logo {
+    text-align: center;
+  }
+  
+  .header-search {
+    display: flex;
+  }
+  
+  .header-search form {
+    display: flex;
+    margin: auto;
+  }
+  
+  .header-input-select {
+    padding: 0 20px;
+    background: #fff;
+    border: 1px solid #e4e7ed;
+    font-size: 13px;
+    color: gray;
+    height: 40px;
+    border-radius: 40px 0 0 40px;
+  }
+  
+  .input-search {
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #e4e7ed;
+    background-color: #fff;
+  }
+  
+  .search-btn {
+    height: 40px;
+    width: 100px;
+    background-color: #d10024;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 0 40px 40px 0;
+  }
+  
+  .header-ctn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .header-ctn div {
+    margin-left: 30px;
+  }
+  
+  .header-ctn div a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header-ctn div i {
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  .header-ctn div span {
+    font-size: 12px;
+    color: white;
+  }
+  /* END HEADER-MAIN */
+  
+  /* START MENU */
+  .nav-menu {
+    padding: 10px 0;
+    border-top: 2px solid #d10024;
+    border-bottom: 2px solid #e4e7ed;
+  }
+  
+  
+  
+  .main-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-nav li {
+    margin: 0 15px;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 0;
+  }
+  
+  .main-nav a:hover {
+    color: #d10024;
+    border-bottom: 2px solid #d10024;
+  }
+  /* END-MENU */
