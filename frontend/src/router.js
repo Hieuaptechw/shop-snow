@@ -7,6 +7,7 @@ import ShopPage from "./pages/users/ShopPage";
 import StorePage from "./pages/users/StorePage";
 import CheckoutPage from "./pages/users/CheckoutPage";
 import ProductPage from "./pages/users/ProductPage";
+import LoginPage from "./pages/users/LoginPage";
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path: ROUTERS.USER.CHECKOUT,
     component: <CheckoutPage />,
+  },
+  {
+    path: ROUTERS.USER.LOGIN,
+    component: <LoginPage />,
   },
 ];
 

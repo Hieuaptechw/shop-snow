@@ -9,5 +9,6 @@ export const ROUTERS = {
         STORE:"shop",
         PRODUCT:"product",
         CHECKOUT:"checkout",
+        LOGIN:"login",
     },
 }
