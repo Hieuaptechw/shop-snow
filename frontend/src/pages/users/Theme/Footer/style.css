@@ -1,6 +1,6 @@
 #footer .section {
     background-color: #15161d;
-    border-top: 3px solid red;
+    border-top: 1px solid red;
 }
 
 .footer {
@@ -28,7 +28,7 @@
 .footer-link a {
     color: #B9BABC;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 11.9px;
     display: flex;
 }
 
@@ -40,15 +40,16 @@
     color: #d10024;
     padding: 0px 5px;
 }
-
-p {
-    margin-top: 0;
-    margin-bottom: 1rem;
+.mgt-30{
+    margin-top: 30px;
 }
-
 .footer-title{
     text-align: left;
+    font-size: 17px;
 }
 .footer p{
     text-align: left;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 11.9px;
 }
