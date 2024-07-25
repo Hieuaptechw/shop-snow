@@ -1,0 +1,198 @@
+.input-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    /* Khoảng cách giữa checkbox và label */
+}
+
+.input-checkbox label {
+    display: flex;
+    align-items: center;
+}
+
+.input-checkbox label span {
+    margin-right: 5px;
+}
+
+.input-checkbox label small {
+    margin-left: 5px;
+    color: #999;
+    /* Màu chữ cho số lượng */
+}
+
+.shop-product-aside .aside {
+
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    padding: 20px 25px 40px;
+}
+
+.price-input {
+    /* width: 100%; */
+    display: flex;
+    margin: 30px 0 35px;
+}
+
+.price-input .field {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+}
+
+.field input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 15px;
+    margin-left: 12px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+
+}
+
+.price-input .separator {
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider {
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.slider .progress {
+    height: 100%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    border-radius: 5px;
+    background: #c80325;
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #c80325;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: #17A2B8;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.product-card {
+    border: 1px solid #e4e7ed;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    height: auto;
+    padding: 10px;
+}
+
+.product-img img {
+
+    width: 100%;
+    height: auto;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-info .product-category {
+    font-size: 12px;
+    color: #8D99AE;
+}
+
+.product-name {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #d10024;
+    font-weight: bold;
+}
+
+.product-card .product-info .product-old-price {
+    font-size: 70%;
+    color: #8D99AE;
+    font-weight: 400;
+    margin-left: 6px;
+}
+
+.product-card .product-rating i {
+    padding: 0px 2px;
+}
+
+.product-card .product-rating {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: #D10024;
+}
+
+.product-card .product-btns button {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    background-color: #fff;
+}
+
+.product-addtc a {
+    margin-top: 10px;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.product-addtc a:hover {
+    background-color: #fff;
+    color: #c80325;
+}
+
+.product-card {
+    width: 280px;
+}

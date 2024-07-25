@@ -1,105 +1,4 @@
-CREATE TABLE user (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone VARCHAR(20),
-    address TEXT,
-    role ENUM('user', 'admin') NOT NULL DEFAULT 'user', 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-CREATE TABLE cart (
-    cart_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    total_price DECIMAL(10, 2) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
-CREATE TABLE category (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
 
-CREATE TABLE brand (
-    brand_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-CREATE TABLE products (
-    product_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    category_id INT,
-    brand_id INT,
-    store_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES category(category_id),
-    FOREIGN KEY (brand_id) REFERENCES brand(brand_id),
-    FOREIGN KEY (store_id) REFERENCES store(store_id)
-);
-CREATE TABLE products_img (
-    product_image_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    image_url VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-CREATE TABLE products_details (
-    product_detail_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    attribute_name VARCHAR(255) NOT NULL,
-    attribute_value VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-CREATE TABLE review (
-    review_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    user_id INT,
-    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
-    comment TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
-CREATE TABLE orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    total_price DECIMAL(10, 2) NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
-CREATE TABLE payment (
-    payment_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    payment_method VARCHAR(255) NOT NULL,
-    payment_status VARCHAR(255) NOT NULL,
-    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id)
-);
-CREATE TABLE store (
-    store_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    address TEXT,
-    phone VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
 INSERT INTO user (username, password, email, phone, address, role)
 VALUES
     ('john_doe', 'password123', 'john.doe@example.com', '123456789', '123 Main St, City', 'admin'),
@@ -125,7 +24,7 @@ VALUES
 INSERT INTO brand (name, description)
 VALUES
     ('Sony', 'Electronic products brand'),
-    ('Nike', 'Sportswear and sports equipment brand'),
+    ('Panasonich', 'Sportswear and sports equipment brand'),
     ('IKEA', 'Home furniture and decor brand'),
     ('Apple', 'Technology and electronics brand'),
     ('Adidas', 'Sportswear and athletic shoes brand');

@@ -5,6 +5,20 @@ import logo from '../assets/logo.png';
 
 
 const Header = () => {
+  // const [headercategoey, setHeadercategoey] = useState([]);
+  // useEffect(() => {
+  //   const fetchHeadercategoey = async () => {
+  //     try {
+  //       const product = await getProducts();
+  //       setHeadercategoey(product);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchHeadercategoey();
+  // }, []);
   return (
     <header className="header">
 
@@ -53,7 +67,7 @@ const Header = () => {
           <div className="row align-items-center">
             <div className="col-md-3 m-0">
               <div className="header-logo">
-                <a className="logo" href="#">
+                <a className="logo" href="/home">
                   <img src={logo} alt="Logo" />
                 </a>
               </div>
@@ -96,13 +110,12 @@ const Header = () => {
           <div className="container">
               <div>
                 <ul className="main-nav nav nav-bar">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Hot Deals</a></li>
-                  <li><a href="#">Categories</a></li>
-                  <li><a href="#">Laptops</a></li>
-                  <li><a href="#">Smartphones</a></li>
-                  <li><a href="#">Cameras</a></li>
-                  <li><a href="#">Accessories</a></li>
+                  <li><a href="/home">Home</a></li>
+            
+                  {/* {categoryheader.map((brand, index) => (
+                  <Brand key={index} brand={brand} />
+                ))} */}
+            
                 </ul>
               </div>
           </div>
