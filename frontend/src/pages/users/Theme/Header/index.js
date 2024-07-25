@@ -1,22 +1,8 @@
 import React from "react";
 import "./style.css";
-import logo from "../assets/logo.png";
+import logo from '../assets/logo.png';
 
 const Header = () => {
-  // const [headercategoey, setHeadercategoey] = useState([]);
-  // useEffect(() => {
-  //   const fetchHeadercategoey = async () => {
-  //     try {
-  //       const product = await getProducts();
-  //       setHeadercategoey(product);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchHeadercategoey();
-  // }, []);
   return (
     <header className="header">
       {/* START-HEADER-TOP */}
@@ -47,36 +33,24 @@ const Header = () => {
                     <i className="bi bi-currency-dollar"></i>VND
                   </a>
                 </li>
-                <li className="dropdown">
-                  <a
-                    href="#"
-                    className="dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    <i className="bi bi-person"></i> My Account
+                <li>
+                  <a href="#">
+                    <i className="bi bi-person"></i>My Account
                   </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a href="/login">Đăng nhập</a>
-                    </li>
-                    <li>
-                      <a href="/register">Đăng ký</a>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      {/* END-HEADER-TOP */}
-      {/* START-HEADER-MAIN */}
+    {/* END-HEADER-TOP */}
+    {/* START-HEADER-MAIN */}
       <div className="header-main">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-3 m-0">
               <div className="header-logo">
-                <a className="logo" href="/home">
+                <a className="logo" href="#">
                   <img src={logo} alt="Logo" />
                 </a>
               </div>
@@ -89,14 +63,8 @@ const Header = () => {
                     <option>Category 01</option>
                     <option>Category 02</option>
                   </select>
-                  <input
-                    className="input-search"
-                    type="text"
-                    placeholder="Search Here"
-                  />
-                  <button className="search-btn" type="submit">
-                    Search
-                  </button>
+                  <input className="input-search" type="text" placeholder="Search Here" />
+                  <button className="search-btn" type="submit">Search</button>
                 </form>
               </div>
             </div>
@@ -122,19 +90,19 @@ const Header = () => {
       {/* END-HEADER-MAIN */}
       {/* START-MENU */}
       <nav className="nav-menu">
-        <div className="container">
-          <div>
-            <ul className="main-nav nav nav-bar">
-              <li>
-                <a href="/home">Home</a>
-              </li>
-
-              {/* {categoryheader.map((brand, index) => (
-                  <Brand key={index} brand={brand} />
-                ))} */}
-            </ul>
+          <div className="container">
+              <div>
+                <ul className="main-nav nav nav-bar">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Hot Deals</a></li>
+                  <li><a href="#">Categories</a></li>
+                  <li><a href="#">Laptops</a></li>
+                  <li><a href="#">Smartphones</a></li>
+                  <li><a href="#">Cameras</a></li>
+                  <li><a href="#">Accessories</a></li>
+                </ul>
+              </div>
           </div>
-        </div>
       </nav>
       {/* END MENU */}
     </header>
