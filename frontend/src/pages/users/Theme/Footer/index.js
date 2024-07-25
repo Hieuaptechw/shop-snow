@@ -5,12 +5,12 @@ const Footer = () => {
     return (
         <footer id='footer'>
             <div className='section'>
-                <div className='container'>
-                    <div className='row'>
+                <div className='container mgt-30'>
+                    <div className='row '>
                         <div className='col-md-3 col-6'>
                             <div className='footer'>
                                 <h3 className='footer-title'>ABOUT US</h3>
-                                <p>Adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
                                 <ul className='footer-link'>
                                     <li><a href='#'><i className="bi bi-geo-alt"></i> 1734 Stonecoal Road</a></li>
                                     <li><a href='#'><i className="bi bi-telephone"></i> +021-95-51-84</a></li>

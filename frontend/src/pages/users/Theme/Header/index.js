@@ -2,12 +2,9 @@ import React from "react";
 import "./style.css";
 import logo from '../assets/logo.png';
 
-
-
 const Header = () => {
   return (
     <header className="header">
-
       {/* START-HEADER-TOP */}
       <div className="top-header">
         <div className="container">
