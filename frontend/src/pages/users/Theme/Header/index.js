@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 import logo from "../assets/logo.png";
 import api from "../../../../api/api";
@@ -7,12 +8,19 @@ const Header = () => {
   const [user, setUser] = useState(null);
   const [categorys, setCategorys] = useState([]);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      setUser(JSON.parse(userData));
+  const [isLogout, setisLogout] = useState(false);
+  const navigate = useNavigate(); 
+  const handeLogout = async () => {
+    try {
+      await api.logout();
+      localStorage.removeItem('token');
+      setisLogout(true);
+      setUser("");
+    } catch (error) {
+      setError(error.message);
     }
+  }
+  useEffect(() => {
     const fetchCategory = async () => {
       try {
         const response = await api.getCategory();
@@ -22,8 +30,26 @@ const Header = () => {
       }
     };
 
+
+    const fetchProfile = async () => {
+      try {
+        const response = await api.getProfile();
+        if (response.data.status) {
+          setUser(response.data.data);
+        } else {
+          setError(response.data.message);
+        }
+      } catch (error) {
+        setError("An error occurred while fetching profile data.");
+      }
+      if (isLogout) {
+        navigate('/login');
+    }
+    };
     fetchCategory();
-  }, []);
+    fetchProfile();
+    // console.log(response.data);
+  }, [isLogout,useNavigate]);
 
   return (
     <header className="header">
@@ -71,9 +97,7 @@ const Header = () => {
                             href="/logout"
                             onClick={(e) => {
                               e.preventDefault();
-                              localStorage.removeItem("api_token");
-                              localStorage.removeItem("user");
-                              window.location.href = "/login";
+                               handeLogout();
                             }}
                           >
                             Log Out
@@ -115,8 +139,8 @@ const Header = () => {
                 <form>
                   <select className="header-input-select">
                     <option>All Categories</option>
-                    {categorys.map((category) => (
-                      <option key={category.id} value={category.slug}>
+                    {categorys.map((category, index) => (
+                      <option key={index} value={category.slug}>
                         {category.name}
                       </option>
                     ))}
@@ -135,7 +159,7 @@ const Header = () => {
             <div className="col-md-3 m-0">
               <div className="header-ctn">
                 <div>
-                  <a href="#">
+                  <a href="/wishlist">
                     <i className="bi bi-heart"></i>
                     <span>Your Wishlist</span>
                   </a>
@@ -167,8 +191,8 @@ const Header = () => {
               <li>
                 <a href="/checkout">Checkout</a>
               </li>
-              {categorys.map((category) => (
-                <li key={category.id}>
+              {categorys.map((category, index) => (
+                <li key={index}>
                   <a href={`/shop/${category.slug}`}>
                     {category.name}
                   </a>

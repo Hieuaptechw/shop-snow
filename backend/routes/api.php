@@ -3,11 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\auth\CategoriauthController;
+use App\Http\Controllers\auth\BrandAuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ListProductController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Api\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +20,9 @@ use App\Http\Controllers\FrontendController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::group(['prefix' => ''], function () {
     //CATEGORIS
     Route::get('/admin/categories', [CategoriController::class, 'getlist']);
@@ -34,22 +34,21 @@ Route::post('/admin/brand/add', [BrandController::class, 'insert']);
 Route::get('/admin/products', [ListProductController::class, 'getlist']);
 Route::post('/admin/prducts/add', [ListProductController::class, 'insert']);
 });
+Route::post("register",[ApiController::class,'register']);
+//
+Route::post("login",[ApiController::class,'login']);
+Route::group([
+    "middleware"=>["auth:sanctum"]
+
+],function(){
+
+//profile
+    Route::get("profile",[ApiController::class,'profile']);
+    Route::get("logout",[ApiController::class,'logout']);
+});
+
+Route::get('/category', [CategoriauthController::class, 'getCategory']);
+Route::get('/category/{category_name}', [CategoriauthController::class, 'getSubcategories']);
 
 
-//     Route::post('login', [AuthController::class,'login']);
-
-
-// Route::group(['middleware'=>'api'],function(){
-//         Route::post('logout',[AuthController::class,'logout']);
-//         Route::post('refresh', [AuthController::class,'refresh']);
-//         Route::post('me', [AuthController::class,'me']);
-// });
-
-//auth//
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/user/{id}', [AuthController::class, 'getUserById']);
-
-Route::get('/category', [CategoryController::class, 'getCategory']);
-Route::get('/category/{category_name}', [CategoryController::class, 'getSubcategories']);
-
+Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);

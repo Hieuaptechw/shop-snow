@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
     <div className="col-md-4">
       <div className="product-card">
         <div className="product-img">
-          <img src="https://api.hieuaptech.com/image/product/product-2.jpg" alt={product.name} />
+          <img src="#" alt={product.name} />
         </div>
         <div className="product-info">
           <p className="product-category">{product.category}</p>

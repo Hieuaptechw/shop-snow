@@ -108,15 +108,15 @@ const RegisterPage = () => {
               </div>
               <div className="col-md-12">
              
-              <input type="submit" class="button" value="Signup" />
+              <input type="submit" className="button" value="Signup" />
               </div>
     
             </div>
           </form>
           {error && <div className="alert alert-danger">{error}</div>}
           {success && <div className="alert alert-success">{success}</div>}
-          <div class="signup">
-            <span class="signup">
+          <div className="signup">
+            <span className="signup">
               Already have an account?
               <a href="/login">Login</a>
             </span>

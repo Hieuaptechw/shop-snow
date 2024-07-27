@@ -3,11 +3,11 @@ import React from "react";
 const Brand = ({ brand }) => {
   return (
     <div className="input-checkbox">
-      <input type="checkbox" id={brand.name} />
-      <label htmlFor={brand.name}>
+      <input type="checkbox" id={brand.brand_name} />
+      <label htmlFor={brand.brand_name}>
         <span></span>
-       {brand.name}
-        <small>(12)</small>
+       {brand.brand_name}
+        <small>(  {brand.product_count})</small>
       </label>
     </div>
   );

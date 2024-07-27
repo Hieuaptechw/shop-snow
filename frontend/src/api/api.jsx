@@ -21,6 +21,21 @@ const Product_Details = () => {
 const getCategory = () => {
   return axios.get(`category`);
 };
+const getSubcategory = (category_slug) => {
+  return axios.get(`/category/${category_slug}`);
+};
+const getBrand = (category_slug) => {
+  return axios.get(`/brand/${category_slug}`);
+};
+const getProfile =()=>{
+  return axios.get(`/profile`);
+}
+const logout =()=>{
+  return axios.get(`/logout`);
+}
 
 
-export default { Login ,Register,Product_Details, getCategory };
+
+
+export default
+ { Login ,Register,Product_Details, getCategory ,getProfile,logout,getSubcategory,getBrand};

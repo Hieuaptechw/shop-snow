@@ -1,0 +1,94 @@
+.section {
+    padding: 20px 0;
+  }
+  
+  .prd-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+  }
+  
+  .prd-img {
+    flex: 0 0 150px; 
+    max-width: 150px;
+    margin-right: 20px;
+  }
+  
+  .prd-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .prd-info {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .prd-name {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .prd-price {
+    font-size: 1.1em;
+    color: #d10024;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .prd-qty {
+    margin-bottom: 10px;
+  }
+  
+  .prd-qty h4 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+  
+  .prd-qty input {
+    width: 30px; /* Chiều rộng nhỏ hơn cho input */
+    text-align: center;
+    padding: 4px;
+    font-size: 0.9em;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .prd-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Căn các phần tử sang bên phải */
+  }
+  
+  .prd-status p {
+    margin: 0;
+  }
+  
+  .prd-status .status {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .prd-status button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #ff0000;
+    margin-top: 5px;
+  }
+  
+  .prd-status button:hover {
+    color: #cc0000;
+  }
+  
+
+  

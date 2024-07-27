@@ -1,8 +1,6 @@
-
-
 import axios from 'axios';
 
-
+// Tạo instance của axios với base URL và headers cơ bản
 const instance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/',
   headers: {
@@ -11,4 +9,13 @@ const instance = axios.create({
 });
 
 
+instance.interceptors.request.use(config => {
+  const token = localStorage.getItem('token'); 
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
 export default instance;

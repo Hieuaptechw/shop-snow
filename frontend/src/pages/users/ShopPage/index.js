@@ -4,20 +4,19 @@ import ProductCard from "../../../component/shop/ProductCard";
 import { getProducts } from "../../../api/productAPI";
 import { getBrand } from "../../../api/brandAPI";
 import Brand from "../../../component/shop/Brand";
+import { useParams } from "react-router-dom";
+import api from "../../../api/api";
+import Subcategory from "../../../component/shop/Subcategory";
 
 const ShopPage = () => {
+  const { category } = useParams();
+  console.log(category);
+  const [categories,setCategories] = useState([])
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [minPrice, setMinPrice] = useState(2500);
-  const [maxPrice, setMaxPrice] = useState(7500);
 
-  const rangeMinRef = useRef(null);
-  const rangeMaxRef = useRef(null);
-  const progressRef = useRef(null);
-  const priceMinRef = useRef(null);
-  const priceMaxRef = useRef(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,66 +30,35 @@ const ShopPage = () => {
       }
     };
     const fetchBrand = async () => {
-        try {
-          const brand = await getBrand();
-          setBrands(brand);
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
+      try {
+        const brand = await api.getBrand(category);
+        setBrands(brand.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const fetchCategory = async () => {
+      try {
+        const subcategories = await api.getSubcategory(category);
+        setCategories(subcategories.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchProducts();
     fetchBrand();
+    fetchCategory();
   }, []);
 
-  useEffect(() => {
-    const handleRangeChange = () => {
-      if (rangeMinRef.current && rangeMaxRef.current && progressRef.current) {
-        const min = parseInt(rangeMinRef.current.value);
-        const max = parseInt(rangeMaxRef.current.value);
-
-        if (max - min < 1000) {
-          if (rangeMinRef.current === document.activeElement) {
-            rangeMinRef.current.value = max - 1000;
-            setMinPrice(max - 1000);
-          } else {
-            rangeMaxRef.current.value = min + 1000;
-            setMaxPrice(min + 1000);
-          }
-        } else {
-          setMinPrice(min);
-          setMaxPrice(max);
-        }
-
-        const minPercent = (min / 10000) * 100;
-        const maxPercent = (max / 10000) * 100;
-        progressRef.current.style.left = `${minPercent}%`;
-        progressRef.current.style.right = `${100 - maxPercent}%`;
-      }
-    };
-
-    if (rangeMinRef.current && rangeMaxRef.current) {
-      rangeMinRef.current.addEventListener("input", handleRangeChange);
-      rangeMaxRef.current.addEventListener("input", handleRangeChange);
-    }
-
-    return () => {
-      if (rangeMinRef.current && rangeMaxRef.current) {
-        rangeMinRef.current.removeEventListener("input", handleRangeChange);
-        rangeMaxRef.current.removeEventListener("input", handleRangeChange);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (priceMinRef.current) priceMinRef.current.value = minPrice;
-    if (priceMaxRef.current) priceMaxRef.current.value = maxPrice;
-  }, [minPrice, maxPrice]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+console.log(brands);
   return (
     <div className="section">
       <div className="container">
@@ -99,13 +67,15 @@ const ShopPage = () => {
             <div className="aside">
               <h3>Categories</h3>
               <div className="checkbox-filter">
-                {/* Các checkbox categories */}
+              {categories.map((categories, index) => (
+                  <Subcategory key={index} categories={categories} />
+                ))}
               </div>
             </div>
-            <div className="aside">
+            {/* <div className="aside">
               <h3>Price</h3>
               <div className="slider">
-                <div className="progress" ref={progressRef}></div>
+                <div className="progress"></div>
               </div>
               <div className="range-input">
                 <input
@@ -114,8 +84,7 @@ const ShopPage = () => {
                   min="0"
                   max="10000"
                   defaultValue="2500"
-                  step="100"
-                  ref={rangeMinRef}
+                  step="100"              
                 />
                 <input
                   type="range"
@@ -123,8 +92,7 @@ const ShopPage = () => {
                   min="0"
                   max="10000"
                   defaultValue="7500"
-                  step="100"
-                  ref={rangeMaxRef}
+                  step="100"              
                 />
               </div>
               <div className="price-input">
@@ -132,22 +100,17 @@ const ShopPage = () => {
                   <input
                     type="number"
                     className="input-min"
-                    ref={priceMinRef}
                     defaultValue="2500"
-                    onChange={(e) => setMinPrice(parseInt(e.target.value))}
                   />
                 </div>
                 <div className="field">
                   <input
                     type="number"
                     className="input-max"
-                    ref={priceMaxRef}
-                    defaultValue="7500"
-                    onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="aside">
               <h3>Brand</h3>
               <div className="checkbox-filter">

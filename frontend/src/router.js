@@ -9,6 +9,8 @@ import CheckoutPage from "./pages/users/CheckoutPage";
 import ProductPage from "./pages/users/ProductPage";
 import LoginPage from "./pages/users/LoginPage";
 import RegisterPage from "./pages/users/RegisterPage";
+import ProfilePage from "./pages/users/ProfilePage";
+import FavoritesPage from "./pages/users/FavoritesPage";
 
 const routes = [
   {
@@ -38,6 +40,14 @@ const routes = [
   {
     path: ROUTERS.USER.REGISTER,
     component: <RegisterPage />,
+  },
+  {
+    path: ROUTERS.USER.PROFILE,
+    component: <ProfilePage />,
+  },
+  {
+    path: ROUTERS.USER.FAVORITES,
+    component: <FavoritesPage />,
   },
 ];
 

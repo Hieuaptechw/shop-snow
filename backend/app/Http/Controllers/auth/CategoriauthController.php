@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
+namespace App\Http\Controllers\auth;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\auth\Category;
-
-class CategoryController extends Controller
-
+class CategoriauthController extends Controller
 {
     public function getCategory(){
         $Category = new Category();
@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function getSubcategories($category_name)
     {
         $category = DB::table('categories')
-                      ->where('name', $category_name)
+                      ->where('slug', $category_name)
                       ->first();
 
         if (!$category) {
@@ -28,16 +28,7 @@ class CategoryController extends Controller
                             ->where('category_id', $category->category_id)
                             ->get();
 
-        $subcategoriesArray = $subcategories->map(function($subcategory) {
-            return [
-                'id' => $subcategory->subcategory_id,
-                'name' => $subcategory->name,
+        return response()->json($subcategories);
 
-            ];
-        });
-
-        return response()->json(
-             $subcategoriesArray
-        );
     }
 }
