@@ -8,6 +8,7 @@ import StorePage from "./pages/users/StorePage";
 import CheckoutPage from "./pages/users/CheckoutPage";
 import ProductPage from "./pages/users/ProductPage";
 import LoginPage from "./pages/users/LoginPage";
+import RegisterPage from "./pages/users/RegisterPage";
 
 const routes = [
   {
@@ -23,10 +24,6 @@ const routes = [
     component: <ShopPage />,
   },
   {
-    path: ROUTERS.USER.STORE,
-    component: <StorePage />,
-  },
-  {
     path: ROUTERS.USER.PRODUCT,
     component: <ProductPage />,
   },
@@ -37,6 +34,10 @@ const routes = [
   {
     path: ROUTERS.USER.LOGIN,
     component: <LoginPage />,
+  },
+  {
+    path: ROUTERS.USER.REGISTER,
+    component: <RegisterPage />,
   },
 ];
 

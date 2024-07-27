@@ -1,0 +1,201 @@
+
+#breadcrumb .breadcumb-header {
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    text-transform: uppercase;
+}
+
+#breadcrumb .breadcumb-tree {
+    display: inline-block;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#breadcrumb .breadcumb-tree li {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.billing-details, .shiping-details, .order-notes{
+    margin-bottom: 30px;
+}
+
+.section-title{
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+.input {
+    height: 40px;
+    padding: 0px 15px;
+    border: 1px solid #E4E7ED;
+    background-color: #fff;
+    width: 100%;
+}
+
+.input-checkbox, .input-radio{
+    position: relative;
+   
+}
+
+.input-checkbox label, .input-radio label {
+    font-weight: 500;
+    min-height: 20px;
+    padding-left: 5px;
+
+    cursor: pointer;
+}
+
+.section-title{
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.section-title .title{
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+textarea.input {
+    padding: 15px;
+    min-height: 90px;
+}
+
+.section-title{
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.order-details {
+    position: relative;
+    padding: 0px 30px 30px;
+    border: 1px solid #E4E7ED;
+}
+
+.order-summary {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-summary .order-col {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.order-summary .order-col strong {
+    width: 50%;
+}
+
+.order-summary .order-col .order-total {
+    font-size: 24px;
+    color: #D10024;
+}
+
+.order-details .payment-method{
+    margin: 30px 0px;
+}
+
+.order-details .order-submit {
+    display: block;
+    margin-top: 30px;
+}
+
+.primary-btn {
+    padding: 12px 30px;
+    background-color: #D10024;
+    border: none;
+    border-radius: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight:bold;
+    text-align: center;
+}
+
+
+
+/* CSS NEWSLETTER */
+#newsLetter {
+    border-top: 2px solid #E4E7ED;
+    border-bottom: 3px solid #D10024;
+    margin-top: 30px;
+    padding: 50px 0; 
+    background-color: #f9f9f9; 
+}
+
+.newsLetter {
+    text-align: center; 
+}
+
+.newsLetter p {
+    font-size: 24px; 
+    margin-bottom: 20px; 
+}
+form{
+    text-align: center;
+}
+.newsLetter form {
+    max-width: 520px; 
+    margin: 30px ; 
+    display: flex; 
+}
+
+#newsLetter form .input {
+   width: 350px; 
+    height: 40px; 
+    padding: 0 15px; 
+    border: 1px solid #E4E7ED; 
+    background-color: #fff; 
+    border-radius: 40px 0 0 40px; 
+    box-sizing: border-box; 
+}
+
+.newsLetter-btn {
+    width: 160px; 
+    height: 40px; 
+    font-weight: 700; 
+    background-color: #D10024; 
+    color: #fff; 
+    border: none; 
+    border-radius: 0 40px 40px 0; 
+    cursor: pointer;
+
+}
+
+.newsLetter-btn:hover {
+    background-color: #a50019; 
+}
+#newsLetter .newsLetter-follow{
+    margin-top: 20px;
+}
+#newsLetter .newsLetter-follow li{
+    display: inline;
+    margin-right: 10px;
+}
+#newsLetter .newsLetter-follow li a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border:1px solid #E4E7ED ;
+    background-color: #fff;
+}
+/* CSS NEWSLETTER */

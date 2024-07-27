@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class Categori extends Model
 {
     use HasFactory;
-    protected $table = "category";
+    protected $table = "categories";
     protected $fillable = ['name'];
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = 'categories_id';
     public function getlist()
     {
         $sql = "SELECT * FROM " . $this->table;

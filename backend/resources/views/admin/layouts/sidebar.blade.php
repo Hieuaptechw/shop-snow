@@ -1,6 +1,6 @@
 <div class="admin-sidebar">
   <div class="admin-sidebar-top">
-      <a href='#'> <img src="https://a.dongnat24h.com/Image/Logo/logo-shop.png" alt="logo-admin" /></a>
+      <a href='#'> <img src="https://api.hieuaptech.com/image/banner-logo/logo-admin.png" alt="logo-admin" /></a>
   </div>
   <div class="admin-sidebar-content">
       <ul>

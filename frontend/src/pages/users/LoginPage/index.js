@@ -1,71 +1,70 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../../../api/api";
 import "./style.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
     try {
-      const response = await axios.post("http://your-backend-url/api/login", {
-        email,
-        password
-      });
+      const response = await api.Login(email, password);
 
-      // Xử lý phản hồi từ server
-      console.log(response.data);
-      // Lưu token hoặc thông tin user vào localStorage hoặc context nếu cần thiết
-    } catch (error) {
-      if (error.response) {
-        // Lỗi từ server
-        setError(error.response.data.message);
+      if (response.data.status === "success") {
+        localStorage.setItem("api_token", response.data.api_token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setSuccess("Login Successfully");
+        setTimeout(() => window.location.href = "/home", 1500); 
       } else {
-        // Lỗi khác
-        setError("Có lỗi xảy ra, vui lòng thử lại.");
+        setError("Login failed");
       }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      setError("An error occurred during login.");
+      setTimeout(() => setError(""), 3000);
     }
   };
 
   return (
-    <div className="section">
-      <div className="container">
-        <div className="login">
-          <h2>Login</h2>
-          <form className="form-login" onSubmit={handleLogin}>
-            <div className="form-floating mb-3">
-              <input
-                type="email"
-                className="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <label htmlFor="floatingInput">Email address</label>
-            </div>
-            <div className="form-floating">
-              <input
-                type="password"
-                className="form-control"
-                id="floatingPassword"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <label htmlFor="floatingPassword">Password</label>
-            </div>
-            {error && <div className="error">{error}</div>}
-            <button className="btn btn-primary" type="submit">Đăng Nhập</button>
+    <div className="container">
+      <div className="login">
+        <h2>Login</h2>
+        <div className="login-form">
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input type="submit" class="button" value="Login" />
           </form>
-          <a href="#">Forgot Password</a>
-          <p>Don't have an account? <a href="#">Sign up</a> </p>
+          {error && <div className="alert alert-danger">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
+          <div class="login1">
+            <span class="login1">
+              Don't have an account?
+              <a href="/register">Register</a>
+            </span>
+          </div>
         </div>
       </div>
     </div>

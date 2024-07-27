@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import logo from '../assets/logo.png';
+import logo from "../assets/logo.png";
+import api from "../../../../api/api";
 
 const Header = () => {
+  const [user, setUser] = useState(null);
+  const [categorys, setCategorys] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+    const fetchCategory = async () => {
+      try {
+        const response = await api.getCategory();
+        setCategorys(response.data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchCategory();
+  }, []);
+
   return (
     <header className="header">
       {/* START-HEADER-TOP */}
@@ -12,7 +34,7 @@ const Header = () => {
             <div className="col-12 d-flex justify-content-between">
               <ul className="d-flex list-unstyled header-link">
                 <li>
-                  <a href="">
+                  <a href="#">
                     <i className="bi bi-telephone"></i>+84 0334982576
                   </a>
                 </li>
@@ -33,18 +55,51 @@ const Header = () => {
                     <i className="bi bi-currency-dollar"></i>VND
                   </a>
                 </li>
-                <li>
+                <li className="dropdown">
                   <a href="#">
-                    <i className="bi bi-person"></i>My Account
+                    <i className="bi bi-person"></i>
+                    {user ? user.name : "My Account"}
                   </a>
+                  <ul className="dropdown-menu">
+                    {user ? (
+                      <>
+                        <li>
+                          <a href="/profile">Profile</a>
+                        </li>
+                        <li>
+                          <a
+                            href="/logout"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              localStorage.removeItem("api_token");
+                              localStorage.removeItem("user");
+                              window.location.href = "/login";
+                            }}
+                          >
+                            Log Out
+                          </a>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <a href="/login">Log In</a>
+                        </li>
+                        <li>
+                          <a href="/register">Register</a>
+                        </li>
+                      </>
+                    )}
+                  </ul>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-    {/* END-HEADER-TOP */}
-    {/* START-HEADER-MAIN */}
+      {/* END-HEADER-TOP */}
+
+      {/* START-HEADER-MAIN */}
       <div className="header-main">
         <div className="container">
           <div className="row align-items-center">
@@ -60,11 +115,20 @@ const Header = () => {
                 <form>
                   <select className="header-input-select">
                     <option>All Categories</option>
-                    <option>Category 01</option>
-                    <option>Category 02</option>
+                    {categorys.map((category) => (
+                      <option key={category.id} value={category.slug}>
+                        {category.name}
+                      </option>
+                    ))}
                   </select>
-                  <input className="input-search" type="text" placeholder="Search Here" />
-                  <button className="search-btn" type="submit">Search</button>
+                  <input
+                    className="input-search"
+                    type="text"
+                    placeholder="Search Here"
+                  />
+                  <button className="search-btn" type="submit">
+                    Search
+                  </button>
                 </form>
               </div>
             </div>
@@ -88,21 +152,31 @@ const Header = () => {
         </div>
       </div>
       {/* END-HEADER-MAIN */}
+
       {/* START-MENU */}
       <nav className="nav-menu">
-          <div className="container">
-              <div>
-                <ul className="main-nav nav nav-bar">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Hot Deals</a></li>
-                  <li><a href="#">Categories</a></li>
-                  <li><a href="#">Laptops</a></li>
-                  <li><a href="#">Smartphones</a></li>
-                  <li><a href="#">Cameras</a></li>
-                  <li><a href="#">Accessories</a></li>
-                </ul>
-              </div>
+        <div className="container">
+          <div>
+            <ul className="main-nav nav nav-bar">
+              <li>
+                <a href="/home">Home</a>
+              </li>
+              <li>
+                <a href="/shop">Shop</a>
+              </li>
+              <li>
+                <a href="/checkout">Checkout</a>
+              </li>
+              {categorys.map((category) => (
+                <li key={category.id}>
+                  <a href={`/shop/${category.slug}`}>
+                    {category.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
       </nav>
       {/* END MENU */}
     </header>

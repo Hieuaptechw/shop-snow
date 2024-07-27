@@ -6,7 +6,7 @@
 
 .input-checkbox input[type="checkbox"] {
     margin-right: 10px;
-    /* Khoảng cách giữa checkbox và label */
+    
 }
 
 .input-checkbox label {
@@ -21,7 +21,7 @@
 .input-checkbox label small {
     margin-left: 5px;
     color: #999;
-    /* Màu chữ cho số lượng */
+   
 }
 
 .shop-product-aside .aside {
@@ -117,17 +117,22 @@ input[type="range"]::-moz-range-thumb {
     -moz-appearance: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
-
+.col-md-4{
+    /* width: 30%!important;
+    margin: 0 2px; */
+}
 .product-card {
     border: 1px solid #e4e7ed;
-    border-radius: 8px;
+    border-radius: 5px;
     background-color: #fff;
     text-align: center;
     margin-bottom: 20px;
-    height: auto;
-    padding: 10px;
+    padding: 20px;
+   
 }
-
+.product-card:hover{
+    border:1px solid #d10024;
+}
 .product-img img {
 
     width: 100%;
@@ -182,7 +187,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .product-addtc a {
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 5px 20px;
     border-radius: 20px;
     font-weight: 700;
@@ -195,4 +200,4 @@ input[type="range"]::-moz-range-thumb {
 
 .product-card {
     width: 280px;
-}
+} 
