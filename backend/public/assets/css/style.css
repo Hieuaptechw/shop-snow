@@ -27,9 +27,7 @@ li {
 /*SIDEBAR*/
 .admin{
 height: 100vh;
-    
-        overflow-x: hidden;
-    
+     overflow-x: hidden;  
 }
 .admin-sidebar {
     margin: 10px;
@@ -307,9 +305,7 @@ height: 100vh;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     background-color: #fff;
 }
-.categorie-from label{
 
-}
 .categorie-list{
     height: 60vh;
     border-radius: 15px;
@@ -399,9 +395,7 @@ height: 100vh;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     background-color: #fff;
 }
-.brand-from label{
 
-}
 .brand-list{
     height: 60vh;
     border-radius: 15px;
@@ -477,6 +471,20 @@ margin-left:5px
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
     margin-top: 15px;
+    height: 40vh;
+}
+
+#input-file-img img {
+    margin-top: 15px;
+    width: 180px;
+    height: 214px;
+    height: auto;
+}
+#input-file-imgs img {
+    margin-top: 15px;
+    width: 180px;
+    height: 214px;
+    height: auto;
 }
 .product-price{
     height: 27vh;
@@ -487,23 +495,16 @@ margin-left:5px
     padding: 20px;
 }
 .product-variant{
+    margin-left: 1px;
     margin-top: 15px;
     width: 90%;
-    height: 27vh;
+    height: 55vh;
     border-radius: 15px;
     background-color:#fff;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
 }
-.product-organize{
-    margin-top: 15px;
-    width: 90%;
-    height: 45vh;
-    border-radius: 15px;
-    background-color:#fff;
-    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
-    padding: 20px;
-}
+
 
 /*Listproduct*/
 .list-product{
@@ -577,4 +578,32 @@ margin-left:5px
     margin-top: 20px;
     bottom: 0px;
   
+}
+
+
+/**/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+	body {
+		margin: 0 !important;
+	}
+}
+
+.main-container {
+	font-family: 'Lato';
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ck-content {
+	font-family: 'Lato';
+	line-height: 1.6;
+	word-break: break-word;
+}
+
+.editor-container_classic-editor .editor-container__editor {
+	min-width: 795px;
+	max-width: 795px;
 }

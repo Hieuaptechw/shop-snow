@@ -17,7 +17,7 @@
             <td>{{ $product->product_id }}</td>
             <td>{{ $product->name }}</td>
             <td>${{ $product->price }}</td>
-            <td><img src="{{ $product->image_url }}" alt="Product Image" style="width:70px;"></td>
+            <td><img src="#" alt="Product Image" style="width:70px;"></td>
             <td>15</td>
             <td>
                 <button type="submit" class="btn btn-primary btn-sm">Edit</button>

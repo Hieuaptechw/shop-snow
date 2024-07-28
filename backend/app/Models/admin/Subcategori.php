@@ -2,20 +2,18 @@
 
 namespace App\Models\admin;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
-class Product extends Model
+class Subcategori extends Model
 {
-    protected $table = "products";
+    use HasFactory;
+    protected $table = "subcategories";
     protected $fillable = ['name'];
-    protected $primaryKey = 'product_id';
-
+    protected $primaryKey = 'categories_id';
     public function getlist()
     {
-        $sql = "SELECT *
-                FROM products
-               ";
+        $sql = "SELECT * FROM " . $this->table;
         $r = DB::select($sql);
         return $r;
     }
