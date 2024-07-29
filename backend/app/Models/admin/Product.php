@@ -4,7 +4,8 @@ namespace App\Models\admin;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\admin\ProductDetails;
+use App\Models\admin\ProductImages;
 class Product extends Model
 {
     protected $table = "products";
@@ -15,8 +16,7 @@ class Product extends Model
     {
         $sql = "SELECT *
                 FROM products
-                JOIN products_img ON products.product_id = products_img.product_id
-                JOIN products_details ON products.product_id = products_details.product_id";
+               ";
         $r = DB::select($sql);
         return $r;
     }
@@ -24,5 +24,14 @@ class Product extends Model
     public function insert($arrData)
     {
        DB::table($this->table)->insert($arrData);
+    }
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class, 'product_id');
+    }
+
+    public function details()
+    {
+        return $this->hasMany(ProductDetails::class, 'product_id');
     }
 }

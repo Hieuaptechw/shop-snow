@@ -27,9 +27,7 @@ li {
 /*SIDEBAR*/
 .admin{
 height: 100vh;
-    
-        overflow-x: hidden;
-    
+     overflow-x: hidden;  
 }
 .admin-sidebar {
     margin: 10px;
@@ -49,6 +47,7 @@ height: 100vh;
 }
 
 .admin-sidebar-top img {
+    margin-top: 30px;
     width: 230px;
 }
 
@@ -129,10 +128,10 @@ height: 100vh;
 /*NAVBAR*/
 .navbar {
     height: 10vh!important;
-    width: 96.5%;
+    width: 99%;
     margin-top: 10px;
     background-color: rgb(255, 255, 255);
-    margin-left: 5px;
+
     border-radius: 10px;
     height: 70px;
 
@@ -168,12 +167,10 @@ height: 100vh;
 
 .admin-dashboard {
     width: 99%;
-    margin-left: 20px;
     border-radius: 15px;
 }
 
 .dashboard-content .col-7 {
-    height: 30vh;
     padding: 20px;
     border-radius: 15px;
     background-color: #fff;
@@ -181,9 +178,8 @@ height: 100vh;
 }
 
 .dashboard-content .col-5 {
-    height: 30vh;
     margin-left: 15px;
-    width: 35.5%;
+    width: 38%;
     padding: 20px;
     border-radius: 15px;
     background-color: #fff;
@@ -266,7 +262,7 @@ height: 100vh;
 }
 .dashboard-content-map{
     height: 51vh!important;
-    width: 45%;
+    width: 47.5%;
     padding: 10px;
     background-color: #fff;
     margin-left: 15px;
@@ -281,9 +277,9 @@ height: 100vh;
 .categories{
    
     border-radius: 15px;
-    width: 96.5%;
-    margin-left: 5px;
-    margin-top: 10px;
+    width: 99%;
+    margin-left: -10px;
+    margin-top: 15px;
 }
 
 .alert {
@@ -301,15 +297,12 @@ height: 100vh;
     color: #fff;
 }
 .categorie-from{
-    height: 22vh!important;
     border-radius: 15px;
     padding: 20px;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     background-color: #fff;
 }
-.categorie-from label{
 
-}
 .categorie-list{
     height: 60vh;
     border-radius: 15px;
@@ -373,9 +366,9 @@ height: 100vh;
 .brand{
    
     border-radius: 15px;
-    width: 96.5%;
-    margin-left: 5px;
-    margin-top: 10px;
+    width: 99%;
+    margin-left: -10px;
+    margin-top: 15px;
 }
 
 .alert {
@@ -393,15 +386,12 @@ height: 100vh;
     color: #fff;
 }
 .brand-from{
-    height: 22vh!important;
     border-radius: 15px;
     padding: 20px;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     background-color: #fff;
 }
-.brand-from label{
 
-}
 .brand-list{
     height: 60vh;
     border-radius: 15px;
@@ -461,7 +451,8 @@ height: 100vh;
 }
 .add-product{
 margin-top: 15px;
-margin-left:5px
+
+width: 99%;
 }
 .product-information
 {
@@ -469,7 +460,7 @@ margin-left:5px
     border-radius: 15px;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
-    
+ 
 }
 .product-img{
     background-color: #fff;
@@ -477,41 +468,51 @@ margin-left:5px
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
     margin-top: 15px;
+    height: 58vh;
+}
+
+#input-file-img img {
+    margin-top: 15px;
+    width: 180px;
+    height: 214px;
+    height: auto;
+}
+#input-file-imgs img {
+    margin-top: 15px;
+    width: 180px;
+    height: 214px;
+    height: auto;
 }
 .product-price{
-    height: 27vh;
-    width: 90%;
+    /* height: 27vh; */
+    width:95% ;
+    margin-left: 5px;
     border-radius: 15px;
     background-color:#fff;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
+}
+.product-price input {
+    margin:5px 0;
 }
 .product-variant{
+    margin-left: 5px;
+    width:95%;
     margin-top: 15px;
-    width: 90%;
-    height: 27vh;
-    border-radius: 15px;
-    background-color:#fff;
-    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
-    padding: 20px;
-}
-.product-organize{
-    margin-top: 15px;
-    width: 90%;
-    height: 45vh;
     border-radius: 15px;
     background-color:#fff;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
 }
 
+
 /*Listproduct*/
 .list-product{
     background-color: #fff;
     border-radius: 15px;
     margin-top: 15px;
-    margin-left: 5px;
-    width: 96.5%;
+    margin-left: -10px;
+    width: 99%;
     height: 85vh;
     padding: 20px;
 }
@@ -577,4 +578,32 @@ margin-left:5px
     margin-top: 20px;
     bottom: 0px;
   
+}
+
+
+/**/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+	body {
+		margin: 0 !important;
+	}
+}
+
+.main-container {
+	font-family: 'Lato';
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ck-content {
+	font-family: 'Lato';
+	line-height: 1.6;
+	word-break: break-word;
+}
+
+.editor-container_classic-editor .editor-container__editor {
+	min-width: 795px;
+	max-width: 795px;
 }

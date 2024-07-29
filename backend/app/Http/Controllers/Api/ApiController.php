@@ -26,7 +26,7 @@ class ApiController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
-                    'error' => $validateUser->errors(),
+                    'error' =>$validateUser->errors(),
                 ], 401);
             }
             ;
@@ -60,7 +60,7 @@ class ApiController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['status' => false, 'message' => 'Invalid credentials'], 401);
+            return response()->json(['status' => false, 'message' => 'Email & password does not match'], 401);
         }
 
         $token = $user->createToken('API Token')->plainTextToken;

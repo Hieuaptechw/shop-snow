@@ -36,6 +36,7 @@ const Header = () => {
         const response = await api.getProfile();
         if (response.data.status) {
           setUser(response.data.data);
+          
         } else {
           setError(response.data.message);
         }
@@ -129,7 +130,7 @@ const Header = () => {
           <div className="row align-items-center">
             <div className="col-md-3 m-0">
               <div className="header-logo">
-                <a className="logo" href="#">
+                <a className="logo" href="/home">
                   <img src={logo} alt="Logo" />
                 </a>
               </div>
@@ -165,7 +166,7 @@ const Header = () => {
                   </a>
                 </div>
                 <div>
-                  <a href="#">
+                  <a href="/cart">
                     <i className="bi bi-cart3"></i>
                     <span>Your Cart</span>
                   </a>
@@ -197,7 +198,11 @@ const Header = () => {
                     {category.name}
                   </a>
                 </li>
+                
               ))}
+                <li>
+                <a href="/address">Store Address</a>
+              </li>
             </ul>
           </div>
         </div>

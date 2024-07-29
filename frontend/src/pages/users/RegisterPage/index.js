@@ -20,26 +20,32 @@ const RegisterPage = () => {
       return;
     }
     try {
-      const response = await api.Register(
-        name,
-        email,
-        password,
-        phone,
-        address
-      );
-
-      if (response.data.status === "success") {
+      const response = await api.Register(name, email, password, phone, address);
+    
+      if (response.data.status) {
         setSuccess("Đăng ký thành công! Bạn có thể đăng nhập.");
-       
       } else {
-        setError("Đăng ký thất bại. Vui lòng thử lại.");
+        setError(response.data.message || "Đăng ký thất bại. Vui lòng thử lại.");
         setTimeout(() => setError(""), 3000);
       }
     } catch (error) {
       console.error("Error registering:", error);
-      setError("Có lỗi xảy ra trong quá trình đăng ký.");
-      setTimeout(() => setError(""), 3000);
+      if (error.response && error.response.data && error.response.data.message) {
+        const errors = error.response.data.error;
+        if (errors['email'] && errors['email'][0]) {
+          setError(errors['email'][0]);
+        } else if (errors['password'] && errors['password'][0]) {
+          setError(errors['password'][0]);
+        } else{
+        setError("Có lỗi xảy ra trong quá trình đăng ký: " + error.response.data.error);
+        }
+      } else {
+        setError("Có lỗi xảy ra trong quá trình đăng ký.");
+      }
+      setTimeout(() => setError(""),5000);
+     
     }
+    
   };
 
   return (

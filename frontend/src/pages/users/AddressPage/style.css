@@ -1,0 +1,112 @@
+.section {
+    padding-top: 30px;
+    padding-bottom: 0px;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.section-title .title{
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+.list-unstyled {
+    list-style: none;
+}
+
+.list-icon i {
+    margin-right: 10px;
+}
+
+.list-icon li a{
+    line-height: 2;
+}
+
+.social-links li {
+    padding-right: 20px;
+}
+
+.social-links .social {
+    margin: 25px 0px;
+}
+
+/* CSS NEWSLETTER */
+#newsLetter {
+    border-top: 2px solid #E4E7ED;
+    border-bottom: 3px solid #D10024;
+    margin-top: 30px;
+    padding: 50px 0; 
+    background-color: #f9f9f9; 
+}
+
+.newsLetter {
+    text-align: center; 
+}
+
+.newsLetter p {
+    font-size: 24px; 
+    margin-bottom: 20px; 
+}
+form{
+    text-align: center;
+}
+.newsLetter form {
+    max-width: 520px; 
+    margin: 30px ; 
+    display: flex; 
+}
+
+#newsLetter form .input {
+   width: 350px; 
+    height: 40px; 
+    padding: 0 15px; 
+    border: 1px solid #E4E7ED; 
+    background-color: #fff; 
+    border-radius: 40px 0 0 40px; 
+    box-sizing: border-box; 
+}
+
+.newsLetter-btn {
+    width: 160px; 
+    height: 40px; 
+    font-weight: 700; 
+    background-color: #D10024; 
+    color: #fff; 
+    border: none; 
+    border-radius: 0 40px 40px 0; 
+    cursor: pointer;
+
+}
+
+.newsLetter-btn:hover {
+    background-color: #a50019; 
+}
+#newsLetter .newsLetter-follow{
+    margin-top: 20px;
+}
+#newsLetter .newsLetter-follow li{
+    display: inline;
+    margin-right: 10px;
+}
+#newsLetter .newsLetter-follow li a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border:1px solid #E4E7ED ;
+    background-color: #fff;
+}
+/* CSS NEWSLETTER */

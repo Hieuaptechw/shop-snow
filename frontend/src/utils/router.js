@@ -12,5 +12,7 @@ export const ROUTERS = {
         REGISTER:"register",
         PROFILE:"profile",
         FAVORITES:"wishlist",
+        CART:"cart",
+        ADDRESS:"address",
     },
 }

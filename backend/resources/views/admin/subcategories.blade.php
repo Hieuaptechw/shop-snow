@@ -13,15 +13,15 @@
     @endif
     <div class="categorie-from">
         <div class="row">
-            <h3>{{ isset($category) ? 'Edit Category' : 'Add Category' }}</h3>
-            <form method="POST" action="{{ isset($category) ? url('/admin/categories/update/'. $category->category_id) : url('/admin/categories/add') }}"  onsubmit="return confirmUpdate()">
+            <h3>{{ isset($subcategory) ? 'Edit SubCategory' : 'Add SubCategory' }}</h3>
+            <form method="POST" action="{{ isset($subcategory) ? url('/admin/categories/update/') : url('/admin/subcategories/add') }}"  onsubmit="return confirmUpdate()">
                 @csrf
-                @if(isset($category))
+                @if(isset($subcategory))
                     @method('PUT')
                 @endif
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Category Name" value="{{ isset($category) ? $category->name : '' }}" required>
-                    <label for="floatingInput">Category:</label>
+                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Subcategory Name" value="{{ isset($category) ? $category->name : '' }}" required>
+                    <label for="floatingInput">Subcategory:</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" name="slug" id="floatingInput" placeholder="Category Slug" value="{{ isset($category) ? $category->slug : '' }}" required>
@@ -33,7 +33,7 @@
         
     </div>
     <div class="categorie-list">
-        <h3>List Category</h3>
+        <h3>List Subcategory</h3>
         <table class="categorie-list-table">
             <tr class="categorie-list-table-header">
                
@@ -41,15 +41,15 @@
                 <td>Slug</td>
                 <td>Option</td>
             </tr>
-            @foreach ($categories as $categorys)
+            @foreach ($subcategory as $subcategories)
                 <tr>
                     
 
-                    <td>{{ $categorys->name }}</td>
-                    <td>{{ $categorys->slug }}</td>
+                    <td>{{ $subcategories->name }}</td>
+                    <td>{{ $subcategories->name }}</td>
                     <td>
-                        <a href="{{  url('/admin/categories/edit/' . $categorys->category_id) }}" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="{{ url('/admin/categories/delete/' . $categorys->category_id) }}" method="POST"
+                        <a href="{{  url('/admin/categories/edit/' . $subcategories->subcategory_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ url('/admin/categories/delete/' . $subcategories->subcategory_id) }}" method="POST"
                             style="display:inline;"  onsubmit="return confirmDelete();">
                             @csrf
                             @method('DELETE')
@@ -62,7 +62,6 @@
         </table>
 
         <!-- Phân trang -->
-        {{ $categories->links() }}
     </div>
 </div>
 <script>

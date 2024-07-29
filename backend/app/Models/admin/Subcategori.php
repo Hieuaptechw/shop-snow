@@ -5,14 +5,12 @@ namespace App\Models\admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-
-class Categori extends Model
+class Subcategori extends Model
 {
     use HasFactory;
-    protected $table = "categories";
+    protected $table = "subcategories";
     protected $fillable = ['name'];
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = 'categories_id';
     public function getlist()
     {
         $sql = "SELECT * FROM " . $this->table;

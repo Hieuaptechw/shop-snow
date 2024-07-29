@@ -33,23 +33,25 @@
             <h3>List Brand</h3>
             <table class="brand-list-table">
                 <tr class="brand-list-table-header">
-                    <td>ID</td>
                     <td>Name</td>
+                    <td>Description</td>
                     <td>Option</td>
                 </tr>
                 @foreach ($brands as $branditem)
                     <tr>
-                        <td>{{ $branditem->brand_id }}</td>
+                
                         <td>{{ $branditem->name }}</td>
+                        <td>{{ $branditem->description }}</td>
                         <td>
+                            <a href="{{ url('/admin/brand/edit/' . $branditem->brand_id) }}"
+                                class="btn btn-primary btn-sm">Edit</a>
                             <form action="{{ url('/admin/brand/delete/' . $branditem->brand_id) }}" method="POST"
                                 style="display:inline;" onsubmit="return confirmDelete();">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
-                            <a href="{{ url('/admin/brand/edit/' . $branditem->brand_id) }}"
-                                class="btn btn-primary btn-sm">Edit</a>
+                            
                         </td>
                     </tr>
                 @endforeach

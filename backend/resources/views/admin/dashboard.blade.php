@@ -42,7 +42,7 @@
         </div>
         <div class="col-5">
             <h3>Today's Order</h3>
-            <div id="piechart" style="width: 300px; height: 200px;"></div>
+            <div id="piechart" style="width: 400px; height: 120px;"></div>
         </div>
     </div>
     <div class="dashboard-content row">
@@ -82,7 +82,7 @@
             </table>
         </div>
         <div class="col-6 dashboard-content-map">
-        <div id="regions_div" style="width: 500px; height: 250px;"></div>
+        <div id="regions_div" style="width: 400px; height: 250px;"></div>
         </div>
     </div>
 </div>

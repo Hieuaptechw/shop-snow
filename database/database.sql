@@ -1,156 +1,12 @@
-CREATE TABLE user (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone VARCHAR(20),
-    address TEXT,
-    role ENUM('user', 'admin') NOT NULL DEFAULT 'user', 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
 
-CREATE TABLE cart (
-    cart_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    total_price DECIMAL(10, 2) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
+INSERT INTO categories (category_id, name, slug) VALUES
+(1, 'Consumer Electronics', 'consumer-electronics'),
+(2, 'Home Appliances', 'home-appliances'),
+(3, 'Cooling Devices', 'cooling-devices'),
+(4, 'Audio Equipment', 'audio-equipment'),
+(5, 'Lighting Devices', 'lighting-devices');
 
-CREATE TABLE category (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE subcategory (
-    subcategory_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    category_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES category(category_id)
-);
-
-CREATE TABLE brand (
-    brand_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE store (
-    store_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    address TEXT,
-    phone VARCHAR(20),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE products (
-    product_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    price_sale DECIMAL(10,2) NOT NULL,
-    category_id INT,
-    subcategory_id INT,
-    brand_id INT,
-    quantity INT,
-    store_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES category(category_id),
-    FOREIGN KEY (subcategory_id) REFERENCES subcategory(subcategory_id),
-    FOREIGN KEY (brand_id) REFERENCES brand(brand_id),
-    FOREIGN KEY (store_id) REFERENCES store(store_id)
-);
-
-CREATE TABLE products_img (
-    product_image_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    image_url VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-
-CREATE TABLE products_details (
-    product_detail_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    attribute_name VARCHAR(255) NOT NULL,
-    attribute_value VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-
-CREATE TABLE review (
-    review_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    user_id INT,
-    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
-    comment TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
-
-CREATE TABLE orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    total_price DECIMAL(10, 2) NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
-
-CREATE TABLE payment (
-    payment_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    payment_method VARCHAR(255) NOT NULL,
-    payment_status VARCHAR(255) NOT NULL,
-    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id)
-);
-
-
--- Insert into user
-INSERT INTO user (username, password, email, phone, address, role)
-VALUES
-    ('john_doe', 'password123', 'john.doe@example.com', '123456789', '123 Main St, City', 'admin'),
-    ('jane_smith', 'pass456', 'jane.smith@example.com', '987654321', '456 Oak Ave, Town', 'user'),
-    ('alice_green', 'green123', 'alice.green@example.com', '555555555', '789 Elm Rd, Village', 'user'),
-    ('bob_brown', 'brownpass', 'bob.brown@example.com', '777777777', '321 Pine Ln, Hamlet', 'user'),
-    ('eve_white', 'evepass', 'eve.white@example.com', '999888777', '654 Birch Dr, County', 'user');
-
--- Insert into cart
-INSERT INTO cart (user_id, total_price)
-VALUES
-    (1, 150.00),
-    (2, 75.50),
-    (3, 200.25),
-    (4, 50.75),
-    (5, 100.00);
-
--- Insert into category
-INSERT INTO category (name) VALUES
-    ('Consumer Electronics'),
-    ('Home Appliances'),
-    ('Cooling Devices'),
-    ('Audio Equipment'),
-    ('Lighting Devices');
-
--- Insert into subcategory
-INSERT INTO subcategory (name, category_id) VALUES
+INSERT INTO subcategories (name, category_id) VALUES
     ('Smartphones', 1),
     ('Televisions', 1),
     ('Laptops', 1),
@@ -162,8 +18,8 @@ INSERT INTO subcategory (name, category_id) VALUES
     ('Speakers', 4),
     ('Headphones', 4),
     ('Wall Lights', 5),
-    ('Table Lamps', 5),
-INSERT INTO store (name, description, address, phone)
+    ('Table Lamps', 5);
+INSERT INTO stores (name, description, address, phone)
 VALUES
     ('ElectroTech', 'Electronics and gadgets store', '123 Main St, City', '1234567890'),
     ('SportsGear', 'Sports equipment and apparel store', '456 Oak Ave, Town', '9876543210'),
@@ -171,7 +27,7 @@ VALUES
     ('Bookworm Books', 'Bookstore specializing in various genres', '321 Pine Ln, Hamlet', '7777777777'),
     ('FashionHub', 'Clothing and fashion store', '654 Birch Dr, County', '9998887777');
 -- Insert into brand
-INSERT INTO brand (name, description) VALUES
+INSERT INTO brands (name, description) VALUES
     ('Samsung', 'Offers products such as smartphones, TVs, washing machines, and home appliances.'),
     ('Apple', 'Known for its smartphones, tablets, laptops, and other innovative technology products.'),
     ('Sony', 'Recognized for products such as TVs, cameras, and audio equipment.'),
@@ -187,7 +43,7 @@ INSERT INTO brand (name, description) VALUES
     ('HP', 'Famous for computers, printers, and office equipment.'),
     ('Lenovo', 'Provides laptops, desktops, and other electronic devices.'),
     ('Asus', 'Offers laptops, motherboards, and accessories.'),
-    ('MSI', 'Known for gaming laptops and computer components.')
+    ('MSI', 'Known for gaming laptops and computer components.'),
     ('Sunhouse', 'Known for affordable and practical home appliances.'),
     ('Kangaroo', 'Offers a wide range of home appliances with innovative features.');
 
