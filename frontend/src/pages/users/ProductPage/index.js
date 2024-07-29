@@ -31,6 +31,9 @@ const ProductPage = () => {
         </div>
       </div>
       {/* END-HEADER */}
+
+      
+      {/* START-MAIN */}
       <div className="section">
         <div className="container">
           <div className="row">
@@ -39,7 +42,6 @@ const ProductPage = () => {
                 <img src="https://themewagon.github.io/electro/img/product01.png" />
                 <img src="https://themewagon.github.io/electro/img/product01.png" />
                 <img src="https://themewagon.github.io/electro/img/product01.png" />
-
               </div>
             </div>
             <div className="col-5">
@@ -103,27 +105,27 @@ const ProductPage = () => {
                     </li>
                     <li>
                       <a href="/wishlist">
-                      <i class="bi bi-arrow-left-right"></i>
+                        <i class="bi bi-arrow-left-right"></i>
                         <span>ADD TO COMPARE</span>
                       </a>
                     </li>
                   </ul>
                   <ul className="product-links d-flex">
-                  <li>CATEGORY:</li>
+                    <li>CATEGORY:</li>
                     <li><a href="#">HEADPHONES</a></li>
                     <li><a href="#">ACCESSORIES</a></li>
                   </ul>
                   <ul className="product-links d-flex">
-                  <li>SHARE:</li>
+                    <li>SHARE:</li>
                     {/* code... */}
                   </ul>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/* END-MAIN */}
     </>
   );
 };
