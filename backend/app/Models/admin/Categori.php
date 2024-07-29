@@ -12,7 +12,7 @@ class Categori extends Model
     use HasFactory;
     protected $table = "categories";
     protected $fillable = ['name'];
-    protected $primaryKey = 'categories_id';
+    protected $primaryKey = 'category_id';
     public function getlist()
     {
         $sql = "SELECT * FROM " . $this->table;

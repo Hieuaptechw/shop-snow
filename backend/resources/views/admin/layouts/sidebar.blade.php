@@ -1,12 +1,13 @@
 <div class="admin-sidebar">
   <div class="admin-sidebar-top">
-      <a href='#'> <img src="https://api.hieuaptech.com/image/banner-logo/logo-admin.png" alt="logo-admin" /></a>
+      <a href='#'> <img src="https://api.hieuaptech.com/image/banner-logo/admin-logo.png" alt="logo-admin" /></a>
   </div>
   <div class="admin-sidebar-content">
       <ul>
           <li><a href="/admin/dashboard"><i class="bi bi-columns-gap"></i>Dashboard</a></li>
 
           <li><a href="/admin/categories/"><i class="bi bi-card-list"></i>Categori<i class="ri-add-line"></i></a>
+            <li><a href="/admin/subcategories"><i class="bi bi-card-list"></i>Subcategories<i class="ri-add-line"></i></a>
           </li>
           <li><a href="/admin/brand" class="item1"><i class="bi bi-card-checklist"></i>Brand<i class="ri-add-line"></i></a>
 

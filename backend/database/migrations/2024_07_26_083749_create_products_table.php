@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->unsignedBigInteger('store_id')->nullable();
             $table->integer('quantity');
+            $table->string('avatar_product');
             $table->timestamps();
-
             $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('set null');
             $table->foreign('subcategory_id')->references('subcategory_id')->on('subcategories')->onDelete('set null');
             $table->foreign('brand_id')->references('brand_id')->on('brands')->onDelete('set null');
@@ -31,9 +31,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('products');

@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\UploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
+use App\Http\Controllers\admin\SubcategoriController;
 use App\Http\Controllers\admin\ListProductController;
 
 /*
@@ -36,6 +37,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('/categories/delete/{id}', [CategoriController::class, 'delete']);
     Route::get('/categories/edit/{id}', [CategoriController::class, 'edit']);
     Route::put('/categories/update/{id}', [CategoriController::class, 'update']);
+    //SUBCATEGORY
+    Route::get('/subcategories', [SubcategoriController::class, 'viewList']);
+    Route::post('/subcategories/add', [SubcategoriController::class, 'insert']);
+    Route::delete('/subcategories/delete/{id}', [SubcategoriController::class, 'delete']);
+    Route::get('/subcategories/edit/{id}', [SubcategoriController::class, 'edit']);
+    Route::put('/subcategories/update/{id}', [SubcategoriController::class, 'update']);
     //BRAND
     Route::get('/brand', [BrandController::class, 'viewList']);
     Route::post('/brand/add', [BrandController::class, 'insert']);
@@ -47,6 +54,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/products', [ListProductController::class, 'viewList']);
     Route::get('/products/add', [AddProductController::class, 'create']);
     Route::post('/products/store', [AddProductController::class, 'store'])->name('products.store');
+    Route::delete('/products/delete/{id}', [ListProductController::class, 'delete']);
+    Route::get('/products/edit/{id}', [ListProductController::class, 'edit']);
+    Route::get('/products/edit1/{id}', [ListProductController::class, 'edit1']);
+    Route::put('/products/update/{id}', [ListProductController::class, 'update']);
+    Route::delete('/products/delete/{id}', [ListProductController::class, 'delete']);
 });
 
 Route::post('/upload',[UploadController::class,'upload']);

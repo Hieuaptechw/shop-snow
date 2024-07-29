@@ -11,6 +11,8 @@ import LoginPage from "./pages/users/LoginPage";
 import RegisterPage from "./pages/users/RegisterPage";
 import ProfilePage from "./pages/users/ProfilePage";
 import FavoritesPage from "./pages/users/FavoritesPage";
+import CartPage from "./pages/users/CartPage";
+import AddressPage from "./pages/users/AddressPage";
 
 const routes = [
   {
@@ -48,6 +50,14 @@ const routes = [
   {
     path: ROUTERS.USER.FAVORITES,
     component: <FavoritesPage />,
+  },
+  {
+    path: ROUTERS.USER.CART,
+    component: <CartPage />,
+  },
+  {
+    path: ROUTERS.USER.ADDRESS,
+    component: <AddressPage />,
   },
 ];
 

@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-
+import api from "../../../api/api";
 
 const ProfilePage = () => {
-
+  const [user, setUser] = useState([]);
+  const [error, setError] = useState("");
   return (
     <>
       <section class="background">
         <div class="container py-5">
-       
-
           <div class="row">
             <div class="col-lg-4">
               <div class="card mb-4">
@@ -19,7 +18,7 @@ const ProfilePage = () => {
                     alt="avatar"
                     class="avatar"
                   />
-                  <h5 class="my-3">John Smith</h5>
+                  <h5 class="my-3">{user.name}</h5>
                   <p class="text-muted mb-1">Full Stack Developer</p>
                   <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                   <div class="d-flex justify-content-center mb-2">

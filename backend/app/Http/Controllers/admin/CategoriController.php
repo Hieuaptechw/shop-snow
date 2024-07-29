@@ -27,6 +27,7 @@ class CategoriController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
         ]);
     
      
@@ -38,6 +39,7 @@ class CategoriController extends Controller
   
         $category = new Categori();
         $category->name = $request->name;
+        $category->slug = $request->slug;
         $category->save();
  
         return redirect('/admin/categories')->with('success', 'Category added successfully !');
@@ -75,6 +77,7 @@ class CategoriController extends Controller
 
         if ($category) {
             $category->name = $request->name;
+            $category->slug = $request->slug;
             $category->save();
             return redirect('/admin/categories')->with('success', 'Category updated successfully');
         } else {

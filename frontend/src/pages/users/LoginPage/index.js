@@ -15,18 +15,22 @@ const LoginPage = () => {
       const response = await api.Login(email, password);
       if (response.data.status) {
         localStorage.setItem('token', response.data.token);
-
         setSuccess("Login successful");
         setTimeout(() => window.location.href = "/home", 1500);
       } else {
-        setError("Login failed: " + (response.data.message || "Unknown error"));
+        setError(response.data.message || "Login failed: Unknown error");
       }
       console.log(response.data);
     } catch (error) {
       console.error("Error logging in:", error);
-      setError("An error occurred during login.");
+      if (error.response && error.response.data && error.response.data.message) {
+        setError( error.response.data.message);
+      } else {
+        setError("An error occurred during login.");
+      }
       setTimeout(() => setError(""), 3000); 
     }
+    
   };
 
   return (
