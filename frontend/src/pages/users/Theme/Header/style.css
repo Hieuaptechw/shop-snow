@@ -1,6 +1,6 @@
 /* START TOP-HEADER */
 .header{
-    height: 250px;
+    height: 190px;
   }
   
   .top-header {
@@ -128,7 +128,6 @@ text-decoration: underline;
   .nav-menu {
     padding: 10px 0;
     border-top: 2px solid #d10024;
-    border-bottom: 2px solid #e4e7ed;
   }
   
   

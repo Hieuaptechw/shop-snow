@@ -1,122 +1,34 @@
-.product-img-slide-main img {
-    width: 300px;
-  }
+  /* START-HEADER */
+#breadcrumb .breadcrumb-tree li{
+  margin: 10px;
+ }
+ #breadcrumb {
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  padding: 15px;
+  background-color: #E4E7ED;
+ }
+   /* END-HEADER */
+
+   /* START MAIN */
   
-  .product-img-slide-item img {
-    width: 150px;
-  }
-  
-  .ml-10 {
-    margin-left: 10px;
-  }
-  
-  .align-items-center {
-    align-items: center;
-  }
-  
-  .inline-block {
-    display: flex;
-    font-size: 30px;
-    color: #d10024;
-  }
-  
-  .product-old-price {
-    font-size: 20px;
-    line-height: 40px;
-    font-size: 70%;
-    font-weight: 10;
-    color: #8d99ae !important;
-  }
-  
-  a.review-link {
-    padding-bottom: 10px;
-  }
-  
-  .review-link {
-    color: #2b2d42;
-    font-weight: 500;
-    font-size: 12px;
-  }
-  
-  .rating {
-    display: flex;
-  }
-  
-  .product-available {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-left: 30px;
-    color: #d10024;
-  }
-  
-  p {
+  .product-img img{
     display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    unicode-bidi: isolate;
+    border: 1px solid gray;
   }
-  
-  .input-select {
-    padding: 0px 15px;
-    background: #fff;
-    border: 1px solid #e4e7ed;
-    height: 40px;
+  .review-link{
+    margin-left: 7px;
+    font-size: 12px;
   }
-  
-  button,
-  input,
-  select,
-  textarea {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-  }
-  
-  .product-details .add-to-cart .add-to-cart-btn {
-    position: relative;
-    border: 2px solid transparent;
-    height: 40px;
-    padding: 0 30px;
-    background-color: #ef233c;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-radius: 40px;
-    -webkit-transition: 0.2s all;
-    transition: 0.2s all;
-  }
-  
-  .input-qty {
-    width: 30%;
-  }
-  
-  i {
-    margin: 0 5px;
-  }
-  
-  li {
-    margin: 0 10px;
-  }
-  
-  .gap {
-    margin: 10px 0;
-  }
-  
-  .name-card {
-    font-size: 13px;
-  }
-  
-  .price-card {
-    font-size: 20px;
-  }
-  
-  .hidden-button {
-    display: none;
-  }
-  
-  .item-container:hover .hidden-button {
-    display: inline-block;
-  }
+ .input-number .qty-up, .input-number .qty-down{
+  width: 20px;
+  border: none;
+  background-color: white;
+  height: 35px;
+ }
+ .input-number input{
+  width: 100px;
+  height: 35px;
+ }
+ 
+   /* END MAIN */
