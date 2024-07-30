@@ -17,4 +17,9 @@ class Product extends Model
     $subCategory = DB::select($sql);
     return $subCategory;
    }
+   public function getProduct(){
+        $sql = "SELECT products.*, categories.name FROM products LEFT JOIN categories ON categories.category_id = products.product_id";
+        $p = DB::select($sql);
+        return $p;
+   }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\auth\BrandAuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ListProductController;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\auth\AuthProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,4 @@ Route::get('/category/{category_name}', [CategoriauthController::class, 'getSubc
 
 
 Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);
+Route::get('/product', [AuthProductController::class, 'getProduct']);
