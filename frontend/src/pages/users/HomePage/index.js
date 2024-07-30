@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 import product from "../Theme/assets/product01.png";
 import banner from "../Theme/assets/hotdeal.png";
-
 const HomePage = () => {
   return (
     <>
@@ -250,7 +249,7 @@ const HomePage = () => {
 
       {/* START BANNER */}
       <div id="hot-deal" className="section">
-        <img src={banner} alt="Hot Deal Banner" />
+        <img className="hot-deal-banner" src={banner} alt="Hot Deal Banner" />
         <div className="hot-deal">
           <ul className="hot-deal-countdown d-flex justify-content-center">
             <li>
@@ -291,7 +290,7 @@ const HomePage = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="section-title">
-                <div className="section-nav d-flex">
+                <div className="section-nav d-flex align-items-center">
                   <h2>TOP SELLING</h2>
                   <ul className="tab-nav d-flex">
                     <li>

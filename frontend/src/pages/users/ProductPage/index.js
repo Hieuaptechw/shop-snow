@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
-import api from "../../../api/api";
-import NavComponent from "./nav";
 import product from "../Theme/assets/product01.png";
 import banner from "../Theme/assets/hotdeal.png";
 
 const ProductPage = () => {
+  // State to manage active tab
+  const [activeTab, setActiveTab] = useState('description'); // default tab
+
+  // Function to handle tab clicks
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
     <>
@@ -30,18 +35,18 @@ const ProductPage = () => {
                 <h2 className="product-name">product name goes here</h2>
                 <div className="d-flex flex-wrap align-items-center">
                   <div className="product-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
                   </div>
                   <a className="review-link align-items-center d-flex" href="#">10 Review(s) | Add your review</a>
                 </div>
                 <div className="d-flex align-items-center">
                   <h3 className="product-price m-0">$980.00
-                    <del class="product-old-price">$990.00</del>
+                    <del className="product-old-price">$990.00</del>
                   </h3>
-                  <span class="product-available">In Stock</span>
+                  <span className="product-available">In Stock</span>
                 </div>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -66,9 +71,7 @@ const ProductPage = () => {
                   <div className="qty-label d-flex align-items-center">
                     QTY
                     <div className="input-number">
-                  
                       <input type="text"></input>
-              
                     </div>
                     <button className="btn btn-danger btn-add">ADD TO CART</button>
                   </div>
@@ -81,7 +84,7 @@ const ProductPage = () => {
                     </li>
                     <li id="1">
                       <a href="/wishlist">
-                        <i class="bi bi-arrow-left-right"></i>
+                        <i className="bi bi-arrow-left-right"></i>
                         <span>ADD TO COMPARE</span>
                       </a>
                     </li>
@@ -93,10 +96,10 @@ const ProductPage = () => {
                   </ul>
                   <ul className="product-links d-flex">
                     <li>SHARE:</li>
-                    <li id="2"><a href="#"><i class="bi bi-facebook"></i></a></li>
-                    <li id="2"><a href="#"><i class="bi bi-twitter"></i></a></li>
-                    <li id="2"><a href="#"><i class="bi bi-google"></i></a></li>
-                    <li id="2"><a href="#"><i class="bi bi-envelope-fill"></i></a></li>
+                    <li id="2"><a href="#"><i className="bi bi-facebook"></i></a></li>
+                    <li id="2"><a href="#"><i className="bi bi-twitter"></i></a></li>
+                    <li id="2"><a href="#"><i className="bi bi-google"></i></a></li>
+                    <li id="2"><a href="#"><i className="bi bi-envelope-fill"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -105,189 +108,61 @@ const ProductPage = () => {
         </div>
       </div>
       {/* END-MAIN */}
+      
       {/* START-REVIEW */}
       <div className="section">
-          <div className="container">
-            <div className="row">
-                <div className="col-12">
-                  <div id="product-tab">
-                      <ul className="tab-nav d-flex justify-content-center">
-                          <li><a href="#">Reviews</a></li>
-                      </ul>
-                  </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div id="product-tab">
+                <ul className="tab-nav d-flex justify-content-center">
+                  <li
+                    className={activeTab === 'description' ? 'active' : ''}
+                    onClick={() => handleTabClick('description')}
+                  >
+                    <a href="#">Description</a>
+                  </li>
+                  <li
+                    className={activeTab === 'reviews' ? 'active' : ''}
+                    onClick={() => handleTabClick('reviews')}
+                  >
+                    <a href="#">Reviews</a>
+                  </li>
+                </ul>
+              </div>
+              {activeTab === 'description' && (
+                <div className="tab-content">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
+              )}
+              {activeTab === 'reviews' && (
+                <div className="tab-content">
+                  <h3>Product Reviews</h3>
+                  <div className="review-item">
+                    <p><strong>John Doe</strong> - ★★★★☆</p>
+                    <p>This product is amazing!</p>
+                  </div>
+                  <div className="review-item">
+                    <p><strong>Jane Smith</strong> - ★★★☆☆</p>
+                    <p>Good value for the price.</p>
+                  </div>
+                  <p><a href="#">Add your review</a></p>
+                </div>
+              )}
             </div>
           </div>
+        </div>
       </div>
       {/* END-REVIEW */}
+
       <div className="container">
-      <div className="col-md-12">
-        <h2 className="text-center p-2">Related Products</h2>
-              <div className="row">
-                <div className="col-md-3 col-sm-6">
-                  <div className="product-card">
-                    <div className="product-img">
-                      <img src={product} />
-                    </div>
-                    <div className="product-info">
-                      <p className="product-category">CATEGORY</p>
-                      <h3 className="product-name">Product Name</h3>
-                      <p className="product-price">
-                        $99.99
-                        <del class="product-old-price">$990.00</del>
-                      </p>
-                    </div>
-                    <div className="product-rating">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                    </div>
-                    <div className="product-btns">
-                      <button>
-                        <i class="bi bi-heart"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-arrow-left-right"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-eye"></i>
-                      </button>
-                    </div>
-                    <div className="product-addtc">
-                      <a
-                        href={`shop/product/`}
-                        className="btn btn-danger"
-                      >
-                        ADD TO CART
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="product-card">
-                    <div className="product-img">
-                      <img src={product} />
-                    </div>
-                    <div className="product-info">
-                      <p className="product-category">CATEGORY</p>
-                      <h3 className="product-name">Product Name</h3>
-                      <p className="product-price">
-                        $99.99
-                        <del class="product-old-price">$990.00</del>
-                      </p>
-                    </div>
-                    <div className="product-rating">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                    </div>
-                    <div className="product-btns">
-                      <button>
-                        <i class="bi bi-heart"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-arrow-left-right"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-eye"></i>
-                      </button>
-                    </div>
-                    <div className="product-addtc">
-                      <a
-                        href={`shop/product/`}
-                        className="btn btn-danger"
-                      >
-                        ADD TO CART
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="product-card">
-                    <div className="product-img">
-                      <img src={product} />
-                    </div>
-                    <div className="product-info">
-                      <p className="product-category">CATEGORY</p>
-                      <h3 className="product-name">Product Name</h3>
-                      <p className="product-price">
-                        $99.99
-                        <del class="product-old-price">$990.00</del>
-                      </p>
-                    </div>
-                    <div className="product-rating">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                    </div>
-                    <div className="product-btns">
-                      <button>
-                        <i class="bi bi-heart"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-arrow-left-right"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-eye"></i>
-                      </button>
-                    </div>
-                    <div className="product-addtc">
-                      <a
-                        href={`shop/product/`}
-                        className="btn btn-danger"
-                      >
-                        ADD TO CART
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                  <div className="product-card">
-                    <div className="product-img">
-                      <img src={product} />
-                    </div>
-                    <div className="product-info">
-                      <p className="product-category">CATEGORY</p>
-                      <h3 className="product-name">Product Name</h3>
-                      <p className="product-price">
-                        $99.99
-                        <del class="product-old-price">$990.00</del>
-                      </p>
-                    </div>
-                    <div className="product-rating">
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                    </div>
-                    <div className="product-btns">
-                      <button>
-                        <i class="bi bi-heart"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-arrow-left-right"></i>
-                      </button>
-                      <button>
-                        <i class="bi bi-eye"></i>
-                      </button>
-                    </div>
-                    <div className="product-addtc">
-                      <a
-                        href={`shop/product/`}
-                        className="btn btn-danger"
-                      >
-                        ADD TO CART
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="col-md-12">
+          <h2 className="text-center p-2">Related Products</h2>
+          <div className="row">
+            {/* Related products code here */}
+          </div>
+        </div>
       </div>
-      
     </>
   );
 };

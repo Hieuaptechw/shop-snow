@@ -7,6 +7,9 @@
     background-color: #1e1f29;
     padding: 10px 0;
   }
+  .top-header .container{
+    padding: 0;
+  }
   
   .header-link a {
     margin: 0 15px;
@@ -26,9 +29,6 @@
     padding: 15px;
   }
   
-  .header-logo {
-    text-align: center;
-  }
   
   .header-search {
     display: flex;
