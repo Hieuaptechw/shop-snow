@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
+
 const CartPage = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -10,114 +11,99 @@ const CartPage = () => {
             navigate('/login');
         }
     }, [navigate]);
+
     return (
         <div className='section'>
-            <div className='container'>
-                <div className='row d-flex'>
-                    <div className='col-8'>
+            <div className='container'>                      
+                <div className='row'>
+                    <div className='col-12'>
                         <div className='cart'>
                             <div className='cart-container'>
-                                    <div className='d-flex align-items-center justify-content-between'>
-                                <h2 className='title-cart'>Shopping Cart</h2>
-                                <span className='status-cart'>3 items</span>
+                                <div className='d-flex align-items-center justify-content-between'>
+                                    <h2 className='title-cart'>Shopping Cart</h2>
+                                    <span className='status-cart'>3 items</span>
+                                </div>
+                                <div className='card-product d-flex justify-content-between align-items-center'>
+                                    <div className='card-product-img'>
+                                        <img src='#' alt='Product' />
+                                    </div>
+                                    <div className='card-product-name'>
+                                        <p>Product Name</p>
+                                    </div>
+                                    <div className="input-container">
+                                        <button className="btn-decrement">-</button>
+                                        <input type="text" className="input-field" value="0" />
+                                        <button className="btn-increment">+</button>
+                                    </div>
+                                    <div className='card-product-price'>
+                                        <p className='m-0'>$900.00</p>
+                                    </div>
+                                    <div className='card-product-delete'>
+                                        <i className="bi bi-trash"></i>
+                                    </div>
+                                </div>
+                                <div className='card-product d-flex justify-content-between align-items-center'>
+                                    <div className='card-product-img'>
+                                        <img src='#' alt='Product' />
+                                    </div>
+                                    <div className='card-product-name'>
+                                        <p>Product Name</p>
+                                    </div>
+                                    <div className="input-container">
+                                        <button className="btn-decrement">-</button>
+                                        <input type="text" className="input-field" value="0" />
+                                        <button className="btn-increment">+</button>
+                                    </div>
+                                    <div className='card-product-price'>
+                                        <p className='m-0'>$900.00</p>
+                                    </div>
+                                    <div className='card-product-delete'>
+                                        <i className="bi bi-trash"></i>
+                                    </div>
+                                </div>
+                                <div className='card-product d-flex justify-content-between align-items-center'>
+                                    <div className='card-product-img'>
+                                        <img src='#' alt='Product' />
+                                    </div>
+                                    <div className='card-product-name'>
+                                        <p>Product Name</p>
+                                    </div>
+                                    <div className="input-container">
+                                        <button className="btn-decrement">-</button>
+                                        <input type="text" className="input-field" value="0" />
+                                        <button className="btn-increment">+</button>
+                                    </div>
+                                    <div className='card-product-price'>
+                                        <p className='m-0'>$900.00</p>
+                                    </div>
+                                    <div className='card-product-delete'>
+                                        <i className="bi bi-trash"></i>
+                                    </div>
+                                </div>
+        
                             </div>
-                            <div className='card-product d-flex justify-content-between align-items-center'>
-                                <div className='card-product-img'>
-                                    <img src='#' />
-                                </div>
-                                <div className='card-product-name'>
-                                    <p>Product Name</p>
-                                </div>
-                                <div class="input-container">
-                                    <button class="btn-decrement">-</button>
-                                    <input type="text" class="input-field" value="0" />
-                                    <button class="btn-increment">+</button>
-                                </div>
-                                <div className='card-product-price'>
-                                    <p className='m-0'>$900.00</p>
-                                </div>
-                                <div className='card-product-delete'>
-                                    <i class="bi bi-trash"></i>
-                                </div>
-                            </div>
-                            <div className='card-product d-flex justify-content-between align-items-center'>
-                                <div className='card-product-img'>
-                                    <img src='#' />
-                                </div>
-                                <div className='card-product-name'>
-                                    <p>Product Name</p>
-                                </div>
-                                <div class="input-container">
-                                    <button class="btn-decrement">-</button>
-                                    <input type="text" class="input-field" value="0" />
-                                    <button class="btn-increment">+</button>
-                                </div>
-                                <div className='card-product-price'>
-                                    <p className='m-0'>$900.00</p>
-                                </div>
-                                <div className='card-product-delete'>
-                                    <i class="bi bi-trash"></i>
-                                </div>
-                            </div>
-                            <div className='card-product d-flex justify-content-between align-items-center'>
-                                <div className='card-product-img'>
-                                    <img src='#' />
-                                </div>
-                                <div className='card-product-name'>
-                                    <p>Product Name</p>
-                                </div>
-                                <div class="input-container">
-                                    <button class="btn-decrement">-</button>
-                                    <input type="text" class="input-field" value="0" />
-                                    <button class="btn-increment">+</button>
-                                </div>
-                                <div className='card-product-price'>
-                                    <p className='m-0'>$900.00</p>
-                                </div>
-                                <div className='card-product-delete'>
-                                    <i class="bi bi-trash"></i>
-                                </div>
-                            </div>
-                            </div>
-                        
                         </div>
-
                     </div>
-                    <div className='col-4'>
+                </div>
+                <div className='row'>
+                    <div className='col-12'>
                         <div className='sum'>
-                            <div className='sum-container'>
-                                <h2 className='title-cart'>Summary</h2>
-                                <div className='d-flex justify-content-between'>
-                                    <p>ITEMS 3</p>
-                                    <p className='sum-price'>$900.00</p>
+                            <div className='sum-container d-flex justify-content-between align-items-center'>
+                                <div className='sum-qty'>
+                                <h2 className='title-cart text-center m-0'>Summary</h2>
                                 </div>
-                                <label className='sum-label'>SHIPPING</label>
-                                <div className='form-group'>
-                                    <select className='sum-select'>
-                                        <option>Iphone 12 promax</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                    </select>
+                                <div className='sum-total d-flex align-items-center'>
+                                    <h3 className='m-0'>Total price:</h3>
+                                    <p className='m-0'>$99.00</p>
                                 </div>
-                                <label className='sum-label'>GIVE CODE</label>
-                                <div className='form-group'>
-                                    <select className='sum-select'>
-                                        <option>Iphone 12 promax</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                    </select>
-                                </div>
-                                <div className='sum-total-price d-flex justify-content-between'>
-                                    <p>TOTAL PRICE</p>
-                                    <p className='sum-price'>$2700.00</p>
-                                </div>
-                                <div className='sum-submit'>
+                                <div className='submit d-flex align-items-center'>
                                     <button className='sum-btn'>CHECKOUT</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     );

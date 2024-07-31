@@ -1,114 +1,159 @@
-
 .title-cart {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .status-cart {
-    font-size: 16px;
-    color: #6c757d;
-  }
-  
-  .card-product {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    background-color: #fff;
-    align-items: center;
-  }
-  
-  .card-product-img img {
-    width: 100px; /* Điều chỉnh kích thước ảnh sản phẩm */
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .card-product-name p {
-    font-size: 16px;
-    margin: 0;
-  }
-  
-  .input-container {
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
-  }
-  
-  .input-field {
-    width: 50px;
-    text-align: center;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 0 10px;
-  }
-  
-  button {
-    background-color: #fff;
-    color: black;
-    border: none;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  
-  
-  .card-product-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #d10024;
-  }
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center; /* Căn giữa tiêu đề */
+}
 
-  .sum-container{
-    margin: auto;
-    width: 350px;
-    padding: 10px;
-  }
-  .sum{
-    border: 1px solid gray;
-    border-radius: 10px;
-    display: block;
-    
-  }
-  .sum .sum-container .sum-select{
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    padding: 8px;
-    font-size: 13px;
-    font-weight: bold;
-    color: #6c757d;
-  }
-  .sum .sum-container .sum-price{
-    color: #d10024;
-    font-weight: 700;
-  }
-  .sum .sum-container .sum-label{
-    font-weight: 700;
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
-  .sum .sum-container .sum-btn{
-    width: 100%;
-    border-radius: 10px;
-    background-color: #d10024;
-    color: white;
-    height: 50px;
-  }
-  p{
-    font-weight: 700;
-  }
-  .cart-container{
-    max-width: 750px;
-    margin: auto;
-    padding: 20px;
-  }
-  .cart{
-    border: 1px solid gray;
-    border-radius: 10px;
-    display: block;
-    overflow: hidden;
-  }
+.col-12 {
+  margin-bottom: 20px;
+}
+
+.status-cart {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.card-product {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-product-img img {
+  width: 100px; /* Điều chỉnh kích thước ảnh sản phẩm */
+  height: auto;
+  border-radius: 5px;
+}
+
+.card-product-name p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.input-field {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 10px;
+}
+
+button {
+  background-color: #fff;
+  color: black;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.card-product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d10024;
+}
+
+.sum {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sum-container {
+  display: flex;
+  justify-content: space-between; /* Phân phối đều không gian giữa các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  padding: 0;
+  width: 100%;
+
+  
+}
+
+.sum-item {
+  display: flex;
+  flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
+  align-items: flex-start; /* Căn trái cho văn bản */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sum-item p {
+  margin: 0;
+}
+
+.sum-qty {
+  margin-right: auto; /* Đẩy phần tử này ra xa trái */
+}
+
+.sum-total {
+  margin-right: auto;
+  color: #d10024; /* Đẩy phần tử này ra xa trái, cách phần tử kế tiếp */
+}
+.sum-total p{
+  margin-left: 15px !important;
+}
+
+.sum-price {
+  color: #d10024;
+  font-weight: bold;
+}
+
+.sum-btn {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
+  background-color: #d10024;
+  color: white;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: auto; /* Đẩy nút sang phải */
+}
+
+p {
+  font-weight: 700;
+}
+
+
+
+.cart {
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: block;
+  overflow: hidden;
+}
+
+p {
+  font-weight: 700;
+  font-size: 24px;
+
+}
+
+.cart-container {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+.cart {
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: block;
+  overflow: hidden;
+}
