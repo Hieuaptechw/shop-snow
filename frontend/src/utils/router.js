@@ -15,5 +15,6 @@ export const ROUTERS = {
         CART:"cart",
         ADDRESS:"address",
         REVIEW:"review",
+        SUCCESSFULLY:"successfully"
     },
 }

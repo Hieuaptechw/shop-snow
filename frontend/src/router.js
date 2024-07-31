@@ -14,6 +14,7 @@ import FavoritesPage from "./pages/users/FavoritesPage";
 import CartPage from "./pages/users/CartPage";
 import AddressPage from "./pages/users/AddressPage";
 import ReviewPage from "./pages/users/ReviewPage";
+import SuccessfullyPage from "./pages/users/SuccessfullyPage";
 
 const routes = [
   {
@@ -63,6 +64,10 @@ const routes = [
   {
     path: ROUTERS.USER.REVIEW,
     component: <ReviewPage />,
+  },
+  {
+    path: ROUTERS.USER.SUCCESSFULLY,
+    component: <SuccessfullyPage />,
   },
 ];
 
