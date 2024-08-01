@@ -69,17 +69,51 @@ class CartAuthController extends Controller
     public function productcard()
     {
         $userId = Auth::id();
-        $sql = "SELECT carts.total_price,products.price_sale,products.name,carts_items.quantity,products.avatar_product
-            FROM users 
-            JOIN carts ON carts.user_id = users.id
-            LEFT JOIN carts_items ON carts_items.cart_id = carts.cart_id
-            LEFT JOIN products ON products.product_id = carts_items.product_id
-            WHERE users.id = ?";
+        $sql = "SELECT carts.total_price,
+                        products.price_sale,
+                        products.name,
+                        carts_items.quantity,
+                        products.avatar_product,
+                        products.product_id  
+                FROM users
+                JOIN carts ON carts.user_id = users.id
+                LEFT JOIN carts_items ON carts_items.cart_id = carts.cart_id
+                LEFT JOIN products ON products.product_id = carts_items.product_id
+                WHERE users.id = ?
+                ";
          $pc = DB::select($sql, [$userId]);
         $cart = Cart::where('user_id', $userId)->first();
         return response()->json([
             'products' => $pc,
             'cart' => $cart
+        ]);
+    }
+    public function deleteCart(Request $request)
+    {
+        $user = Auth::user();
+        $cart = Cart::where('user_id', $user->id)->first();
+        
+        if ($cart) {
+            $productId = $request->input('product_id');
+            $product = CartItem::where('cart_id', $cart->cart_id)
+            ->where('product_id', $productId)
+            ->first();       
+            if ($product) {
+                $totalUpdate = $cart->total_price-$product->price*$product->quantity;
+                CartItem::where('cart_id', $cart->cart_id)
+                    ->where('product_id', $productId)
+                    ->delete();               
+                $cart->total_price =  $totalUpdate;
+                $cart->save();        
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Cart item removed and total price updated successfully!',
+                ]);
+            }      
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Cart not found.',
         ]);
     }
 }

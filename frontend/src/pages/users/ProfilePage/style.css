@@ -61,3 +61,24 @@
   .breadcrumb-item a {
     text-decoration: none;
   }
+  .card_body_status {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .status-pending {
+    color: #dc3545; 
+    background-color: #f8d7da; 
+  }
+  
+  .status-success {
+    color: #28a745; /* Màu xanh lá cho trạng thái success */
+    background-color: #d4edda; /* Nền xanh lá nhạt */
+  }
+  
+  .status-canceled {
+    color: #dc3545; /* Màu đỏ cho trạng thái canceled */
+    background-color: #f8d7da; /* Nền đỏ nhạt */
+  }

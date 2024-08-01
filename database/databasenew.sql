@@ -99,10 +99,10 @@ VALUES
     ('Samsung HW-Q950A', 'Soundbar with Dolby Atmos technology and 11.1.4 channel surround sound.', 1399.99, 1349.99, 4, 9, (SELECT brand_id FROM brands WHERE name = 'Samsung'), 10, 1, 'storage/images/Q950A_1.jpg'),
     ('Samsung Sound Tower MX-T70', 'Bluetooth speaker with high power and LED light effects.', 299.99, 279.99, 4, 9, (SELECT brand_id FROM brands WHERE name = 'Samsung'), 30, 1, 'storage/images/MX-T70_1.jpg'),
 
-    ('Apple AirPods Pro', 'Wireless in-ear headphones with noise cancellation and Siri integration.', 249.99, 229.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Apple'), 30, 1, 'storage/images/airportpro_1.jpeg'),
-    ('Apple AirPods Max', 'Over-ear headphones with high-quality sound and active noise cancellation.', 549.99, 529.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Apple'), 10, 1, 'storage/images/airportpromax_1.jpeg'),
+    ('Apple AirPods Pro', 'Wireless in-ear headphones with noise cancellation and Siri integration.', 249.99, 229.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Apple'), 30, 1, 'storage/images/airportpro_1.jpg'),
+    ('Apple AirPods Max', 'Over-ear headphones with high-quality sound and active noise cancellation.', 549.99, 529.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Apple'), 10, 1, 'storage/images/airportpromax_1.jpg'),
     ('Sony WF-1000XM4', 'Wireless in-ear headphones with active noise cancellation and excellent sound quality.', 279.99, 259.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Sony'), 30, 1, 'storage/images/1000XM5_1.jpg'),
-    ('Sony WH-H910N', 'Over-ear headphones with noise cancellation and clear sound.', 199.99, 179.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Sony'), 25, 1, 'storage/images/H910N_1.png'),
+    ('Sony WH-H910N', 'Over-ear headphones with noise cancellation and clear sound.', 199.99, 179.99, 4, 10, (SELECT brand_id FROM brands WHERE name = 'Sony'), 25, 1, 'storage/images/H910N_1.jpg'),
 
 
     ('Sunhouse Modern LED Wall Light', 'Modern LED wall light with elegant design and effective illumination.', 79.99, 69.99, 5, 11, (SELECT brand_id FROM brands WHERE name = 'Sunhouse'), 25, 1, 'storage/images/Sunhouse_Modern_LED_Wall_Light_1.jpg'),

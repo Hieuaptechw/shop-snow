@@ -16,8 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->string('payment_method');
             $table->string('payment_status');
-            $table->timestamp('payment_date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            
+            $table->timestamps();
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade');
         });
     }

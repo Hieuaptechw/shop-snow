@@ -37,7 +37,6 @@ const HomePage = () => {
     fetchnewProducts();
     fetchTopSelling();
   }, []);
-console.log(newproducts);
   return (
     <>
       {/* START TOP-MAIN */}

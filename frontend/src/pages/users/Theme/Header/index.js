@@ -50,9 +50,8 @@ const Header = () => {
     };
     fetchCategory();
     fetchProfile();
-    // console.log(response.data);
+
   }, [isLogout,useNavigate]);
-console.log(role);
   return (
     <header className="header">
       {/* START-HEADER-TOP */}
@@ -189,12 +188,6 @@ console.log(role);
         <div className="container">
           <div>
             <ul className="main-nav nav nav-bar">
-              <li>
-                <a href="/home">Home</a>
-              </li>
-              <li>
-                <a href="/checkout">Checkout</a>
-              </li>
               {categorys.map((category, index) => (
                 <li key={index}>
                   <a href={`/shop/${category.slug}`}>

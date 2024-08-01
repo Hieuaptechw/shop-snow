@@ -14,6 +14,6 @@ export const ROUTERS = {
         FAVORITES:"wishlist",
         CART:"cart",
         ADDRESS:"address",
-        THANKSYOU:"checkout/thanksyou"
+        THANKSYOU:"checkout/thanksyou/:order_code"
     },
 }

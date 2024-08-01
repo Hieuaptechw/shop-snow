@@ -9,6 +9,34 @@ const CheckoutPage = () => {
   const [tolalPrice, setTotalprice] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [shippingAddress, setShippingAddress] = useState('');
+  const [notes, setNotes] = useState('');
+  const [payment, setPayment] = useState('');
+  const handlePaymentChange = (event) => {
+    setPayment(event.target.value);
+  };
+
+  const handleCheckOut = () => {
+    if (tolalPrice > 0 && shippingAddress.trim() !== '' && payment.trim() !== '') {
+      api.orderProduct(shippingAddress, notes, payment)
+        .then(response => {
+          localStorage.setItem('order_code', response.data.order.order_code);
+          const thankYouUrl = `/checkout/thanksyou/${response.data.order.order_code}`;
+          setTimeout(() => window.location.href = thankYouUrl, 1000);
+
+        })
+        .catch(error => {
+          console.error('Error Checkout:', error.message);
+          alert('Failed to Checkout.');
+        });
+    } else if (shippingAddress.trim() === '') {
+      alert('Shipping address cannot be empty.');
+    }else if (payment.trim()=== ''){
+      alert('Please select a payment method.');
+    } else if (tolalPrice <= 0) {
+      alert('Total price must be greater than 0 to proceed with checkout.');
+    }
+  }
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -42,149 +70,167 @@ const CheckoutPage = () => {
     fetchProductCart();
     fetchProfile();
   }, [navigate]);
-console.log(tolalPrice);
+  console.log(tolalPrice);
   return (
     <>
       <div className="section">
         <div className="container">
-          <div className="row">
-            <div className="col-md-7">
-              <div className="billing-details">
-                <div className="section-title">
-                  <h3 className="title">Billing address</h3>
+          <form>
+            <div className="row">
+              <div className="col-md-7">
+                <div className="billing-details">
+                  <h3 className="title">BILLING ADDRESS</h3>
+                  <div className="form-group">
+                    <input
+                      className="input"
+                      type="text"
+                      name="fullname"
+                      placeholder="Full Name"
+                      value={profile.name}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={profile.email}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input"
+                      type="text"
+                      name="address"
+                      placeholder="Address details"
+                      value={shippingAddress}
+                      onChange={e => setShippingAddress(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input"
+                      type="text"
+                      name="city"
+                      placeholder="City"
+                      value="Ha Noi"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input"
+                      type="text"
+                      name="country"
+                      placeholder="Country"
+                      value="VIET NAM"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input"
+                      type="tel"
+                      name="tel"
+                      placeholder="Telephone"
+                      value={profile.phone}
+                    />
+                  </div>
                 </div>
-                <div className="form-group">
-                  <input
-                    className="input"
-                    type="text"
-                    name="fullname"
-                    placeholder="Full Name"
-                    value={profile.name}
-                  />
+                <div className="shiping-details">
+                  <div className="section-title">
+                    <h3 className="title">Shiping address</h3>
+                  </div>
+                  <div className="input-checkbox">
+                    <input type="checkbox" id="shiping-address" />
+                    <label for="shiping-address">
+                      Ship to a difrent address?
+                    </label>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <input
+                <div className="order-notes">
+                  <textarea
                     className="input"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={profile.email}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="input"
-                    type="text"
-                    name="address"
-                    placeholder="Address"
-                    value={profile.address}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="input"
-                    type="text"
-                    name="city"
-                    placeholder="City"
-                    value="Ha Noi"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="input"
-                    type="text"
-                    name="country"
-                    placeholder="Country"
-                    value="VIET NAM"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="input"
-                    type="tel"
-                    name="tel"
-                    placeholder="Telephone"
-                    value={profile.phone}
-                  />
+                    placeholder="Order Notes"
+                    value={notes}
+                    onChange={e => setNotes(e.target.value)}
+                  ></textarea>
                 </div>
               </div>
-              <div className="shiping-details">
-                <div className="section-title">
-                  <h3 className="title">Shiping address</h3>
+              <div className="col-md-5 order-details">
+                <div className="section-title text-center">
+                  <h3 className="title">Your Order</h3>
+                </div>
+                <div className="order-summary">
+                  <div className="order-col">
+                    <div>
+                      <strong>PRODUCT</strong>
+                    </div>
+                    <div>
+                      <strong>TOTAL</strong>
+                    </div>
+                  </div>
+                  <div className="order-products">
+                    {productCart.map((productCartItem, index) => (
+                      <div className="order-col" key={index}>
+                        <div>
+                          <span>{productCartItem.quantity}x  | {productCartItem.name}</span>
+                        </div>
+                        <div><span>${productCartItem.price_sale * productCartItem.quantity}</span></div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="order-col">
+                    <div><span>Shiping</span></div>
+                    <div>
+                      <strong>FREE</strong>
+                    </div>
+                  </div>
+                  <div className="order-col">
+                    <div>
+                      <strong>TOTAL</strong>
+                    </div>
+                    <div>
+                      <strong className="order-total">${tolalPrice}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div className="payment-method">
+                  <div className="input-radio">
+                    <input
+                      type="radio"
+                      name="payment"
+                      id="payment-1"
+                      value="direct-bank-transfer"
+                      checked={payment === 'direct-bank-transfer'}
+                      onChange={handlePaymentChange}
+                    />
+                    <label htmlFor="payment-1">Direct Bank Transfer</label>
+                  </div>
+                  <div className="input-radio">
+                    <input
+                      type="radio"
+                      name="payment"
+                      id="payment-2"
+                      value="cod"
+                      checked={payment === 'cod'}
+                      onChange={handlePaymentChange}
+                    />
+                    <label htmlFor="payment-2">COD - Cash on Delivery</label>
+                  </div>
                 </div>
                 <div className="input-checkbox">
-                  <input type="checkbox" id="shiping-address" />
-                  <label for="shiping-address">
-                    Ship to a difrent address?
+                  <input type="checkbox" id="terms" />
+                  <label for="terms">
+                    I've read and accpet the <a href="#">terms & conditions</a>
                   </label>
                 </div>
-              </div>
-              <div className="order-notes">
-                <textarea
-                  className="input"
-                  placeholder="Order Notes"
-                ></textarea>
+
+                <button type="button" className="primary-btn order-submit" onClick={handleCheckOut}>
+                  Place order
+                </button>
               </div>
             </div>
-            <div className="col-md-5 order-details">
-              <div className="section-title text-center">
-                <h3 className="title">Your Order</h3>
-              </div>
-              <div className="order-summary">
-                <div className="order-col">
-                  <div>
-                    <strong>PRODUCT</strong>
-                  </div>
-                  <div>
-                    <strong>TOTAL</strong>
-                  </div>
-                </div>
-                <div className="order-products">
-                  {productCart.map((productCartItem, index) => (
-                    <div className="order-col" key={index}>
-                      <div>
-                      <span>{productCartItem.quantity}x  | {productCartItem.name}</span>
-                      </div>
-                      <div><span>${productCartItem.price_sale*productCartItem.quantity}</span></div>
-                    </div>
-                  ))}
-                </div>
-                <div className="order-col">
-                  <div><span>Shiping</span></div>
-                  <div>
-                    <strong>FREE</strong>
-                  </div>
-                </div>
-                <div className="order-col">
-                  <div>
-                    <strong>TOTAL</strong>
-                  </div>
-                  <div>
-                    <strong className="order-total">${tolalPrice}</strong>
-                  </div>
-                </div>
-              </div>
-              <div className="payment-method">
-                <div className="input-radio">
-                  <input type="radio" name="payment" id="payment-1" />
-                  <label for="payment-1">Direct Bank Transfer</label>
-                </div>
-                <div className="input-radio">
-                  <input type="radio" name="payment" id="payment-2" />
-                  <label for="payment-2">COD - Cash on Delivery</label>
-                </div>
-              </div>
-              <div className="input-checkbox">
-                <input type="checkbox" id="terms" />
-                <label for="terms">
-                  I've read and accpet the <a href="#">terms & conditions</a>
-                </label>
-              </div>
-              <a href="#" className="primary-btn order-submit">
-                Place order
-              </a>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
       {/* START NEWSLETTER */}
@@ -210,7 +256,7 @@ console.log(tolalPrice);
               <ul className="d-flex newsLetter-follow justify-content-center">
                 <li>
                   <a href="#">
-                    <i class="bi bi-facebook"></i>
+                    <i className="bi bi-facebook"></i>
                   </a>
                 </li>
                 <li>

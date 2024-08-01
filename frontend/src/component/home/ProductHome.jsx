@@ -16,7 +16,6 @@ const ProductHome = ({ newproduct }) => {
 
     api.AddToCart(productId, quantity, price)
       .then(response => {
-        console.log('Product added to cart successfully:', response.data);
         alert('Product added to cart successfully!');
       })
       .catch(error => {

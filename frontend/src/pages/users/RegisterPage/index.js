@@ -14,8 +14,9 @@ const RegisterPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+
     if (password !== confirmPassword) {
-      setError("Mật khẩu và xác nhận mật khẩu không khớp.");
+      setError("Password and confirm password do not match.");
       setTimeout(() => setError(""), 3000);
       return;
     }
@@ -23,9 +24,10 @@ const RegisterPage = () => {
       const response = await api.Register(name, email, password, phone, address);
     
       if (response.data.status) {
-        setSuccess("Đăng ký thành công! Bạn có thể đăng nhập.");
+        setSuccess("Registration successful! You can now log in.");
+        setTimeout(() => window.location.href = "/login", 1500);
       } else {
-        setError(response.data.message || "Đăng ký thất bại. Vui lòng thử lại.");
+        setError(response.data.message || "Registration failed. Please try again.");
         setTimeout(() => setError(""), 3000);
       }
     } catch (error) {
@@ -36,14 +38,13 @@ const RegisterPage = () => {
           setError(errors['email'][0]);
         } else if (errors['password'] && errors['password'][0]) {
           setError(errors['password'][0]);
-        } else{
-        setError("Có lỗi xảy ra trong quá trình đăng ký: " + error.response.data.error);
+        } else {
+          setError("An error occurred during registration: " + error.response.data.error);
         }
       } else {
-        setError("Có lỗi xảy ra trong quá trình đăng ký.");
+        setError("An error occurred during registration.");
       }
-      setTimeout(() => setError(""),5000);
-     
+      setTimeout(() => setError(""), 3000);
     }
     
   };

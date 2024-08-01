@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 {
     use HasFactory;
+    protected $table = 'products';
+    protected $primaryKey = 'product_id';
     public function getSubcategories($category_name)
     {
     $sql = "SELECT subcategories.*

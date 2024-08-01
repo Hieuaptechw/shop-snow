@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\OrderAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
@@ -61,9 +62,17 @@ Route::get('/products_details/{id}', [ProductAuthController::class, 'getDetailPr
 //addToCart
 
 Route::post('/cart/add', [CartAuthController::class, 'addToCart']);
+Route::post('/cart/delete', [CartAuthController::class, 'deleteCart']);
 Route::get('/cart/product', [CartAuthController::class, 'productcard']);
 
 Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);
+
+
+//
+Route::post('/order/checkout', [OrderAuthController::class, 'createOrder']);
+Route::get('/order/getorder', [OrderAuthController::class, 'getUserOrders']);
+Route::get('/order/{order_id}', [OrderAuthController::class, 'getOrderDetails']);
+
 // routes/api.php
 // Route::get('/asset-url', function () {
 //     return response()->json([

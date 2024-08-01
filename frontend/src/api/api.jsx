@@ -22,6 +22,21 @@ const AddToCart = (product_id,quantity,price) => {
     price,
   }); 
 };
+const DeleteToCart = (product_id) => {
+  return axios.post('/cart/delete', {
+    product_id,
+  }); 
+};
+const orderProduct=(shipping_address,notes,payment)=>{
+  return axios.post('order/checkout',{
+    shipping_address,
+    notes,
+    payment,
+  });
+}
+const getUserOrders = () => {
+  return axios.get(`order/getorder`);
+};
 const Product_Details = () => {
   return axios.get(`product_details.php/1`);
 };
@@ -65,5 +80,5 @@ export default
  { Login ,Register,Product_Details, getCategory ,getProfile,
   logout,getSubcategory,getBrand,getProducts,getNewProducts,getTopSelling,getProductsCategory,
   getProductsDetails,getProductsCart,
-  AddToCart
+  AddToCart,orderProduct,DeleteToCart,getUserOrders
 };

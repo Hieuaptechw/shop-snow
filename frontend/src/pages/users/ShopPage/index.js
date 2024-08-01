@@ -54,12 +54,12 @@ const ShopPage = () => {
     fetchBrand();
     fetchCategory();
   }, []);
-console.log(products);
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-console.log(brands);
+
   return (
     <div className="section">
       <div className="container">
