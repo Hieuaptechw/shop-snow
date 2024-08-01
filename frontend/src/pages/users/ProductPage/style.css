@@ -186,4 +186,7 @@ label[id='1'] {
     background: #FFF;
     padding: 0px 15px;
 }
+.tab-content p{
+  font-size: 13px;
+}
 
