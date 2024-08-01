@@ -1,7 +1,12 @@
 @extends('admin.app')
 @section('content')
 <div class="admin-dashboard">
-
+    @if(session('token'))
+    <script>
+        var token = "{{ session('token') }}";
+        localStorage.setItem('adminToken', token);
+    </script>
+    @endif
     <div class="dashboard-content row">
         <div class="col-7">
             <h3>Today's Sales</h3>

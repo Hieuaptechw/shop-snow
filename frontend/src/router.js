@@ -13,6 +13,7 @@ import ProfilePage from "./pages/users/ProfilePage";
 import FavoritesPage from "./pages/users/FavoritesPage";
 import CartPage from "./pages/users/CartPage";
 import AddressPage from "./pages/users/AddressPage";
+import ThanksyouPage from "./pages/users/ThanksyouPage";
 
 const routes = [
   {
@@ -58,6 +59,10 @@ const routes = [
   {
     path: ROUTERS.USER.ADDRESS,
     component: <AddressPage />,
+  },
+  {
+    path: ROUTERS.USER.THANKSYOU,
+    component: <ThanksyouPage />,
   },
 ];
 

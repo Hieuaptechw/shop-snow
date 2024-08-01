@@ -55,6 +55,14 @@ class ListProductController extends Controller
             ->where('attribute_name', 'color')
             ->pluck('attribute_value')
             ->toArray();
+        $selectedWeight = $product->details
+            ->where('attribute_name', 'weight')
+            ->pluck('attribute_value')
+            ->toArray();
+        $selectedInch = $product->details
+            ->where('attribute_name', 'inch')
+            ->pluck('attribute_value')
+            ->toArray();
 
         $categories = Categori::all();
         $subcategories = Subcategori::all();
@@ -63,6 +71,8 @@ class ListProductController extends Controller
         return response()->json([
             'product'=> $product,
             'selectedColors' => $selectedColors,
+            'selectedWeight' => $selectedWeight,
+            'selectedInch' => $selectedInch,
             'category'=> $categories,
         ]);
     }

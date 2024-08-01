@@ -186,7 +186,7 @@ input[type="range"]::-moz-range-thumb {
     background-color: #fff;
 }
 
-.product-addtc a {
+.product-addtc a{
     margin-top: 15px;
     padding: 5px 20px;
     border-radius: 20px;
@@ -197,7 +197,17 @@ input[type="range"]::-moz-range-thumb {
     background-color: #fff;
     color: #c80325;
 }
+.product-addtc button{
+    margin-top: 15px;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+}
 
+.product-addtc button:hover {
+    background-color: #fff;
+    color: #c80325;
+}
 .product-card {
     width: 280px;
 } 

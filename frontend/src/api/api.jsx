@@ -15,6 +15,13 @@ const Register = (name,email, password,phone,address) => {
     address,
   }); 
 };
+const AddToCart = (product_id,quantity,price) => {
+  return axios.post('/cart/add', {
+    product_id,
+    quantity,
+    price,
+  }); 
+};
 const Product_Details = () => {
   return axios.get(`product_details.php/1`);
 };
@@ -24,6 +31,9 @@ const getCategory = () => {
 const getSubcategory = (category_slug) => {
   return axios.get(`/category/${category_slug}`);
 };
+const getProducts =()=>{
+  return axios.get('category');
+}
 const getBrand = (category_slug) => {
   return axios.get(`/brand/${category_slug}`);
 };
@@ -34,8 +44,26 @@ const logout =()=>{
   return axios.get(`/logout`);
 }
 
+const getNewProducts =()=>{
+  return axios.get('new-products');
+}
+const getTopSelling =()=>{
+  return axios.get('top-selling');
+}
 
-
+const getProductsCategory = (category_slug) => {
+  return axios.get(`/products/${category_slug}`);
+};
+const getProductsDetails = (id) => {
+  return axios.get(`/products_details/${id}`);
+};
+const getProductsCart =()=>{
+  return axios.get('/cart/product');
+}
 
 export default
- { Login ,Register,Product_Details, getCategory ,getProfile,logout,getSubcategory,getBrand};
+ { Login ,Register,Product_Details, getCategory ,getProfile,
+  logout,getSubcategory,getBrand,getProducts,getNewProducts,getTopSelling,getProductsCategory,
+  getProductsDetails,getProductsCart,
+  AddToCart
+};

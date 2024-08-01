@@ -10,7 +10,7 @@ class Subcategori extends Model
     use HasFactory;
     protected $table = "subcategories";
     protected $fillable = ['name'];
-    protected $primaryKey = 'categories_id';
+    protected $primaryKey = 'subcategory_id';
     public function getlist()
     {
         $sql = "SELECT * FROM " . $this->table;

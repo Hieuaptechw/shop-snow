@@ -7,6 +7,7 @@ import api from "../../../../api/api";
 const Header = () => {
   const [user, setUser] = useState(null);
   const [categorys, setCategorys] = useState([]);
+  const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const [isLogout, setisLogout] = useState(false);
   const navigate = useNavigate(); 
@@ -36,7 +37,7 @@ const Header = () => {
         const response = await api.getProfile();
         if (response.data.status) {
           setUser(response.data.data);
-          
+          setRole(response.data.data.role);
         } else {
           setError(response.data.message);
         }
@@ -51,7 +52,7 @@ const Header = () => {
     fetchProfile();
     // console.log(response.data);
   }, [isLogout,useNavigate]);
-
+console.log(role);
   return (
     <header className="header">
       {/* START-HEADER-TOP */}
@@ -90,6 +91,11 @@ const Header = () => {
                   <ul className="dropdown-menu">
                     {user ? (
                       <>
+                        {role === 'admin' && (
+                          <li>
+                            <a href="/admin">Admin</a>
+                          </li>
+                        )}
                         <li>
                           <a href="/profile">Profile</a>
                         </li>
@@ -185,9 +191,6 @@ const Header = () => {
             <ul className="main-nav nav nav-bar">
               <li>
                 <a href="/home">Home</a>
-              </li>
-              <li>
-                <a href="/shop">Shop</a>
               </li>
               <li>
                 <a href="/checkout">Checkout</a>

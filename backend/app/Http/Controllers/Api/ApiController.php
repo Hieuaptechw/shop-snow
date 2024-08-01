@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\auth\User;
+use App\Models\auth\Cart;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,9 +38,14 @@ class ApiController extends Controller
                 'address' => $request->address,
                 'phone' => $request->phone,
             ]);
+            $cart = Cart::create([
+                'user_id' => $user->id,
+                'total_price' => 0,
+            ]);
             return response()->json([
                 'status' => true,
                 'message' => "Success",
+                'cart' => $cart,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
 
             ], 200);

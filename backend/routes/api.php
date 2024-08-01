@@ -7,7 +7,9 @@ use App\Http\Controllers\auth\CategoriauthController;
 use App\Http\Controllers\auth\BrandAuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ListProductController;
+use App\Http\Controllers\auth\ProductAuthController;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\auth\CartAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,5 +52,21 @@ Route::group([
 Route::get('/category', [CategoriauthController::class, 'getCategory']);
 Route::get('/category/{category_name}', [CategoriauthController::class, 'getSubcategories']);
 
+Route::get('/new-products', [ProductAuthController::class, 'getNewProducts']);
+Route::get('/top-selling', [ProductAuthController::class, 'topselling']);
+Route::get('/products/{slug}', [ProductAuthController::class, 'getProductCategory']);
+Route::get('/products_details/{id}', [ProductAuthController::class, 'getDetailProduct']);
+
+
+//addToCart
+
+Route::post('/cart/add', [CartAuthController::class, 'addToCart']);
+Route::get('/cart/product', [CartAuthController::class, 'productcard']);
 
 Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);
+// routes/api.php
+// Route::get('/asset-url', function () {
+//     return response()->json([
+//         'asset_url' => url('storage') 
+//     ]);
+// });

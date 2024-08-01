@@ -115,43 +115,79 @@
                 <div class="product-variant">
                     <h4>Product Variants</h4>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <h5>Color</h5>
-                            <select class="form-select" name="color" id="color">
-                                <option value="">Choose...</option>
-                                <option value="Black">Black</option>
-                                <option value="White">White</option>
-                                <option value="Red">Red</option>
-                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Black" id="Black"
+                                    name="color[]">
+                                <label class="form-check-label" for="Black">Black</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="White" id="White"
+                                    name="color[]">
+                                <label class="form-check-label" for="White">White</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Red" id="Red"
+                                    name="color[]">
+                                <label class="form-check-label" for="Red">Red</label>
+                            </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <h5>Weight</h5>
-                            <select class="form-select" name="weight" id="weight">
-                                <option value="">Choose...</option>
-                                <option value="5kg">5kg</option>
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="5kg" id="5kg"
+                                    name="weight[]">
+                                <label class="form-check-label" for="5kg">5kg</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="10kg" id="10kg"
+                                    name="weight[]">
+                                <label class="form-check-label" for="10kg">10kg</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="15kg" id="15kg"
+                                    name="weight[]">
+                                <label class="form-check-label" for="15kg">15kg</label>
+                            </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <h5>Inch</h5>
-                            <select class="form-select" name="inch" id="inch">
-                                <option value="">Choose...</option>
-                                <option value="5inch">5inch</option>
-                                <option value="10inch">10inch</option>
-                                <option value="16inch">16inch</option>
-                                <option value="20inch">20inch</option>
-                                <option value="32inch">32inch</option>
-                                <option value="37inch">37inch</option>
-                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="5inch" id="5inch"
+                                    name="inch[]">
+                                <label class="form-check-label" for="5inch">5inch</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="10inch" id="10inch"
+                                    name="inch[]">
+                                <label class="form-check-label" for="10inch">10inch</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="16inch" id="16inch"
+                                    name="inch[]">
+                                <label class="form-check-label" for="16inch">16inch</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="20inch" id="20inch"
+                                    name="inch[]">
+                                <label class="form-check-label" for="20inch">20inch</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="32inch" id="32inch"
+                                    name="inch[]">
+                                <label class="form-check-label" for="32inch">32inch</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="37inch" id="37inch"
+                                    name="inch[]">
+                                <label class="form-check-label" for="37inch">37inch</label>
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary ">Save Product</button>
-
                         </div>
                     </div>
-                </div>
-            </div>
         </form>
     </div>
     <script>

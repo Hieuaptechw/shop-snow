@@ -24,4 +24,5 @@ class Categori extends Model
     {
        DB::table($this->table)->insert($arrData);
     }
+    
 }

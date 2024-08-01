@@ -21,8 +21,8 @@ const ShopPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const product = await getProducts();
-        setProducts(product);
+        const product = await api.getProductsCategory(category);
+        setProducts(product.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -49,11 +49,12 @@ const ShopPage = () => {
         setLoading(false);
       }
     };
+    
     fetchProducts();
     fetchBrand();
     fetchCategory();
   }, []);
-
+console.log(products);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -72,7 +73,7 @@ console.log(brands);
                 ))}
               </div>
             </div>
-            {/* <div className="aside">
+            <div className="aside">
               <h3>Price</h3>
               <div className="slider">
                 <div className="progress"></div>
@@ -91,7 +92,7 @@ console.log(brands);
                   className="range-max"
                   min="0"
                   max="10000"
-                  defaultValue="7500"
+                    defaultValue="2500"
                   step="100"              
                 />
               </div>
@@ -110,7 +111,7 @@ console.log(brands);
                   />
                 </div>
               </div>
-            </div> */}
+            </div>
             <div className="aside">
               <h3>Brand</h3>
               <div className="checkbox-filter">

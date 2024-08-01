@@ -17,10 +17,14 @@
   display: block;
   object-fit: cover;
   width: 100%;
-  border: 1px solid gray;
+  border: 1px solid rgb(218, 209, 209);
 }
 .product-imgg{
   max-width: 150px;
+}
+
+.product-image-item img{
+  padding: 4px;
 }
 .product-main-img {
   width: 500px;

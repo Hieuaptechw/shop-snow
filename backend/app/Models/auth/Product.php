@@ -17,4 +17,9 @@ class Product extends Model
     $subCategory = DB::select($sql);
     return $subCategory;
    }
+   public function getProduct(){
+        $sql=" SELECT * FROM products";
+        $p= DB::select($sql);
+        return $p;
+   }
 }
