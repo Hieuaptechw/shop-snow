@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\SearchController;
 use App\Http\Controllers\auth\OrderAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,6 @@ Route::get('/admin/products', [ListProductController::class, 'getlist']);
 Route::post('/admin/prducts/add', [ListProductController::class, 'insert']);
 });
 Route::post("register",[ApiController::class,'register']);
-//
 Route::post("login",[ApiController::class,'login']);
 Route::group([
     "middleware"=>["auth:sanctum"]
@@ -72,7 +72,7 @@ Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);
 Route::post('/order/checkout', [OrderAuthController::class, 'createOrder']);
 Route::get('/order/getorder', [OrderAuthController::class, 'getUserOrders']);
 Route::get('/order/{order_id}', [OrderAuthController::class, 'getOrderDetails']);
-
+Route::get('/search/{query}', [SearchController::class, 'searchapi']);
 // routes/api.php
 // Route::get('/asset-url', function () {
 //     return response()->json([

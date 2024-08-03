@@ -78,7 +78,7 @@ class OrderAuthController extends Controller
     {
         $user = Auth::user();
     
-        // Lấy tất cả các đơn hàng của người dùng
+
         $orders = Order::where('user_id', $user->id)->with('orderItems.product')->get();
     
         return response()->json([

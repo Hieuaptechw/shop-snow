@@ -10,7 +10,6 @@ import Subcategory from "../../../component/shop/Subcategory";
 
 const ShopPage = () => {
   const { category } = useParams();
-  console.log(category);
   const [categories,setCategories] = useState([])
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);

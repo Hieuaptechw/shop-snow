@@ -10,6 +10,7 @@ const Header = () => {
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const [isLogout, setisLogout] = useState(false);
+  const [query, setQuery] = useState('');
   const navigate = useNavigate(); 
   const handeLogout = async () => {
     try {
@@ -142,7 +143,7 @@ const Header = () => {
             </div>
             <div className="col-md-6">
               <div className="header-search">
-                <form>
+                <form action={`/search/${query}`}>
                   <select className="header-input-select">
                     <option>All Categories</option>
                     {categorys.map((category, index) => (
@@ -155,6 +156,8 @@ const Header = () => {
                     className="input-search"
                     type="text"
                     placeholder="Search Here"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                   />
                   <button className="search-btn" type="submit">
                     Search

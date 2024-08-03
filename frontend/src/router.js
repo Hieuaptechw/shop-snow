@@ -14,6 +14,7 @@ import FavoritesPage from "./pages/users/FavoritesPage";
 import CartPage from "./pages/users/CartPage";
 import AddressPage from "./pages/users/AddressPage";
 import ThanksyouPage from "./pages/users/ThanksyouPage";
+import SearchPage from "./pages/users/SearchPage";
 
 const routes = [
   {
@@ -63,6 +64,10 @@ const routes = [
   {
     path: ROUTERS.USER.THANKSYOU,
     component: <ThanksyouPage />,
+  },
+  {
+    path: ROUTERS.USER.SEARCH,
+    component: <SearchPage />,
   },
 ];
 

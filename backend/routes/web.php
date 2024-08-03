@@ -3,7 +3,10 @@
 use App\Http\Controllers\admin\AddProductController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\SearchController;
 use App\Http\Controllers\admin\UploadController;
+use App\Http\Controllers\admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
 use App\Http\Controllers\admin\SubcategoriController;
@@ -22,8 +25,8 @@ use App\Http\Controllers\admin\ListProductController;
 
 
 
-Route::get('/auth', function () {
-    return view('auth.register');
+Route::get('/', function () {
+    return view('admin.login');
 });
 Route::get('login', [AdminController::class, 'adminlogin'])->name('login');
 Route::post('login', [AdminController::class, 'login'])->name('login-p');
@@ -104,8 +107,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/products/edit1/{id}', [ListProductController::class, 'edit1']);
     Route::put('/products/update/{id}', [ListProductController::class, 'update']);
     Route::delete('/products/delete/{id}', [ListProductController::class, 'delete']);
-    // CATEGORI
-    
+    Route::put('/products/update/{id}', [ListProductController::class, 'update']);
+    // Order
+    Route::get('/orders', [OrderController::class, 'getUserOrders']);
+    Route::put('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+    Route::get('/users', [UserController::class, 'viewlist'])->name('search');
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
+
 });
 
 

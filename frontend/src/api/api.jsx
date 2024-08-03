@@ -75,10 +75,12 @@ const getProductsDetails = (id) => {
 const getProductsCart =()=>{
   return axios.get('/cart/product');
 }
-
+const getSearch = (query) => {
+  return axios.get(`/search/${query}`);
+};
 export default
  { Login ,Register,Product_Details, getCategory ,getProfile,
   logout,getSubcategory,getBrand,getProducts,getNewProducts,getTopSelling,getProductsCategory,
-  getProductsDetails,getProductsCart,
+  getProductsDetails,getProductsCart,getSearch,
   AddToCart,orderProduct,DeleteToCart,getUserOrders
 };
