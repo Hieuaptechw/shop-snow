@@ -72,7 +72,7 @@ Route::post('login', [AdminController::class, 'login'])->name('login-p');
 // });
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
