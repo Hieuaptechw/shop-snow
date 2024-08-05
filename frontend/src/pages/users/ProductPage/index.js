@@ -136,18 +136,152 @@ const ProductPage = () => {
                 </div>
               )}
               {activeTab === 'reviews' && (
-                <div className="tab-content">
-                  <h3>Product Reviews</h3>
-                  <div className="review-item">
-                    <p><strong>John Doe</strong> - ★★★★☆</p>
-                    <p>This product is amazing!</p>
-                  </div>
-                  <div className="review-item">
-                    <p><strong>Jane Smith</strong> - ★★★☆☆</p>
-                    <p>Good value for the price.</p>
-                  </div>
-                  <p><a href="#">Add your review</a></p>
+               <div className="section">
+                <div className="container">
+                    <div className="row">
+                      <div className="col-3">
+                        <div className="rating-content">
+                            <div className="rating-avg d-flex">
+                              <span>4.5</span>
+                              <div className="rating-star">
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              <i class="bi bi-star-fill"></i>
+                              </div>
+                            </div>
+                            <ul className="rating-content">
+                              <li>
+                                <div className="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div className="rating-progress">
+                                  <div className="icon"></div>
+                                </div>
+                                <span class="sum-1">3</span>
+                              </li>
+                              <li>
+                                <div className="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div className="rating-progress">
+                                  <div className="icon"></div>
+                                </div>
+                                <span class="sum-1">3</span>
+                              </li>
+                              <li>
+                                <div className="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div className="rating-progress">
+                                  <div className="icon"></div>
+                                </div>
+                                <span class="sum-1">3</span>
+                              </li>
+                              <li>
+                                <div className="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div className="rating-progress">
+                                  <div className="icon"></div>
+                                </div>
+                                <span class="sum-1">3</span>
+                              </li>
+                              <li>
+                                <div className="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div className="rating-progress">
+                                  <div className="icon"></div>
+                                </div>
+                                <span class="sum-1">3</span>
+                              </li>
+                            </ul>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="review-1">
+                          <ul className="reviews-1">
+                            <li>
+                              <div className="review-heading">
+                                <h5 className="name">John</h5>
+                                <p className="date">27 DEC 2018, 8:0 PM</p>
+                                <div className="review-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                              </div>
+                              <div className="review-body">
+                                <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                </p>
+                              </div>
+                            </li>
+                            <li>
+                              <div className="review-heading">
+                                <h5 className="name">John</h5>
+                                <p className="date">27 DEC 2018, 8:0 PM</p>
+                                <div className="review-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                              </div>
+                              <div className="review-body">
+                                <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                </p>
+                              </div>
+                            </li>
+                            <li>
+                              <div className="review-heading">
+                                <h5 className="name">John</h5>
+                                <p className="date">27 DEC 2018, 8:0 PM</p>
+                                <div className="review-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                </div>
+                              </div>
+                              <div className="review-body">
+                                <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                                </p>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="col-3"></div>
+                    </div>
                 </div>
+
+               </div>
               )}
             </div>
           </div>

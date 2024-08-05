@@ -189,4 +189,57 @@ label[id='1'] {
 .tab-content p{
   font-size: 13px;
 }
+.rating-content .rating-progress{
+  position: relative;
+  display: inline-block;
+  height: 9px;
+  background-color: #E4E7ED;
+  width: 120px;
+  margin: 0px 10px;
+  border-radius: 5px;
+}
+.rating-content .rating-progress .icon {
+  width: 80%;
+}
+.rating-content .rating-progress > div {
+  
+  background-color: #D10024;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+}
+.rating-content .sum-1{
+  display: inline-block;
+    font-size: 12px;
+    color: #8D99AE;
+}
+.rating-content li{
+  display: flex;
+  align-items: center;
+}
+.review-1 .reviews-1 li{
+  display: flex;
+  align-items: center;
+} 
+.name{
+  font-size: 12px;
+}
+.date{
+  font-size: 10px;
+}
+.review-heading{
+  margin: 15px;
+  width: 35%;
+}
+.review-body p{
+  font-size: 12px;
+  margin-bottom: 45px;
+}
+.review-rating{
+  font-size: 11px;
+  color: #D10024;
+}
+
 
