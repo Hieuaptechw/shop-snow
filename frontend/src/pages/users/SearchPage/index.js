@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import api from "../../../api/api";
 
 const SearchPage = () => {
@@ -47,9 +47,15 @@ const SearchPage = () => {
 
     return (
         <div className='section'>
+           
+            {loading && (
+                <div className="overlay">
+                    <div className="spinner"></div>
+                </div>
+            )}
+
             <div className='container'>
                 <h3>Search Results for: {query}</h3>
-                {loading && <p>Loading...</p>}
                 {error && <p>{error}</p>}
                 {!loading && !error && (
                     <div>
@@ -60,7 +66,7 @@ const SearchPage = () => {
                                     return (
                                         <div className="col-md-3 col-sm-6" key={result.product_id}>
                                             <div className="product-card">
-                                                <a href={`shop/product/${result.product_id}`}>
+                                                <Link to={`/shop/product/${result.product_id}`}>
                                                     <div className="product-img">
                                                         <img src={imageUrl} alt={result.name} />
                                                     </div>
@@ -82,7 +88,7 @@ const SearchPage = () => {
                                                             ></i>
                                                         ))}
                                                     </div>
-                                                </a>
+                                                </Link>
                                                 <div className="product-btns">
                                                     <button>
                                                         <i className="bi bi-heart"></i>
@@ -113,7 +119,6 @@ const SearchPage = () => {
                     </div>
                 )}
             </div>
-
         </div>
     );
 };

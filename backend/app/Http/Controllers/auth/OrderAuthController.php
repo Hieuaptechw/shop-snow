@@ -44,7 +44,7 @@ class OrderAuthController extends Controller
                 'order_id' => $order->order_id,
                 'payment_method' => $payment_method,
                 'payment_status' => 'pending', 
-                'payment_date' => now(), 
+         
             ]);
         
             $cartItems = CartItem::where('cart_id', $cart->cart_id)->get();

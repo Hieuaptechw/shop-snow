@@ -4,7 +4,6 @@ import { ROUTERS } from "./utils/router";
 import MasterLayoutUser from "./pages/users/Theme/MasterLayout/index";
 import HomePage from "./pages/users/HomePage";
 import ShopPage from "./pages/users/ShopPage";
-import StorePage from "./pages/users/StorePage";
 import CheckoutPage from "./pages/users/CheckoutPage";
 import ProductPage from "./pages/users/ProductPage";
 import LoginPage from "./pages/users/LoginPage";

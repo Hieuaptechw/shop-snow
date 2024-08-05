@@ -45,6 +45,7 @@ const CheckoutPage = () => {
     }
 
     const fetchProfile = async () => {
+      setLoading(true);
       try {
         const response = await api.getProfile();
         if (response.data.status) {
@@ -74,6 +75,11 @@ const CheckoutPage = () => {
   return (
     <>
       <div className="section">
+      {loading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
         <div className="container">
           <form>
             <div className="row">

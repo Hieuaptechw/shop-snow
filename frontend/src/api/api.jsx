@@ -66,9 +66,24 @@ const getTopSelling =()=>{
   return axios.get('top-selling');
 }
 
-const getProductsCategory = (category_slug) => {
-  return axios.get(`/products/${category_slug}`);
+const getProductsCategory = (category_slug, subcategories = [], brands = [], minPrice = 0, maxPrice = 10000) => {
+  const params = {};
+
+  if (subcategories.length > 0) {
+    params.subcategories = subcategories.join(',');
+  }
+
+  if (brands.length > 0) {
+    params.brands = brands.join(',');
+  }
+
+  params.min_price = minPrice;
+  params.max_price = maxPrice;
+
+  return axios.get(`/products/${category_slug}`, { params });
 };
+
+
 const getProductsDetails = (id) => {
   return axios.get(`/products_details/${id}`);
 };

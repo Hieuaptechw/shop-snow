@@ -41,6 +41,11 @@ const HomePage = () => {
     <>
       {/* START TOP-MAIN */}
       <div className="section">
+      {loading && (
+                <div className="overlay">
+                    <div className="spinner"></div>
+                </div>
+            )}
         <div className="container">
           <div className="row">
             {[1, 2, 3].map((_, index) => (

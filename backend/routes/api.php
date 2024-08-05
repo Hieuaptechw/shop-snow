@@ -24,9 +24,7 @@ use App\Http\Controllers\auth\CartAuthController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
 Route::group(['prefix' => ''], function () {
     //CATEGORIS
     Route::get('/admin/categories', [CategoriController::class, 'getlist']);
@@ -68,14 +66,7 @@ Route::get('/cart/product', [CartAuthController::class, 'productcard']);
 Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);
 
 
-//
 Route::post('/order/checkout', [OrderAuthController::class, 'createOrder']);
 Route::get('/order/getorder', [OrderAuthController::class, 'getUserOrders']);
 Route::get('/order/{order_id}', [OrderAuthController::class, 'getOrderDetails']);
 Route::get('/search/{query}', [SearchController::class, 'searchapi']);
-// routes/api.php
-// Route::get('/asset-url', function () {
-//     return response()->json([
-//         'asset_url' => url('storage') 
-//     ]);
-// });

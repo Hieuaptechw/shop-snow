@@ -266,5 +266,5 @@ INSERT product_images (product_id,image_url) VALUES
 (47,'storage/images/Kangaroo_Led_Wall_Lamp_4.jpg'),
 (48,'storage/images/Kangaroo_Table_Lamp_4.jpg'),
 (49,'storage/images/xiaomi_lamp_4.jpg'),
-(50,'storage/images/Panasonic_Table_Lamp_4.jpg'),
+(50,'storage/images/Panasonic_Table_Lamp_4.jpg');
 

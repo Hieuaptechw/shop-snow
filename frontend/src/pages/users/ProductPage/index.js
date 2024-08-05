@@ -6,7 +6,7 @@ import ProductDetails from "../../../component/product_details/ProductDetails";
 
 const ProductPage = () => {
   const { id, category } = useParams();
-  const [productDetails, setProductDetails] = useState({});
+  const [productDetails, setProductDetails] = useState([]);
   const [products, setProducts] = useState([]);
   const [priceSale, setPriceSale] = useState(null);
   const [imgProductDetails, setImgProductDetails] = useState([]);
@@ -38,6 +38,7 @@ const ProductPage = () => {
  const [activeTab, setActiveTab] = useState('description');
   useEffect(() => {
     const fetchDetailsProduct = async () => {
+      setLoading(true);
       try {
         const productData = await api.getProductsDetails(id);
         setProductDetails(productData.data.product);
@@ -52,6 +53,7 @@ const ProductPage = () => {
       }
     };
     const fetchProducts = async () => {
+      setLoading(true);
       try {
         const product = await api.getProductsCategory(category);
         setProducts(product.data);
@@ -64,18 +66,17 @@ const ProductPage = () => {
     fetchDetailsProduct();
     fetchProducts();
   }, [id]);
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
 
 console.log(priceSale)
   return (
     <>
       <div className="section">
+      {loading && (
+        <div className="overlay1">
+          <div className="spinner1"></div>
+        </div>
+      )}
         <div className="container">
           {productDetails.map((product, index) => (
             <div key={index} className="row">

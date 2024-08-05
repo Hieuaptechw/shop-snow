@@ -53,3 +53,30 @@ body {
   .container{
     width: 1190px;
   }
+  .overlay {
+    position: fixed;
+    top: 210px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 210px);
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+
+.spinner {
+    border: 8px solid #15161d; 
+    border-top: 8px solid #d10024; 
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

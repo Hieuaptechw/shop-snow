@@ -1,5 +1,6 @@
 import React from "react";
 import api from "../../api/api";
+import { Link } from 'react-router-dom';
 const ProductCard = ({ product }) => {
   const handleAddToCart = () => {
     const token = localStorage.getItem("token");
@@ -27,7 +28,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="col-md-4">
       <div className="product-card">
-        <a href={`${product.slug}/${product.product_id}`}>
+        <Link to={`${product.product_id}`}>
           <div className="product-img">
             <img src={imageUrl} alt={product.name} />
           </div>
@@ -51,7 +52,7 @@ const ProductCard = ({ product }) => {
               ></i>
             ))}
           </div>
-        </a>
+        </Link>
 
         <div className="product-btns">
           <button>

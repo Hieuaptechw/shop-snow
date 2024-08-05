@@ -91,39 +91,65 @@ class ProductAuthController extends Controller
         return response()->json($topsellingproducts);
     }
     //Sản phẩm theo danh mục
-    public function getProductCategory($slug)
+    public function getProductCategory(Request $request, $slug)
     {
+        $subcategories = $request->input('subcategories', []);
+        $brands = $request->input('brands', []);
+        $minPrice = $request->input('min_price', 0);
+        $maxPrice = $request->input('max_price', 10000);
 
+        $subcategoryCondition = '';
+        if (!empty($subcategories)) {
+            $subcategoryCondition = ' AND products.subcategory_id IN (' . implode(',', array_map('intval', explode(',', $subcategories))) . ')';
+        }
+
+        $brandCondition = '';
+        if (!empty($brands)) {
+            $brandCondition = ' AND products.brand_id IN (' . implode(',', array_map('intval', explode(',', $brands))) . ')';
+        }
+        $priceCondition = '';
+        if ($minPrice !== null && $maxPrice !== null) {
+            $priceCondition = ' AND products.price BETWEEN ' . intval($minPrice) . ' AND ' . intval($maxPrice);
+        }
         $sql = "SELECT 
-          products.product_id,
-        products.name,
-        products.price, 
-        products.price_sale,  
-        products.avatar_product,
-        categories.name AS category_name, 
-        categories.slug,
-        AVG(reviews.rating) AS average_rating 
-    FROM 
-        products 
-    JOIN 
-        categories ON categories.category_id = products.category_id
-    LEFT JOIN 
-        reviews ON reviews.product_id = products.product_id
-    WHERE 
-        categories.slug = ?
-    GROUP BY 
-     products.product_id,
-        products.name,
-        products.price,
-        products.price_sale,
-        products.avatar_product,
-        categories.slug,
-        categories.name
-     LIMIT 8";
+            products.product_id,
+            products.name,
+            products.price, 
+            products.price_sale,  
+            products.avatar_product,
+            categories.name AS category_name, 
+            subcategories.name AS subcategory_name,
+            categories.slug,
+            AVG(reviews.rating) AS average_rating 
+        FROM 
+            products 
+        JOIN 
+            categories ON categories.category_id = products.category_id
+        LEFT JOIN 
+            subcategories ON subcategories.subcategory_id = products.subcategory_id
+        LEFT JOIN 
+            reviews ON reviews.product_id = products.product_id
+        WHERE 
+            categories.slug = ?
+            $subcategoryCondition
+            $brandCondition
+              $priceCondition
+        GROUP BY 
+            products.product_id,
+            products.name,
+            products.price,
+            products.price_sale,
+            products.avatar_product,
+            categories.slug,
+            subcategories.name,
+            categories.name
+        ";
+
         $products = DB::select($sql, [$slug]);
 
         return response()->json($products);
     }
+
     public function getDetailProduct($id)
     {
         $sql = "SELECT 

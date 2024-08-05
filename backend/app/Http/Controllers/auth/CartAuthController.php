@@ -79,7 +79,7 @@ class CartAuthController extends Controller
                 JOIN carts ON carts.user_id = users.id
                 LEFT JOIN carts_items ON carts_items.cart_id = carts.cart_id
                 LEFT JOIN products ON products.product_id = carts_items.product_id
-                WHERE users.id = ?
+                WHERE users.id = ? AND carts_items.quantity IS NOT NULL
                 ";
          $pc = DB::select($sql, [$userId]);
         $cart = Cart::where('user_id', $userId)->first();

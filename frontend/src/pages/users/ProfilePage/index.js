@@ -10,6 +10,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setLoading(true)
       try {
         const userData = await api.getProfile();
         setUser(userData.data.data);
@@ -19,6 +20,7 @@ const ProfilePage = () => {
     };
 
     const fetchUserOrders = async () => {
+      setLoading(true)
       try {
         const userData = await api.getUserOrders();
         setUserOrder(userData.data.orders);
@@ -32,9 +34,6 @@ const ProfilePage = () => {
     fetchProfile();
     fetchUserOrders();
   }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
   const getStatusClass = (status) => {
     switch (status) {
       case "pending":
@@ -49,7 +48,12 @@ const ProfilePage = () => {
   };
   return (
     <>
-      <section className="background">
+      <div className="background">
+      {loading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4">
@@ -127,7 +131,7 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };

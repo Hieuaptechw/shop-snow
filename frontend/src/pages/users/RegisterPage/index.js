@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 import api from "../../../api/api";
 import "./style.css";
 const RegisterPage = () => {
@@ -9,10 +10,12 @@ const RegisterPage = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); 
 
 
     if (password !== confirmPassword) {
@@ -24,6 +27,7 @@ const RegisterPage = () => {
       const response = await api.Register(name, email, password, phone, address);
     
       if (response.data.status) {
+        setLoading(false); 
         setSuccess("Registration successful! You can now log in.");
         setTimeout(() => window.location.href = "/login", 1500);
       } else {
@@ -51,6 +55,11 @@ const RegisterPage = () => {
 
   return (
     <div className="container">
+       {loading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
       <div className="registration">
         <h2>Register</h2>
         <div className="registration-form">
@@ -125,7 +134,7 @@ const RegisterPage = () => {
           <div className="signup">
             <span className="signup">
               Already have an account?
-              <a href="/login">Login</a>
+              <Link to="/login">Login</Link>
             </span>
           </div>
         </div>

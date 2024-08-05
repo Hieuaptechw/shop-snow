@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../../api/api";
-
+import { Link } from 'react-router-dom';
 
 
 const ProductHome = ({ newproduct }) => {
@@ -29,7 +29,7 @@ const ProductHome = ({ newproduct }) => {
   return (
     <div className="col-md-3 col-sm-6">
       <div className="product-card">
-        <a href={`shop/${newproduct.slug}/${newproduct.product_id}`}>
+        <Link to={`/shop/${newproduct.slug}/${newproduct.product_id}`}>
         <div className="product-img">
           <img src={imageUrl} alt={newproduct.name} />
         </div>
@@ -54,7 +54,7 @@ const ProductHome = ({ newproduct }) => {
           ))}
         </div>
         
-        </a>
+        </Link>
 
         <div className="product-btns">
           <button>
