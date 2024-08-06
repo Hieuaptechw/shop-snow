@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate,Link  } from "react-router-dom";
 import "./style.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from "../assets/logo.png";
 import api from "../../../../api/api";
 
@@ -207,6 +209,18 @@ const Header = () => {
         </div>
       </nav>
       {/* END MENU */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </header>
   );
 };

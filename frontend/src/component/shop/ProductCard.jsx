@@ -1,11 +1,14 @@
 import React from "react";
 import api from "../../api/api";
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ProductCard = ({ product }) => {
   const handleAddToCart = () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("You must be logged in to add products to the cart.");
+      toast.warning("You must be logged in to add products to the cart.");
       return;
     }
     const productId = product.product_id;
@@ -15,12 +18,10 @@ const ProductCard = ({ product }) => {
     api
       .AddToCart(productId, quantity, price)
       .then((response) => {
-        console.log("Product added to cart successfully:", response.data);
-        alert("Product added to cart successfully!");
+        toast.success("Product added to cart successfully!");
       })
       .catch((error) => {
-        console.error("Error adding product to cart:", error.message);
-        alert("Failed to add product to cart.");
+        toast.error("Failed to add product to cart.");
       });
   };
   const averageRating = parseFloat(product.average_rating) || 0;
@@ -74,6 +75,7 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
+    
     </div>
   );
 };

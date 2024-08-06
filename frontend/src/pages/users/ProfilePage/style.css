@@ -73,12 +73,37 @@
     background-color: #f8d7da; 
   }
   
-  .status-success {
-    color: #28a745; /* Màu xanh lá cho trạng thái success */
-    background-color: #d4edda; /* Nền xanh lá nhạt */
-  }
-  
+
   .status-canceled {
-    color: #dc3545; /* Màu đỏ cho trạng thái canceled */
-    background-color: #f8d7da; /* Nền đỏ nhạt */
+    color: #dc3545; 
+    background-color: #f8d7da; 
   }
+  .status-pending {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: orange;
+}
+.status-processing {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: blue;
+}
+.status-completed {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: green;
+}
+.status-cancelled {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: red;
+}
+

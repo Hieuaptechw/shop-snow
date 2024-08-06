@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import api from "../../../api/api";
 import "./style.css";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (event) => {
@@ -18,12 +17,12 @@ const LoginPage = () => {
       const response = await api.Login(email, password);
       if (response.data.status) {
         localStorage.setItem("token", response.data.token);
-        setSuccess("Login successful");
+        toast.success("Login successful");
         setTimeout(() => {
           window.location.href = "/";
         }, 1500);
       } else {
-        setError(response.data.message || "Login failed: Unknown error");
+        toast.error(response.data.message || "Login failed: Unknown error");
       }
       console.log(response.data);
     } catch (error) {
@@ -33,11 +32,10 @@ const LoginPage = () => {
         error.response.data &&
         error.response.data.message
       ) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setError("An error occurred during login.");
+        toast.error("An error occurred during login.");
       }
-      setTimeout(() => setError(""), 3000);
     } finally {
       setLoading(false); 
     }
@@ -75,8 +73,6 @@ const LoginPage = () => {
               />
               <input type="submit" className="button" value="Login" />
             </form>
-            {error && <div className="alert alert-danger">{error}</div>}
-            {success && <div className="alert alert-success">{success}</div>}
             <div className="login1">
               <span className="login1">
                 Don't have an account?

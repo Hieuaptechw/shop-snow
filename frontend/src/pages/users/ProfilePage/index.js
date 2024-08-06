@@ -42,6 +42,8 @@ const ProfilePage = () => {
         return "status-success";
       case "canceled":
         return "status-canceled";
+      case "completed":
+          return "status-completed";
       default:
         return "";
     }

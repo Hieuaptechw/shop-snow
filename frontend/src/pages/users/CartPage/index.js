@@ -118,7 +118,7 @@ const CartPage = () => {
                     </div>
                   ))
                 ) : (
-                  <p>No products in the cart</p> // Thông báo khi không có sản phẩm
+                  <p>No products in the cart</p> 
                 )}
               </div>
             </div>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./style.css";
 import ProductCard from "../../../component/shop/ProductCard";
-import Brand from "../../../component/shop/Brand";
 import { useParams } from "react-router-dom";
 import api from "../../../api/api";
-import Subcategory from "../../../component/shop/Subcategory";
+
 
 const ShopPage = () => {
   const { category } = useParams();

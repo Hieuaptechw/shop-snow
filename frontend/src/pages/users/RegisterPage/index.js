@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {Link} from "react-router-dom"
 import api from "../../../api/api";
 import "./style.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,9 +11,8 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,8 +20,8 @@ const RegisterPage = () => {
 
 
     if (password !== confirmPassword) {
-      setError("Password and confirm password do not match.");
-      setTimeout(() => setError(""), 3000);
+      setLoading(false); 
+      toast.error("Password and confirm password do not match.");
       return;
     }
     try {
@@ -28,27 +29,30 @@ const RegisterPage = () => {
     
       if (response.data.status) {
         setLoading(false); 
-        setSuccess("Registration successful! You can now log in.");
+        toast.success("Registration successful! You can now log in.");
         setTimeout(() => window.location.href = "/login", 1500);
       } else {
-        setError(response.data.message || "Registration failed. Please try again.");
-        setTimeout(() => setError(""), 3000);
+        setLoading(false); 
+        toast.error(response.data.message || "Registration failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error registering:", error);
       if (error.response && error.response.data && error.response.data.message) {
         const errors = error.response.data.error;
         if (errors['email'] && errors['email'][0]) {
-          setError(errors['email'][0]);
+          setLoading(false); 
+          toast.error(errors['email'][0]);
+          
         } else if (errors['password'] && errors['password'][0]) {
-          setError(errors['password'][0]);
+          setLoading(false); 
+          toast.error(errors['password'][0]);
         } else {
-          setError("An error occurred during registration: " + error.response.data.error);
+          setLoading(false); 
+          toast.error("An error occurred during registration: " + error.response.data.error);
         }
       } else {
-        setError("An error occurred during registration.");
+        toast.error("An error occurred during registration.");
       }
-      setTimeout(() => setError(""), 3000);
+  
     }
     
   };
@@ -129,8 +133,6 @@ const RegisterPage = () => {
     
             </div>
           </form>
-          {error && <div className="alert alert-danger">{error}</div>}
-          {success && <div className="alert alert-success">{success}</div>}
           <div className="signup">
             <span className="signup">
               Already have an account?
