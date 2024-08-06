@@ -12,8 +12,10 @@ class BrandAuthController extends Controller
     public function getBrand($categories_slug)
     {
         $sql = "SELECT
+    
                     c.name AS category_name,
                     b.name AS brand_name,
+                    b.brand_id,
                     COUNT(p.product_id) AS product_count
                 FROM
                     products p
@@ -24,7 +26,7 @@ class BrandAuthController extends Controller
                 WHERE
                     c.slug = ?
                 GROUP BY
-                    c.name, b.name";
+                    c.name, b.name,b.brand_id";
         $brands = DB::select($sql, [$categories_slug]);
     
         return response()->json($brands);

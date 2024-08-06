@@ -4,7 +4,6 @@ import { ROUTERS } from "./utils/router";
 import MasterLayoutUser from "./pages/users/Theme/MasterLayout/index";
 import HomePage from "./pages/users/HomePage";
 import ShopPage from "./pages/users/ShopPage";
-import StorePage from "./pages/users/StorePage";
 import CheckoutPage from "./pages/users/CheckoutPage";
 import ProductPage from "./pages/users/ProductPage";
 import LoginPage from "./pages/users/LoginPage";
@@ -13,6 +12,8 @@ import ProfilePage from "./pages/users/ProfilePage";
 import FavoritesPage from "./pages/users/FavoritesPage";
 import CartPage from "./pages/users/CartPage";
 import AddressPage from "./pages/users/AddressPage";
+import ThanksyouPage from "./pages/users/ThanksyouPage";
+import SearchPage from "./pages/users/SearchPage";
 
 const routes = [
   {
@@ -58,6 +59,14 @@ const routes = [
   {
     path: ROUTERS.USER.ADDRESS,
     component: <AddressPage />,
+  },
+  {
+    path: ROUTERS.USER.THANKSYOU,
+    component: <ThanksyouPage />,
+  },
+  {
+    path: ROUTERS.USER.SEARCH,
+    component: <SearchPage />,
   },
 ];
 

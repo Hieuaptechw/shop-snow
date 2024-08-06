@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\SearchController;
+use App\Http\Controllers\auth\OrderAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoriController;
@@ -7,7 +9,9 @@ use App\Http\Controllers\auth\CategoriauthController;
 use App\Http\Controllers\auth\BrandAuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ListProductController;
+use App\Http\Controllers\auth\ProductAuthController;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\auth\CartAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +24,7 @@ use App\Http\Controllers\Api\ApiController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
 Route::group(['prefix' => ''], function () {
     //CATEGORIS
     Route::get('/admin/categories', [CategoriController::class, 'getlist']);
@@ -35,7 +37,6 @@ Route::get('/admin/products', [ListProductController::class, 'getlist']);
 Route::post('/admin/prducts/add', [ListProductController::class, 'insert']);
 });
 Route::post("register",[ApiController::class,'register']);
-//
 Route::post("login",[ApiController::class,'login']);
 Route::group([
     "middleware"=>["auth:sanctum"]
@@ -50,5 +51,22 @@ Route::group([
 Route::get('/category', [CategoriauthController::class, 'getCategory']);
 Route::get('/category/{category_name}', [CategoriauthController::class, 'getSubcategories']);
 
+Route::get('/new-products', [ProductAuthController::class, 'getNewProducts']);
+Route::get('/top-selling', [ProductAuthController::class, 'topselling']);
+Route::get('/products/{slug}', [ProductAuthController::class, 'getProductCategory']);
+Route::get('/products_details/{id}', [ProductAuthController::class, 'getDetailProduct']);
+
+
+//addToCart
+
+Route::post('/cart/add', [CartAuthController::class, 'addToCart']);
+Route::post('/cart/delete', [CartAuthController::class, 'deleteCart']);
+Route::get('/cart/product', [CartAuthController::class, 'productcard']);
 
 Route::get('/brand/{brand}', [BrandAuthController::class, 'getBrand']);
+
+
+Route::post('/order/checkout', [OrderAuthController::class, 'createOrder']);
+Route::get('/order/getorder', [OrderAuthController::class, 'getUserOrders']);
+Route::get('/order/{order_id}', [OrderAuthController::class, 'getOrderDetails']);
+Route::get('/search/{query}', [SearchController::class, 'searchapi']);

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 {
     use HasFactory;
+    protected $table = 'products';
+    protected $primaryKey = 'product_id';
     public function getSubcategories($category_name)
     {
     $sql = "SELECT subcategories.*
@@ -16,5 +18,10 @@ class Product extends Model
             WHERE categories.name = $category_name;";
     $subCategory = DB::select($sql);
     return $subCategory;
+   }
+   public function getProduct(){
+        $sql=" SELECT * FROM products";
+        $p= DB::select($sql);
+        return $p;
    }
 }

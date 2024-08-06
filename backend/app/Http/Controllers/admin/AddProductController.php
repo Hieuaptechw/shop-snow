@@ -80,7 +80,7 @@ class AddProductController extends Controller
         foreach ($attributes as $key => $value) {
             if (!empty($value)) {
                 if (is_array($value)) {
-                    $value = json_encode($value);
+                  $value = json_encode($value);
                 }
                 $productDetail = new ProductDetails();
                 $productDetail->product_id = $product->product_id;

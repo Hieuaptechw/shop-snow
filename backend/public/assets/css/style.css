@@ -360,8 +360,86 @@ height: 100vh;
     bottom: 0px;
   
 }
+/*subcategory*/
+.subcategories{
+   
+    border-radius: 15px;
+    width: 99%;
+    margin-left: -10px;
+    margin-top: 15px;
+}
 
+.alert-fail{
+    background-color: rgb(184, 87, 87);
+    color: #fff;
+}
+.subcategorie-form{
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    background-color: #fff;
+}
+.subcategorie-form button{
+  margin-top: 10px;
 
+}
+.subcategorie-list{
+    height: 60vh;
+    border-radius: 15px;
+    margin-top: 15px;
+    padding: 20px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+    background-color: #fff;
+    position: relative;
+}
+
+.subcategorie-list-table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-radius: 15px;
+}
+.subcategorie-list-table-header  td {
+    font-weight: bold;
+}
+ .subcategorie-list-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left;
+}
+
+.subcategorie-list-table th {
+    font-weight: bold; 
+}
+.subcategorie-list-table tr td:first-child{
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+.subcategorie-list-table tr td:nth-child(2){
+    text-align: center;
+    width: 20%;
+}
+.subcategorie-list-table tr td:nth-child(3){
+    text-align: center;
+    width: 20%;
+}
+.subcategorie-list-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.subcategorie-list-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.subcategorie-list-table a:hover {
+   text-decoration: underline;
+}
+.subcategorie-list .pagination {
+    position: absolute;
+    margin-top: 20px;
+    bottom: 0px;
+  
+}
 /*Brand*/
 .brand{
    
@@ -468,18 +546,31 @@ width: 99%;
     box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
     padding: 20px;
     margin-top: 15px;
-    height: 58vh;
 }
-
+#input-file-img,#input-file-imgs {
+    padding: 20px;
+    margin-top: 10px;
+    background-color: #f0eaea;
+    border-radius: 15px;
+    box-shadow: rgba(230, 230, 230, 0.5) 0px 4px 20px 0px;
+}
+.image-old{
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0eaea;
+    border-radius: 15px;
+    box-shadow: rgba(230, 230, 230, 0.5) 0px 4px 20px 0px;
+}
 #input-file-img img {
     margin-top: 15px;
     width: 180px;
     height: 214px;
+    width: 80px!important;
     height: auto;
 }
 #input-file-imgs img {
     margin-top: 15px;
-    width: 180px;
+    width: 80px!important;
     height: 214px;
     height: auto;
 }
@@ -606,4 +697,147 @@ width: 99%;
 .editor-container_classic-editor .editor-container__editor {
 	min-width: 795px;
 	max-width: 795px;
+}
+.search-result{
+    background-color: #fff;
+    margin-left: -10px;
+    margin-top: 10px;
+    width: 99%;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+}
+.search-result p{
+    font-style: italic;
+    color: red;
+    font-size: 18px;
+}
+
+
+/* order */
+.card-header {
+    background-color: #f8f9fa;
+    
+    border-bottom: 1px solid #dee2e6;
+}
+.card{
+    border-radius: 15px;
+    box-shadow: rgba(238, 238, 238, 0.5) 0px 4px 20px 0px;
+}
+.order-details p {
+    margin: 0;
+}
+.order{
+    margin-left: -10px;
+    margin-top: 10px;
+    width: 99%;
+    border-radius: 15px;
+ 
+}
+.status-pending {
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: orange;
+}
+.status-processing {
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: blue;
+}
+.status-completed {
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: green;
+}
+.status-cancelled {
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: red;
+}
+
+
+
+
+
+
+/*USER*/
+.user{
+    margin-top: 10px;
+    margin-left: -10px;
+    border-radius: 15px;
+    background-color: #fff;
+    width: 99%;
+    height: 87vh;
+    padding: 20px;
+}
+.user-list-table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+.user-list-table-header  td {
+    font-weight: bold;
+}
+ .user-list-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left;
+}
+
+.user-list-table th {
+    font-weight: bold; 
+}
+.user-list-table tr td:first-child{
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+}
+.user-list-table tr td:nth-child(2){
+    text-align: center;
+    width: 15%;
+}
+.user-list-table tr td:nth-child(3){
+    text-align: center;
+    width: 15%;
+}
+.user-list-table tr td:nth-child(4){
+    text-align: center;
+    width: 15%;
+}
+.user-list-table tr td:nth-child(5){
+    text-align: center;
+    width: 15%;
+}
+.user-list-table tr td:nth-child(6){
+    text-align: center;
+    width: 15%;
+}
+
+
+/* .product-list-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+ */
+
+.user-list-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.user-list-table a:hover {
+   text-decoration: underline;
+}
+.user-list .pagination {
+    position: absolute;
+    margin-top: 20px;
+    bottom: 0px;
+  
 }

@@ -6,15 +6,16 @@
                 {{ session('success') }}
             </div>
         @endif
-        <form action="{{ url('/admin/products/update/') }}" method="PUT" enctype="multipart/form-data" class="row">
+        <form action="{{ url('/admin/products/update/'.$product->product_id) }}" method="POST" enctype="multipart/form-data" class="row">
             @csrf
+            @method('PUT')
             <div class="col-md-8 ">
                 <div class="product-information row">
                     <h4>Update Product</h4>
                     <div class="col-md-12 mb-3">
                         <label for="product-name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="product-name" name="name"
-                            value="{{ $product->name }}"placeholder="Product title" required>
+                            value="{{ $product->name }}" placeholder="Product title" required>
                     </div>
 
                     <div class="col-md-3">
@@ -74,30 +75,32 @@
                 <div class="product-img row">
                     <div class="col-md-4 mb-3">
                         <h4>Product Avatar</h4>
-                        <input type="file" id="file" class="form-control" name="avatar" required
+                        <input type="file" id="file" class="form-control"  name="product_avatar" 
                             onchange="previewAvatar(event)">
                         <input type="hidden" id="input-file-img-hiden" name="avatar_path">
+                        <div class="image-old">
+                        <p>Product Avatar OLD</p>
                         <img id="avatar-preview" src="{{ asset($product->avatar_product) }}" alt="Product Image"
-                            width="200px">
+                            width="80px">
+                        </div>
                         <div class="image-show" id="input-file-img"></div>
                     </div>
                     <div class="col-md-8 mb-3">
                         <h4>Product Images</h4>
-                        <input type="file" class="form-control" id="files" name="product_images[]" required multiple
+                        <input type="file" class="form-control" id="files" name="product_images[]"  multiple
                             onchange="previewImages(event)">
                         <div class="image-old" id="image-old-container">
+                        <p>Product Images Old</p>
                             @foreach ($product->images as $image)
-                                <img src="{{ asset($image->image_url) }}" alt="Product Image" width="200px">
+                                <img src="{{ asset($image->image_url) }}" alt="Product Image" width="80px">
                             @endforeach
                         </div>
+        
                         <div class="input-file-imgs" id="input-file-imgs"></div>
 
 
                     </div>
                 </div>
-
-
-
             </div>
             <div class=" col-md-4">
                 <div class="product-price">
@@ -115,47 +118,50 @@
                 <div class="product-variant">
                     <h4>Product Variants</h4>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <h5>Color</h5>
-                            <select class="form-select" name="color" id="color">
-                                <option value="">Choose...</option>
-                                <option value="Black">Black</option>
-                                <option value="White">White</option>
-                                <option value="Red">Red</option>
-                            </select>
+                            @foreach (['Black', 'White', 'Red'] as $color)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $color }}" id="{{ $color }}" name="color[]"
+                                        @if(in_array($color, $selectedColorsArray)) checked @endif>
+                                    <label class="form-check-label" for="{{ $color }}">{{ $color }}</label>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <h5>Weight</h5>
-                            <select class="form-select" name="weight" id="weight">
-                                <option value="">Choose...</option>
-                                <option value="5kg">5kg</option>
-                                <option value="10kg">10kg</option>
-                                <option value="15kg">15kg</option>
-                            </select>
+                            @foreach (['5kg', '10kg', '15kg'] as $weight)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $weight }}" id="{{ $weight }}" name="weight[]"
+                                        @if(in_array($weight, $selectedWeightArray)) checked @endif>
+                                    <label class="form-check-label" for="{{ $weight }}">{{ $weight }}</label>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <h5>Inch</h5>
-                            <select class="form-select" name="inch" id="inch">
-                                <option value="">Choose...</option>
-                                <option value="5inch">5inch</option>
-                                <option value="10inch">10inch</option>
-                                <option value="16inch">16inch</option>
-                                <option value="20inch">20inch</option>
-                                <option value="32inch">32inch</option>
-                                <option value="37inch">37inch</option>
-                            </select>
+                            @foreach (['5inch', '10inch', '16inch', '20inch', '32inch', '37inch'] as $inch)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $inch }}" id="{{ $inch }}" name="inch[]"
+                                        @if(in_array($inch, $selectedInchArray)) checked @endif>
+                                    <label class="form-check-label" for="{{ $inch }}">{{ $inch }}</label>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary ">Save Product</button>
-
-                        </div>
+                        <div class="col-md-12 mt-4">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
                     </div>
                 </div>
             </div>
+           
         </form>
     </div>
-    <script>
-        document.querySelectorAll('.ckeditor').forEach((editor) => {
+@endsection
+
+@section('scripts')
+<script>
+     document.querySelectorAll('.ckeditor').forEach((editor) => {
             ClassicEditor
                 .create(editor, {})
                 .catch(error => {
@@ -164,6 +170,7 @@
         });
 
         function previewAvatar(event) {
+            hideImages();
             const file = event.target.files[0];
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -186,11 +193,24 @@
                 reader.onload = function(e) {
                     const img = document.createElement('img');
                     img.src = e.target.result;
-                    img.width = 200;
+                    img.width = 90;
                     previewContainer.appendChild(img);
                 }
                 reader.readAsDataURL(file);
             });
         }
-    </script>
+        function hideImages() {
+    // Ẩn Product Avatar cũ
+    const avatarPreview = document.getElementById('avatar-preview');
+    if (avatarPreview) {
+        avatarPreview.style.display = 'none';
+    }
+
+    // Ẩn tất cả Product Images cũ
+    const oldImages = document.querySelectorAll('.image-old .old-image');
+    oldImages.forEach(image => {
+        image.style.display = 'none';
+    });
+}
+</script>
 @endsection

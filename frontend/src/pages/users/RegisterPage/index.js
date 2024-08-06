@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 import api from "../../../api/api";
 import "./style.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -8,48 +11,59 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); 
+
 
     if (password !== confirmPassword) {
-      setError("Mật khẩu và xác nhận mật khẩu không khớp.");
-      setTimeout(() => setError(""), 3000);
+      setLoading(false); 
+      toast.error("Password and confirm password do not match.");
       return;
     }
     try {
       const response = await api.Register(name, email, password, phone, address);
     
       if (response.data.status) {
-        setSuccess("Đăng ký thành công! Bạn có thể đăng nhập.");
+        setLoading(false); 
+        toast.success("Registration successful! You can now log in.");
+        setTimeout(() => window.location.href = "/login", 1500);
       } else {
-        setError(response.data.message || "Đăng ký thất bại. Vui lòng thử lại.");
-        setTimeout(() => setError(""), 3000);
+        setLoading(false); 
+        toast.error(response.data.message || "Registration failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error registering:", error);
       if (error.response && error.response.data && error.response.data.message) {
         const errors = error.response.data.error;
         if (errors['email'] && errors['email'][0]) {
-          setError(errors['email'][0]);
+          setLoading(false); 
+          toast.error(errors['email'][0]);
+          
         } else if (errors['password'] && errors['password'][0]) {
-          setError(errors['password'][0]);
-        } else{
-        setError("Có lỗi xảy ra trong quá trình đăng ký: " + error.response.data.error);
+          setLoading(false); 
+          toast.error(errors['password'][0]);
+        } else {
+          setLoading(false); 
+          toast.error("An error occurred during registration: " + error.response.data.error);
         }
       } else {
-        setError("Có lỗi xảy ra trong quá trình đăng ký.");
+        toast.error("An error occurred during registration.");
       }
-      setTimeout(() => setError(""),5000);
-     
+  
     }
     
   };
 
   return (
     <div className="container">
+       {loading && (
+        <div className="overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
       <div className="registration">
         <h2>Register</h2>
         <div className="registration-form">
@@ -119,12 +133,10 @@ const RegisterPage = () => {
     
             </div>
           </form>
-          {error && <div className="alert alert-danger">{error}</div>}
-          {success && <div className="alert alert-success">{success}</div>}
           <div className="signup">
             <span className="signup">
               Already have an account?
-              <a href="/login">Login</a>
+              <Link to="/login">Login</Link>
             </span>
           </div>
         </div>

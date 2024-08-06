@@ -21,11 +21,7 @@ INSERT INTO subcategories (name, category_id) VALUES
     ('Table Lamps', 5);
 INSERT INTO stores (name, description, address, phone)
 VALUES
-    ('ElectroTech', 'Electronics and gadgets store', '123 Main St, City', '1234567890'),
-    ('SportsGear', 'Sports equipment and apparel store', '456 Oak Ave, Town', '9876543210'),
-    ('HomeDecor Plus', 'Home decor and furniture store', '789 Elm Rd, Village', '5555555555'),
-    ('Bookworm Books', 'Bookstore specializing in various genres', '321 Pine Ln, Hamlet', '7777777777'),
-    ('FashionHub', 'Clothing and fashion store', '654 Birch Dr, County', '9998887777');
+    ('ElectroAptech', 'Electronics and gadgets store', '285 Doi CN', '1234567890'),
 -- Insert into brand
 INSERT INTO brands (name, description) VALUES
     ('Samsung', 'Offers products such as smartphones, TVs, washing machines, and home appliances.'),
@@ -125,7 +121,7 @@ VALUES
     (2, 'Size', '10'),
     (3, 'Author','John Smith'),
     (4, 'Screen Size', '55"');
-INSERT INTO review (product_id, user_id, rating, C)
+INSERT INTO review (product_id, user_id, rating, comment)
 VALUES
     (1, 2, 4, 'Great phone, good camera quality'),
     (2, 3, 5, 'Very comfortable and durable shoes'),

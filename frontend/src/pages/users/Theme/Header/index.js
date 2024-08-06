@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link  } from "react-router-dom";
 import "./style.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from "../assets/logo.png";
 import api from "../../../../api/api";
 
 const Header = () => {
   const [user, setUser] = useState(null);
   const [categorys, setCategorys] = useState([]);
+  const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const [isLogout, setisLogout] = useState(false);
+  const [query, setQuery] = useState('');
   const navigate = useNavigate(); 
   const handeLogout = async () => {
     try {
@@ -36,7 +40,7 @@ const Header = () => {
         const response = await api.getProfile();
         if (response.data.status) {
           setUser(response.data.data);
-          
+          setRole(response.data.data.role);
         } else {
           setError(response.data.message);
         }
@@ -49,9 +53,8 @@ const Header = () => {
     };
     fetchCategory();
     fetchProfile();
-    // console.log(response.data);
-  }, [isLogout,useNavigate]);
 
+  }, [isLogout,useNavigate]);
   return (
     <header className="header">
       {/* START-HEADER-TOP */}
@@ -61,57 +64,62 @@ const Header = () => {
             <div className="col-12 d-flex justify-content-between">
               <ul className="d-flex list-unstyled header-link">
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="bi bi-telephone"></i>+84 0334982576
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="bi bi-envelope"></i>hieuaptech@gmail.com
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="bi bi-geo-alt"></i>285 Doi Can
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <ul className="d-flex header-link">
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="bi bi-currency-dollar"></i>VND
-                  </a>
+                  </Link>
                 </li>
                 <li className="dropdown">
-                  <a href="#">
+                  <Link to="#">
                     <i className="bi bi-person"></i>
                     {user ? user.name : "My Account"}
-                  </a>
+                  </Link>
                   <ul className="dropdown-menu">
                     {user ? (
                       <>
+                        {role === 'admin' && (
+                          <li>
+                            <Link to="/admin">Admin</Link>
+                          </li>
+                        )}
                         <li>
-                          <a href="/profile">Profile</a>
+                          <Link to="/profile">Profile</Link>
                         </li>
                         <li>
-                          <a
-                            href="/logout"
+                          <Link
+                            to="/logout"
                             onClick={(e) => {
                               e.preventDefault();
                                handeLogout();
                             }}
                           >
                             Log Out
-                          </a>
+                          </Link>
                         </li>
                       </>
                     ) : (
                       <>
                         <li>
-                          <a href="/login">Log In</a>
+                          <Link to="/login">Log In</Link>
                         </li>
                         <li>
-                          <a href="/register">Register</a>
+                          <Link to="/register">Register</Link>
                         </li>
                       </>
                     )}
@@ -130,14 +138,14 @@ const Header = () => {
           <div className="row align-items-center">
             <div className="col-md-3 m-0">
               <div className="header-logo">
-                <a className="logo" href="/home">
+                <Link className="logo" to="/">
                   <img src={logo} alt="Logo" />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-md-6">
               <div className="header-search">
-                <form>
+                <form action={`/search/${query}`}>
                   <select className="header-input-select">
                     <option>All Categories</option>
                     {categorys.map((category, index) => (
@@ -150,6 +158,8 @@ const Header = () => {
                     className="input-search"
                     type="text"
                     placeholder="Search Here"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                   />
                   <button className="search-btn" type="submit">
                     Search
@@ -160,16 +170,16 @@ const Header = () => {
             <div className="col-md-3 m-0">
               <div className="header-ctn">
                 <div>
-                  <a href="/wishlist">
+                  <Link to="/wishlist">
                     <i className="bi bi-heart"></i>
                     <span>Your Wishlist</span>
-                  </a>
+                  </Link>
                 </div>
                 <div>
-                  <a href="/cart">
+                  <Link to="/cart">
                     <i className="bi bi-cart3"></i>
                     <span>Your Cart</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -183,31 +193,34 @@ const Header = () => {
         <div className="container">
           <div>
             <ul className="main-nav nav nav-bar">
-              <li>
-                <a href="/home">Home</a>
-              </li>
-              <li>
-                <a href="/shop">Shop</a>
-              </li>
-              <li>
-                <a href="/checkout">Checkout</a>
-              </li>
               {categorys.map((category, index) => (
                 <li key={index}>
-                  <a href={`/shop/${category.slug}`}>
+                  <Link to={`/shop/${category.slug}`}>
                     {category.name}
-                  </a>
+                  </Link>
                 </li>
                 
               ))}
                 <li>
-                <a href="/address">Store Address</a>
+                <Link to="/address">Store Address</Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
       {/* END MENU */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </header>
   );
 };

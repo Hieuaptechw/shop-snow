@@ -61,3 +61,49 @@
   .breadcrumb-item a {
     text-decoration: none;
   }
+  .card_body_status {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .status-pending {
+    color: #dc3545; 
+    background-color: #f8d7da; 
+  }
+  
+
+  .status-canceled {
+    color: #dc3545; 
+    background-color: #f8d7da; 
+  }
+  .status-pending {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: orange;
+}
+.status-processing {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: blue;
+}
+.status-completed {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: green;
+}
+.status-cancelled {
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: 600;
+    background-color: red;
+}
+
