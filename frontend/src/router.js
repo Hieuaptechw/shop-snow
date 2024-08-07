@@ -14,6 +14,8 @@ import CartPage from "./pages/users/CartPage";
 import AddressPage from "./pages/users/AddressPage";
 import ThanksyouPage from "./pages/users/ThanksyouPage";
 import SearchPage from "./pages/users/SearchPage";
+import ForgotPWPage from "./pages/users/ForgotPWPage";
+import ResetPWPage from "./pages/users/ResetPWPage";
 
 const routes = [
   {
@@ -67,6 +69,14 @@ const routes = [
   {
     path: ROUTERS.USER.SEARCH,
     component: <SearchPage />,
+  },
+  {
+    path: ROUTERS.USER.FORGOT,
+    component: <ForgotPWPage />,
+  },
+  {
+    path: ROUTERS.USER.RESET,
+    component: <ResetPWPage />,
   },
 ];
 

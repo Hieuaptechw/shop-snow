@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ListProductController;
 use App\Http\Controllers\auth\ProductAuthController;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ForgotpasswordController;
 use App\Http\Controllers\auth\CartAuthController;
 
 /*
@@ -36,6 +37,14 @@ Route::post('/admin/brand/add', [BrandController::class, 'insert']);
 Route::get('/admin/products', [ListProductController::class, 'getlist']);
 Route::post('/admin/prducts/add', [ListProductController::class, 'insert']);
 });
+
+
+
+Route::post("/password/email",[ForgotpasswordController::class,'sendResetLinkEmail']);
+Route::post("/password/reset",[ForgotpasswordController::class,'reset'])->name('password.reset');
+
+
+
 Route::post("register",[ApiController::class,'register']);
 Route::post("login",[ApiController::class,'login']);
 Route::group([
@@ -54,6 +63,7 @@ Route::get('/category/{category_name}', [CategoriauthController::class, 'getSubc
 Route::get('/new-products', [ProductAuthController::class, 'getNewProducts']);
 Route::get('/top-selling', [ProductAuthController::class, 'topselling']);
 Route::get('/products/{slug}', [ProductAuthController::class, 'getProductCategory']);
+Route::get('/products/details/{slug}', [ProductAuthController::class, 'getProductCategoryDetail']);
 Route::get('/products_details/{id}', [ProductAuthController::class, 'getDetailProduct']);
 
 

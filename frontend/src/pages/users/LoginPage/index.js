@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import "./style.css";
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setLoading(true); 
+    setLoading(true);
 
     try {
       const response = await api.Login(email, password);
@@ -37,7 +37,7 @@ const LoginPage = () => {
         toast.error("An error occurred during login.");
       }
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -77,6 +77,10 @@ const LoginPage = () => {
               <span className="login1">
                 Don't have an account?
                 <Link to="/register">Register</Link>
+              </span>
+              <br />
+              <span className="forgot-password">
+                <Link to="/forgot-password">Forgot Password?</Link>
               </span>
             </div>
           </div>

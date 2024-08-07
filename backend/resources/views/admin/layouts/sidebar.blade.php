@@ -1,6 +1,6 @@
 <div class="admin-sidebar">
   <div class="admin-sidebar-top">
-      <a href='/admin/dashboard'> <img src="https://api.hieuaptech.com/image/banner-logo/admin-logo.png" alt="logo-admin" /></a>
+      <a href='/admin/dashboard'> <img src="https://admin.hieuaptech.com/img/logo/logoadmin.png" alt="logo-admin" /></a>
   </div>
   <div class="admin-sidebar-content">
       <ul>

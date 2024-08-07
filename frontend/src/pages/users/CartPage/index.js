@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../../../api/api";
 import "./style.css";
+import { toast } from 'react-toastify';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -10,18 +11,21 @@ const CartPage = () => {
   const [error, setError] = useState(null);
   const [totalPrice, setTotalprice] = useState("");
 
-  const handleDelete = (productId) => {
-    api
-      .DeleteToCart(productId)
+  const handleDelete = (product_id, size, color, weight) => {
+    api.DeleteToCart({ product_id, size, color, weight })
       .then((response) => {
-        alert("Product removed from cart successfully!");
+        toast.success("Product removed from cart successfully!");
         setProductCart((prevCart) =>
-          prevCart.filter((item) => item.product_id !== productId)
+          prevCart.filter((item) => 
+            item.product_id !== product_id ||
+            item.size !== size ||
+            item.color !== color ||
+            item.weight !== weight
+          )
         );
       })
       .catch((error) => {
-        console.error("Error removing product from cart:", error.message);
-        alert("Failed to remove product from cart.");
+        toast.error("Failed to remove product from cart.");
       });
   };
 
@@ -35,15 +39,7 @@ const CartPage = () => {
       try {
         const productData = await api.getProductsCart();
         setProductCart(productData.data.products);
-        console.log(productData);
-        setTotalprice(
-          productData.data.products
-            .reduce(
-              (acc, item) => acc + item.quantity * parseFloat(item.price_sale),
-              0
-            )
-            .toFixed(2)
-        );
+        setTotalprice( productData.data.cart.total_price );
       } catch (error) {
         setError(error.message);
       } finally {
@@ -86,7 +82,10 @@ const CartPage = () => {
                         />
                       </div>
                       <div className="card-product-name">
-                        <p>{productCartItem.name}</p>
+                        <h5>{productCartItem.name}</h5>
+                        <p>{productCartItem.size ? productCartItem.size : ''}</p>
+                        <p>{productCartItem.weight ? productCartItem.weight : ''}</p>
+                        <p>{productCartItem.color ? productCartItem.color : ''}</p>
                       </div>
                       <div className="input-container">
                         <button className="btn-decrement">-</button>
@@ -111,7 +110,12 @@ const CartPage = () => {
                         <i
                           className="bi bi-trash"
                           onClick={() =>
-                            handleDelete(productCartItem.product_id)
+                            handleDelete(
+                              productCartItem.product_id,
+                              productCartItem.size,
+                              productCartItem.color,
+                              productCartItem.weight
+                            )
                           }
                         ></i>
                       </div>

@@ -185,4 +185,42 @@ class ProductAuthController extends Controller
             'details' => $product_details
         ]);
     }
+    public function getProductCategoryDetail($slug)
+    {
+        $sql = "SELECT 
+            products.product_id,
+            products.name,
+            products.price, 
+            products.price_sale,  
+            products.avatar_product,
+            categories.name AS category_name, 
+            subcategories.name AS subcategory_name,
+            categories.slug,
+            AVG(reviews.rating) AS average_rating 
+        FROM 
+            products 
+        JOIN 
+            categories ON categories.category_id = products.category_id
+        LEFT JOIN 
+            subcategories ON subcategories.subcategory_id = products.subcategory_id
+        LEFT JOIN 
+            reviews ON reviews.product_id = products.product_id
+        WHERE 
+            categories.slug = ?
+        GROUP BY 
+            products.product_id,
+            products.name,
+            products.price,
+            products.price_sale,
+            products.avatar_product,
+            categories.slug,
+            subcategories.name,
+            categories.name
+        LIMIT 8;
+        ";
+
+        $products = DB::select($sql, [$slug]);
+
+        return response()->json($products);
+    }
 }

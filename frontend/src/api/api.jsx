@@ -15,16 +15,36 @@ const Register = (name,email, password,phone,address) => {
     address,
   }); 
 };
-const AddToCart = (product_id,quantity,price) => {
+const ForgotPassword = (email)=>{
+  return axios.post('/password/email',{
+    email
+  })
+}
+const setPassword = (email,password,code)=>{
+  return axios.post('/password/reset',{
+    email,
+    password,
+    code
+  })
+}
+const AddToCart = (product_id,quantity,price,size,color,weight) => {
   return axios.post('/cart/add', {
     product_id,
     quantity,
     price,
+    size,
+    color,
+    weight,
   }); 
 };
-const DeleteToCart = (product_id) => {
+const DeleteToCart = (product_id,quantity,price,size,color,weight) => {
   return axios.post('/cart/delete', {
     product_id,
+    quantity,
+    price,
+    size,
+    color,
+    weight,
   }); 
 };
 const orderProduct=(shipping_address,notes,payment)=>{
@@ -83,7 +103,9 @@ const getProductsCategory = (category_slug, subcategories = [], brands = [], min
   return axios.get(`/products/${category_slug}`, { params });
 };
 
-
+const getProductsCategoryDetails = (slug) => {
+  return axios.get(`/products/details/${slug}`);
+};
 const getProductsDetails = (id) => {
   return axios.get(`/products_details/${id}`);
 };
@@ -96,6 +118,6 @@ const getSearch = (query) => {
 export default
  { Login ,Register,Product_Details, getCategory ,getProfile,
   logout,getSubcategory,getBrand,getProducts,getNewProducts,getTopSelling,getProductsCategory,
-  getProductsDetails,getProductsCart,getSearch,
+  getProductsDetails,getProductsCart,getSearch,ForgotPassword,setPassword,getProductsCategoryDetails,
   AddToCart,orderProduct,DeleteToCart,getUserOrders
 };

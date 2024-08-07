@@ -139,7 +139,7 @@ const Header = () => {
             <div className="col-md-3 m-0">
               <div className="header-logo">
                 <Link className="logo" to="/">
-                  <img src={logo} alt="Logo" />
+                  <img src="https://admin.hieuaptech.com/img/logo/logoauth-1.png" alt="Logo" />
                 </Link>
               </div>
             </div>

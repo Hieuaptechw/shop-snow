@@ -14,12 +14,15 @@ class CartItem extends Model
         'product_id',
         'quantity',
         'price',
+        'color',
+        'size',
+        'weight',
     ];
 
     protected $table = "carts_items";
 
-    public $incrementing = true; // Sử dụng auto-incrementing primary key
-    protected $primaryKey = 'cart_items_id'; // Đặt primary key là 'cart_items_id'
+    public $incrementing = true; 
+    protected $primaryKey = 'cart_items_id'; 
 
     public function product()
     {

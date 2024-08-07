@@ -3,46 +3,68 @@ import { useParams } from "react-router-dom";
 import "./style.css";
 import api from "../../../api/api";
 import ProductDetails from "../../../component/product_details/ProductDetails";
-
+import { toast } from "react-toastify";
 const ProductPage = () => {
   const { id, category } = useParams();
   const [productDetails, setProductDetails] = useState([]);
   const [products, setProducts] = useState([]);
+  const [quantitys, setQuantity] = useState(1);
+  const [colors, setColor] = useState(null);
+  const [sizess, setSize] = useState(null);
+  const [weights, setWeight] = useState(null);
   const [priceSale, setPriceSale] = useState(null);
   const [imgProductDetails, setImgProductDetails] = useState([]);
   const [attributeProductDetails, setAttributeProductDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const handleQuantity = (e) => {
+    setQuantity(e.target.value);
+  };
+  const handleColor = (e) => {
+    setColor(e.target.value);
+  };
+  const handleWeight = (e) => {
+    const newWeight = parseFloat(e.target.value);
+    setWeight(newWeight);
+  };
+  const handleSize = (e) => {
+    setSize(e.target.value);
+  };
   const handleAddToCart = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      alert('You must be logged in to add products to the cart.');
+      toast.warning("You must be logged in to add products to the cart.");
       return;
     }
     const productId = id;
-    const quantity = 1; 
+    const quantity = quantitys;
     const price = priceSale;
+    const size = sizess;
+    const color = colors;
+    const weight = weights;
 
-    api.AddToCart(productId, quantity, price)
-      .then(response => {
-        alert('Product added to cart successfully!');
+    api
+      .AddToCart(productId,quantity,price,size,color,weight)
+      .then((response) => {
+        toast.success("Product added to cart successfully!");
       })
-      .catch(error => {
-        console.error('Error adding product to cart:', error.message);
-        alert('Failed to add product to cart.');
+      .catch((error) => {
+        console.error("Error adding product to cart:", error.message);
+        toast.error("Failed to add product to cart.");
       });
   };
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
- const [activeTab, setActiveTab] = useState('description');
+  const [activeTab, setActiveTab] = useState("description");
   useEffect(() => {
     const fetchDetailsProduct = async () => {
       setLoading(true);
       try {
         const productData = await api.getProductsDetails(id);
         setProductDetails(productData.data.product);
-        
+
         setPriceSale(productData.data.product[0].price_sale);
         setAttributeProductDetails(productData.data.details);
         setImgProductDetails(productData.data.images);
@@ -55,7 +77,7 @@ const ProductPage = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const product = await api.getProductsCategory(category);
+        const product = await api.getProductsCategoryDetails(category);
         setProducts(product.data);
       } catch (error) {
         setError(error.message);
@@ -66,17 +88,27 @@ const ProductPage = () => {
     fetchDetailsProduct();
     fetchProducts();
   }, [id]);
-
-
-console.log(priceSale)
+  const color = attributeProductDetails.filter(
+    (attributeProductDetails) =>
+      attributeProductDetails.attribute_name === "color"
+  );
+  const sizes = attributeProductDetails.filter(
+    (attributeProductDetails) =>
+      attributeProductDetails.attribute_name === "inch"
+  );
+  const weight = attributeProductDetails.filter(
+    (attributeProductDetails) =>
+      attributeProductDetails.attribute_name === "weight"
+  );
+  console.log(weights);
   return (
     <>
       <div className="section">
-      {loading && (
-        <div className="overlay1">
-          <div className="spinner1"></div>
-        </div>
-      )}
+        {loading && (
+          <div className="overlay1">
+            <div className="spinner1"></div>
+          </div>
+        )}
         <div className="container">
           {productDetails.map((product, index) => (
             <div key={index} className="row">
@@ -84,20 +116,20 @@ console.log(priceSale)
                 <div className="product-imgg">
                   {imgProductDetails.map((imgDetail, index) => (
                     <div key={index} className="product-image-item">
-                       <img
+                      <img
                         src={`http://127.0.0.1:8000/${imgDetail.image_url}`}
                         alt={`Product Image ${index + 1}`}
-                      /> 
+                      />
                     </div>
                   ))}
                 </div>
               </div>
               <div className="col-5">
                 <div className="product-main-img">
-                   <img
+                  <img
                     src={`http://127.0.0.1:8000/${product.avatar_product}`}
                     alt={product.name}
-                  /> 
+                  />
                 </div>
               </div>
               <div className="col-5">
@@ -134,33 +166,75 @@ console.log(priceSale)
                     dangerouslySetInnerHTML={{ __html: product.description }}
                   ></p>
                   <div className="product-options">
-                    <label>
-                      SIZE
-                      <select className="input-select">
-                        <option>S</option>
-                        <option>L</option>
-                      </select>
-                    </label>
-                    <label>
-                      COLOR
-                      <select className="input-select">
-                        <option>red</option>
-                        <option>green</option>
-                      </select>
-                    </label>
+                    {sizes.length > 0 && (
+                      <label>
+                        SIZE :
+                        <select
+                          className="input-select"
+                          onChange={handleSize}
+                          value={sizess || ""}
+                        >
+                          <option value="">Select</option>
+                          {sizes.map((size, index) => (
+                            <option key={index} value={size.attribute_value}>
+                              {size.attribute_value}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    )}
+                    {color.length > 0 && (
+                      <label>
+                        COLOR :
+                        <select
+                          className="input-select"
+                          onChange={handleColor}
+                          value={colors || ""}
+                        >
+                          <option value="">Select</option>
+                          {color.map((color, index) => (
+                            <option key={index} value={color.attribute_value}>
+                              {color.attribute_value}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    )}
+                    {weight.length > 0 && (
+                      <label>
+                        WEIGHT :
+                        <select
+                          className="input-select"
+                          onChange={handleWeight}
+                          value={weights || ""}
+                        >
+                          <option value="">Select</option>
+                          {weight.map((weight, index) => (
+                            <option key={index} value={weight.attribute_value}>
+                              {weight.attribute_value}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    )}
                   </div>
+
                   <div className="add-to-cart">
                     <div className="qty-label d-flex align-items-center">
-                      QTY
+                      <label>QTY</label>
                       <div className="input-number">
-                        <input type="text" defaultValue="1"></input>
+                        <input
+                          type="text"
+                          value={quantitys}
+                          onChange={handleQuantity}
+                        />
                       </div>
                       <button
-            className="btn btn-danger"
-            onClick={() => handleAddToCart(product.product_id)}
-          >
-            ADD TO CART
-          </button>
+                        className="btn btn-danger"
+                        onClick={() => handleAddToCart(product.product_id)}
+                      >
+                        ADD TO CART
+                      </button>
                     </div>
                     <ul className="product-btns d-flex align-items-center">
                       <li>
@@ -222,36 +296,51 @@ console.log(priceSale)
               <div id="product-tab">
                 <ul className="tab-nav d-flex justify-content-center">
                   <li
-                    className={activeTab === 'description' ? 'active' : ''}
-                    onClick={() => handleTabClick('description')}
+                    className={activeTab === "description" ? "active" : ""}
+                    onClick={() => handleTabClick("description")}
                   >
                     <a href="#">Description</a>
                   </li>
                   <li
-                    className={activeTab === 'reviews' ? 'active' : ''}
-                    onClick={() => handleTabClick('reviews')}
+                    className={activeTab === "reviews" ? "active" : ""}
+                    onClick={() => handleTabClick("reviews")}
                   >
                     <a href="#">Reviews</a>
                   </li>
                 </ul>
               </div>
-              {activeTab === 'description' && (
+              {activeTab === "description" && (
                 <div className="tab-content">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </p>
                 </div>
               )}
-              {activeTab === 'reviews' && (
+              {activeTab === "reviews" && (
                 <div className="tab-content">
                   <h3>Product Reviews</h3>
                   <div className="review-item">
-                    <p><strong>John Doe</strong> - ★★★★☆</p>
+                    <p>
+                      <strong>John Doe</strong> - ★★★★☆
+                    </p>
                     <p>This product is amazing!</p>
                   </div>
                   <div className="review-item">
-                    <p><strong>Jane Smith</strong> - ★★★☆☆</p>
+                    <p>
+                      <strong>Jane Smith</strong> - ★★★☆☆
+                    </p>
                     <p>Good value for the price.</p>
                   </div>
-                  <p><a href="#">Add your review</a></p>
+                  <p>
+                    <a href="#">Add your review</a>
+                  </p>
                 </div>
               )}
             </div>
@@ -263,10 +352,10 @@ console.log(priceSale)
           <h2 className="text-center p-2">Related Products</h2>
           <div className="row">
             {products.map((product, index) => (
-                <ProductDetails key={index} productcategory={product} />
-              ))}
+              <ProductDetails key={index} productcategory={product} />
+            ))}
           </div>
-        </div>  
+        </div>
       </div>
     </>
   );

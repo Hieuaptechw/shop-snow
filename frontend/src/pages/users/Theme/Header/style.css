@@ -24,10 +24,16 @@
   .header-main {
     background-color: #15161d;
     padding: 15px;
+    padding-bottom: 30px;
   }
-  
+  .header-main .row {
+    margin-top: 10px;
+  }
   .header-logo {
     text-align: center;
+  }
+  .header-logo img {
+    width: 200px;
   }
   
   .header-search {

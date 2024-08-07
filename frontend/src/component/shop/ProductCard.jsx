@@ -14,9 +14,11 @@ const ProductCard = ({ product }) => {
     const productId = product.product_id;
     const quantity = 1;
     const price = product.price_sale;
-
+    const color = product.color || "";
+    const size = product.size || ""; 
+    const weight = product.weight || ""; 
     api
-      .AddToCart(productId, quantity, price)
+      .AddToCart(productId,quantity,price,size,color,weight)
       .then((response) => {
         toast.success("Product added to cart successfully!");
       })

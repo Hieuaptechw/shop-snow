@@ -76,7 +76,7 @@
 <body>
     <div class="container">
         <div class="login">
-            <h2>Login</h2>
+            <h2>Admin Login</h2>
             <div class="login-form">
                 <form action="{{ route('login-p') }}" method="POST">
         

@@ -14,6 +14,8 @@ export const ROUTERS = {
         CART:"cart",
         ADDRESS:"address",
         THANKSYOU:"checkout/thanksyou/:order_code",
-        SEARCH:"search/:query"
+        SEARCH:"search/:query",
+        FORGOT:"forgot-password",
+        RESET:"reset-password"
     },
 }

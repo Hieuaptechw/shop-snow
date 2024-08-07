@@ -13,9 +13,11 @@ const ProductHome = ({ newproduct }) => {
     const productId = newproduct.product_id;
     const quantity = 1;
     const price = newproduct.price_sale;
-
+    const color = newproduct.color || "";
+    const size = newproduct.size || ""; 
+    const weight = newproduct.weight || ""; 
     api
-      .AddToCart(productId, quantity, price)
+      .AddToCart(productId,quantity,price,size,color,weight)
       .then((response) => {
         toast.success("Product added to cart successfully!")
       })

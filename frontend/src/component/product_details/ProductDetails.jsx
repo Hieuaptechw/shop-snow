@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import api from "../../api/api";
+import {  toast } from 'react-toastify';
 const ProductDetails = ({ productcategory }) => {
   const handleAddToCart = () => {
     const token = localStorage.getItem('token');
@@ -12,14 +13,17 @@ const ProductDetails = ({ productcategory }) => {
     const productId = productcategory.product_id;
     const quantity = 1;
     const price = productcategory.price_sale;
+    const color = productcategory.color || "";
+    const size = productcategory.size || ""; 
+    const weight = productcategory.weight || ""; 
 
-    api.AddToCart(productId, quantity, price)
+    api.AddToCart(productId,quantity,price,size,color,weight)
       .then(response => {
-        alert('Product added to cart successfully!');
+        toast.success('Product added to cart successfully!');
       })
       .catch(error => {
         console.error('Error adding product to cart:', error.message);
-        alert('Failed to add product to cart.');
+        toast.error('Failed to add product to cart.');
       });
   };
   const averageRating = parseFloat(productcategory.average_rating) || 0;

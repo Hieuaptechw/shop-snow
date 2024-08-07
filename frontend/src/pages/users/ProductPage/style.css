@@ -105,12 +105,16 @@ padding: 4px;
 }
 
 .product-details .product-options .input-select {
-  width: 90px;
+  width: 80px;
   height: 40px;
-  margin-left: 10px;
+  margin-left: 20px;
   border-radius: 8px;
 }
-
+.product-options label{
+  margin-bottom: 10px;
+  font-weight: 600;
+  margin-left: 10px;
+}
 .review-link {
   margin-left: 13px;
   font-size: 12px;
@@ -136,6 +140,7 @@ label[id='1'] {
 .input-number input {
   width: 90px;
   height: 35px;
+  text-align: center;
   margin-left: 13px;
   border-radius: 8px;
   outline: none;
@@ -146,7 +151,9 @@ label[id='1'] {
   width: 170px;
   border-radius: 50px;
 }
-
+.add-to-cart label {
+  font-weight: 600;
+}
 .product-details .product-btns {
   margin-top: 15px;
   margin-bottom: 15px;

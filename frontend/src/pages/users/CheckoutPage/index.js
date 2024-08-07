@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api/api";
 import "./style.css";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -183,6 +183,9 @@ const CheckoutPage = () => {
                       <div className="order-col" key={index}>
                         <div>
                           <span>{productCartItem.quantity}x  | {productCartItem.name}</span>
+                          <span>|{productCartItem.size ?  productCartItem.size : ''}</span>
+                        <span>|{productCartItem.weight ? productCartItem.weight : ''}</span>
+                        <span>|{productCartItem.color ? productCartItem.color : ''}</span>
                         </div>
                         <div><span>${productCartItem.price_sale * productCartItem.quantity}</span></div>
                       </div>

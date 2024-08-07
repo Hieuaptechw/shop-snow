@@ -5,6 +5,7 @@ import api from "../../../api/api";
 const ProfilePage = () => {
   const [user, setUser] = useState({});
   const [userOrder, setUserOrder] = useState([]);
+  const [cartItem, setCartItem] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +19,15 @@ const ProfilePage = () => {
         setError(error.message);
       }
     };
-
+    const fetchCart = async () => {
+      setLoading(true)
+      try {
+        const userData = await api.getProductsCart();
+        setCartItem(userData.data.products.length);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
     const fetchUserOrders = async () => {
       setLoading(true)
       try {
@@ -30,7 +39,7 @@ const ProfilePage = () => {
         setLoading(false);
       }
     };
-
+    fetchCart();
     fetchProfile();
     fetchUserOrders();
   }, []);
@@ -87,7 +96,7 @@ const ProfilePage = () => {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                       <i className="fab fa-instagram fa-lg text-instagram"></i>
-                      <p className="mb-0">Cart: 7</p>
+                      <p className="mb-0">Cart: {cartItem}</p>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center p-3">
                       <i className="fab fa-facebook-f fa-lg text-facebook"></i>

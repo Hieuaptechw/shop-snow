@@ -1,0 +1,71 @@
+.reset-form p{
+    font-size: 15px;
+    text-align: right;
+}
+.reset h5{
+    color: #a02c2c;
+    text-align: center;
+}
+.reset{
+    padding: 10px;
+   margin: auto;
+    max-width: 650px;
+    width: 100%;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 5px   5px 10px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+  }
+  .reset h2{
+    font-weight: 700;
+    text-align: center;
+    margin:20px;
+  }
+  .reset-form{
+    padding: 2rem;
+  }
+  .reset-form input {
+    height: 50px;
+    width: 100%;
+    padding: 0 15px;
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+  }
+  .reset-form  input:focus{
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+  .reset-form a{
+    font-size: 16px;
+    color:#1e1f29;
+    text-decoration: none;
+  }
+  .reset-form a:hover{
+    text-decoration: underline;
+  }
+  .reset-form input.button{
+    color: #fff;
+    background: #1e1f29;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+   
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  .reset-form input.button:hover{
+    background: #575b83;
+  }
+  .login1{
+    font-size: 17px;
+    text-align: center;
+  }
+  .login1 a{
+    color: #a02c2c;
+    cursor: pointer;
+  }
+  .login1 label:hover{
+    text-decoration: underline;
+  }
