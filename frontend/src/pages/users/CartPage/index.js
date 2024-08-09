@@ -73,21 +73,21 @@ const CartPage = () => {
                   productCart.map((productCartItem, index) => (
                     <div
                       key={index}
-                      className="card-product d-flex justify-content-between align-items-center"
+                      className="card-product d-flex justify-content-between align-items-center row"
                     >
-                      <div className="card-product-img">
+                      <div className="card-product-img col-2">
                         <img
                           src={`http://127.0.0.1:8000/${productCartItem.avatar_product}`}
                           alt={productCartItem.name}
                         />
                       </div>
-                      <div className="card-product-name">
+                      <div className="card-product-name col-2">
                         <h5>{productCartItem.name}</h5>
                         <p>{productCartItem.size ? productCartItem.size : ''}</p>
                         <p>{productCartItem.weight ? productCartItem.weight : ''}</p>
                         <p>{productCartItem.color ? productCartItem.color : ''}</p>
                       </div>
-                      <div className="input-container">
+                      <div className="input-container col-2">
                         <button className="btn-decrement">-</button>
                         <input
                           type="text"
@@ -97,7 +97,7 @@ const CartPage = () => {
                         />
                         <button className="btn-increment">+</button>
                       </div>
-                      <div className="card-product-price">
+                      <div className="card-product-price col-2">
                         <p className="m-0">
                           $
                           {(
@@ -106,7 +106,7 @@ const CartPage = () => {
                           ).toFixed(2)}
                         </p>
                       </div>
-                      <div className="card-product-delete">
+                      <div className="card-product-delete col-2">
                         <i
                           className="bi bi-trash"
                           onClick={() =>

@@ -97,12 +97,12 @@ button {
 }
 
 .sum-qty {
-  margin-right: auto; /* Đẩy phần tử này ra xa trái */
+  margin-right: auto; 
 }
 
 .sum-total {
   margin-right: auto;
-  color: #d10024; /* Đẩy phần tử này ra xa trái, cách phần tử kế tiếp */
+  color: #d10024; 
 }
 .sum-total p{
   margin-left: 15px !important;
@@ -132,9 +132,6 @@ button {
   border: 1px solid #d10024;
 }
 
-p {
-  font-weight: 700;
-}
 
 
 
@@ -143,12 +140,6 @@ p {
   border-radius: 10px;
   display: block;
   overflow: hidden;
-}
-
-p {
-  font-weight: 700;
-  font-size: 24px;
-
 }
 
 .cart-container {
@@ -157,9 +148,3 @@ p {
   padding: 20px;
 }
 
-.cart {
-  border: 1px solid gray;
-  border-radius: 10px;
-  display: block;
-  overflow: hidden;
-}
