@@ -70,7 +70,7 @@ Route::post('login', [AdminController::class, 'login'])->name('login-p');
 //     // CATEGORI
     
 // });
-
+Route::get('/test', [AdminController::class, 'index']);
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', function () {

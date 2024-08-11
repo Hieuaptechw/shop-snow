@@ -1,7 +1,7 @@
 import React from "react";
 import api from "../../api/api";
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductCard = ({ product }) => {
@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
       });
   };
   const averageRating = parseFloat(product.average_rating) || 0;
-  const imageUrl = `http://127.0.0.1:8000/${product.avatar_product}`;
+  const imageUrl = `https://hieuaptech.shop/${product.avatar_product}`;
   return (
     <div className="col-md-4">
       <div className="product-card">

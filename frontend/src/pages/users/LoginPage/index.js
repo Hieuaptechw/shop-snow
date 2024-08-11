@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../../api/api";
 import "./style.css";
 import { toast } from "react-toastify";
@@ -8,6 +8,14 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/"); 
+    }
+  }, [navigate]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -19,12 +27,11 @@ const LoginPage = () => {
         localStorage.setItem("token", response.data.token);
         toast.success("Login successful");
         setTimeout(() => {
-          window.location.href = "/";
+          navigate("/");
         }, 1500);
       } else {
         toast.error(response.data.message || "Login failed: Unknown error");
       }
-      console.log(response.data);
     } catch (error) {
       console.error("Error logging in:", error);
       if (

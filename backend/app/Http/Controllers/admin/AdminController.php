@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\auth\User;
+
+
 class AdminController extends Controller
 {
     public function adminlogin()
@@ -20,11 +23,11 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
         $credentials = $request->only('email', 'password');
-    
+
         if (!Auth::guard('web')->attempt($credentials)) {
             return response()->json(['status' => false, 'message' => 'Email & password does not match'], 401);
         }
-    
+
         $user = Auth::guard('web')->user();
         if ($user->role === 'admin') {
             $token = $user->createToken('Admin API Token')->plainTextToken;
@@ -42,5 +45,10 @@ class AdminController extends Controller
         }
 
         return redirect()->route('login')->with('message', 'Successfully logged out');
+    }
+    public function index()
+    {
+        
+        return view('welcome');
     }
 }
