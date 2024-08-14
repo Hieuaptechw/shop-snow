@@ -78,11 +78,11 @@ class ProductAuthController extends Controller
                 categories.name,
                 categories.slug,
                 products.avatar_product
-            -- HAVING 
-            --     average_rating IS NOT NULL AND total_sold IS NOT NULL
+            HAVING 
+                average_rating IS NOT NULL
             ORDER BY 
-                total_sold DESC
-            LIMIT 8;
+                average_rating DESC
+           ;
 
         ";
 

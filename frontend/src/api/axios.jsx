@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Tạo instance của axios với base URL và headers cơ bản
 const instance = axios.create({
-  baseURL: 'https://hieuaptech.shop/api/',
+  baseURL: 'http://127.0.0.1:8000/api/',
   headers: {
     'Content-Type': 'application/json',
   }

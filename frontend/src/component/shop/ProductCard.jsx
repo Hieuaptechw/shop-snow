@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
       });
   };
   const averageRating = parseFloat(product.average_rating) || 0;
-  const imageUrl = `https://hieuaptech.shop/${product.avatar_product}`;
+  const imageUrl = `http://127.0.0.1:8000/${product.avatar_product}`;
   return (
     <div className="col-md-4">
       <div className="product-card">

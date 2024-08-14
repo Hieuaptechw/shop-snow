@@ -44,7 +44,7 @@ const ProductPage = () => {
     const weight = weights;
 
     api
-      .AddToCart(productId,quantity,price,size,color,weight)
+      .AddToCart(productId, quantity, price, size, color, weight)
       .then((response) => {
         toast.success("Product added to cart successfully!");
       })
@@ -295,54 +295,51 @@ const ProductPage = () => {
             <div className="col-12">
               <div id="product-tab">
                 <ul className="tab-nav d-flex justify-content-center">
-                  <li
-                    className={activeTab === "description" ? "active" : ""}
-                    onClick={() => handleTabClick("description")}
-                  >
+                  <li>
                     <a href="#">Description</a>
                   </li>
-                  <li
-                    className={activeTab === "reviews" ? "active" : ""}
-                    onClick={() => handleTabClick("reviews")}
-                  >
+                </ul>
+              </div>
+              <div className="tab-content">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </div>
+            </div>
+            <div className="col-12">
+              <div id="product-tab">
+                <ul className="tab-nav d-flex justify-content-center">
+                  <li>
                     <a href="#">Reviews</a>
                   </li>
                 </ul>
               </div>
-              {activeTab === "description" && (
-                <div className="tab-content">
+
+              <div className="tab-content row">
+                <h3>Product Reviews</h3>
+                <div className="review-item">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    <strong>John Doe</strong> - ★★★★☆
                   </p>
+                  <p>This product is amazing!</p>
                 </div>
-              )}
-              {activeTab === "reviews" && (
-                <div className="tab-content">
-                  <h3>Product Reviews</h3>
-                  <div className="review-item">
-                    <p>
-                      <strong>John Doe</strong> - ★★★★☆
-                    </p>
-                    <p>This product is amazing!</p>
-                  </div>
-                  <div className="review-item">
-                    <p>
-                      <strong>Jane Smith</strong> - ★★★☆☆
-                    </p>
-                    <p>Good value for the price.</p>
-                  </div>
+                <div className="review-item">
                   <p>
-                    <a href="#">Add your review</a>
+                    <strong>Jane Smith</strong> - ★★★☆☆
                   </p>
+                  <p>Good value for the price.</p>
                 </div>
-              )}
+                <p>
+                  <a href="#">Add your review</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

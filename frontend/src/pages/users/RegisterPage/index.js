@@ -39,7 +39,7 @@ const RegisterPage = () => {
       setLoading(false);
 
       if (error.response && error.response.data) {
-        console.log(error.response.data); // Kiểm tra cấu trúc của error.response.data
+        console.log(error.response.data);
 
         const errors = error.response.data.error || {};
 

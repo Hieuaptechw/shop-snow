@@ -25,7 +25,7 @@ const CheckoutPage = () => {
           toast.success('Success to checkout!')
           localStorage.setItem('order_code', response.data.order.order_code);
           const thankYouUrl = `/checkout/thanksyou/${response.data.order.order_code}`;
-          setTimeout(() => window.location.href = thankYouUrl, 1000);
+          navigate(thankYouUrl); 
 
         })
         .catch(error => {

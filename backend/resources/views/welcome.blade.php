@@ -13,10 +13,21 @@
     </style>
 </head>
 <body>
-<div>
-  <canvas id="myChart"></canvas>
+  <div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+                <div class="avtar bg-light-warning me-1">
+                    <i class="ti ti-calendar-minus fs-2"></i>
+                </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <h4 class="mb-0">0 đ</h4>
+                <h6 class="mb-0">Tổng nạp tháng</h6>
+            </div>
+        </div>
+    </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>

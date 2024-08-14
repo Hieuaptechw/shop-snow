@@ -47,8 +47,8 @@ const ProfilePage = () => {
     switch (status) {
       case "pending":
         return "status-pending";
-      case "success":
-        return "status-success";
+      case "processing":
+        return "status-processing";
       case "canceled":
         return "status-canceled";
       case "completed":

@@ -27,7 +27,7 @@ const ProductHome = ({ newproduct }) => {
       });
   };
   const averageRating = parseFloat(newproduct.average_rating) || 0;
-  const imageUrl = `https://hieuaptech.shop/${newproduct.avatar_product}`;
+  const imageUrl = `http://127.0.0.1:8000/${newproduct.avatar_product}`;
 
   return (
     <div className="col-md-3 col-sm-6">
