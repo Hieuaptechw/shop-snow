@@ -87,15 +87,13 @@ const CartPage = () => {
                         <p>{productCartItem.weight ? productCartItem.weight : ''}</p>
                         <p>{productCartItem.color ? productCartItem.color : ''}</p>
                       </div>
-                      <div className="input-container col-2">
-                        <button className="btn-decrement">-</button>
+                      <div className="input-container col-2">                       
                         <input
                           type="text"
                           className="input-field"
                           value={productCartItem.quantity}
                           readOnly
-                        />
-                        <button className="btn-increment">+</button>
+                        />                      
                       </div>
                       <div className="card-product-price col-2">
                         <p className="m-0">

@@ -71,7 +71,7 @@ class CartAuthController extends Controller
         'status' => true,
         'message' => 'Product added to cart successfully',
         'cart' => $cart,
-        'cartitem'=> $cartItem // Trả về cartItem vừa tạo hoặc cập nhật
+        'cartitem'=> $cartItem 
     ], 200);
 }
 

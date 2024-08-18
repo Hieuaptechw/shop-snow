@@ -148,3 +148,6 @@ button {
   padding: 20px;
 }
 
+.card-product-delete i{
+  cursor: pointer;
+}

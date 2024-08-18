@@ -12,7 +12,7 @@ const Header = () => {
   const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [query, setQuery] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogout = async () => {
@@ -24,7 +24,7 @@ const Header = () => {
       toast.success("Logout successful");
       setUser(null);
       setRole("");
-      navigate('/login'); // Điều hướng sau khi logout thành công
+      navigate('/login');
     } catch (error) {
       setError(error.message);
     } finally {
@@ -67,7 +67,7 @@ const Header = () => {
       <div className="top-header">
         <div className="container">
           <div className="row">
-            <div className="col-12 d-flex justify-content-between">
+            <div className="col-12 d-flex justify-content-between top-header-item">
               <ul className="d-flex list-unstyled header-link">
                 <li>
                   <Link to="#">
@@ -101,7 +101,9 @@ const Header = () => {
                       <>
                         {role === 'admin' && (
                           <li>
-                            <Link to="/admin">Admin</Link>
+                            <a href="http://127.0.0.1:8000" target="_blank">
+                              Admin
+                            </a>
                           </li>
                         )}
                         <li>
@@ -188,6 +190,7 @@ const Header = () => {
                   </Link>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

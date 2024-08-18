@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Models\admin\ProductDetails;
 use App\Models\admin\ProductImages;
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\auth\Product;
 use Illuminate\Support\Facades\DB;
@@ -223,4 +224,75 @@ class ProductAuthController extends Controller
 
         return response()->json($products);
     }
+    public function reviewStatusorder(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not authenticated',
+            ], 401);
+        }
+        $validatedData = $request->validate([
+            'product_id' => 'required',
+            'rating' => 'required',
+            'comment' => 'required|string',
+        ]);
+        $productId = $request->input('product_id');
+        $userId = Auth::id();
+        $rate = $request->input('rating');
+        $comment = $request->input('comment');
+
+        $orderSql = "SELECT * 
+                     FROM orders 
+                     JOIN orders_items ON orders_items.order_id = orders.order_id
+                     WHERE orders_items.product_id = ? AND orders.user_id = ? AND orders.status = 'completed'";
+        $orders = DB::select($orderSql, [$productId, $userId]);
+
+        $reviewSql = "SELECT * FROM reviews WHERE product_id = ? AND user_id = ?";
+        $reviews = DB::select($reviewSql, [$productId, $userId]);
+
+        if (count($orders) > 0 && count($reviews) === 0) {
+            DB::table('reviews')->insert([
+                'product_id' => $productId,
+                'user_id' => $userId,
+                'rating' => $rate,
+                'comment' => $comment,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Review submitted successfully',
+                'info' => [
+                    'user' => $userId,
+                    'product' => $productId,
+                    'rate' => $rate,
+                    'comment' => $comment,
+                ]
+            ], 200);
+        } else if (count($orders) > 0 && count($reviews)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'You have reached the maximum number of reviews for this product.',
+                'info' => [
+                    'user' => $userId,
+                    'product' => $productId,
+                    'rate' => $rate,
+                    'comment' => $comment,
+                ]
+            ], 403);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Please place an order for the product before submitting a review.',
+                'info' => [
+                    'user' => $userId,
+                    'product' => $productId,
+                    'rate' => $rate,
+                    'comment' => $comment,
+                ]
+            ], 403);
+        }
+    }
+
 }

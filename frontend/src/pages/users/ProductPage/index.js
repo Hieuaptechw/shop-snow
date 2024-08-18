@@ -17,6 +17,9 @@ const ProductPage = () => {
   const [attributeProductDetails, setAttributeProductDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [review, setReview] = useState('');
+  const [rating, setRating] = useState(null);
+
   const handleQuantity = (e) => {
     setQuantity(e.target.value);
   };
@@ -43,8 +46,7 @@ const ProductPage = () => {
     const color = colors;
     const weight = weights;
 
-    api
-      .AddToCart(productId, quantity, price, size, color, weight)
+    api.AddToCart(productId, quantity, price, size, color, weight)
       .then((response) => {
         toast.success("Product added to cart successfully!");
       })
@@ -53,6 +55,36 @@ const ProductPage = () => {
         toast.error("Failed to add product to cart.");
       });
   };
+  const handleReview = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in to review the product!");
+      return;
+    }
+
+    const product_id = id;
+    const comment = review;
+
+    try {
+      const response = await api.ReviewProduct(product_id, rating, comment, token);
+      if (response.data.status) {
+        toast.success("Review submitted successfully!");
+        setReview('');
+        setRating(0);
+      } else {
+        console.log('Error response:', response.data);
+        toast.error(response.data.message || "Failed to submit review.");
+      }
+    } catch (error) {
+      const errorMessage =  error.response.data.message ;
+      console.error('Error caught in catch block:', errorMessage);
+      toast.error(errorMessage || "Failed to submit review.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -74,6 +106,7 @@ const ProductPage = () => {
         setLoading(false);
       }
     };
+
     const fetchProducts = async () => {
       setLoading(true);
       try {
@@ -87,6 +120,7 @@ const ProductPage = () => {
     };
     fetchDetailsProduct();
     fetchProducts();
+
   }, [id]);
   const color = attributeProductDetails.filter(
     (attributeProductDetails) =>
@@ -100,7 +134,6 @@ const ProductPage = () => {
     (attributeProductDetails) =>
       attributeProductDetails.attribute_name === "weight"
   );
-  console.log(weights);
   return (
     <>
       <div className="section">
@@ -140,11 +173,10 @@ const ProductPage = () => {
                       {[...Array(5)].map((_, i) => (
                         <i
                           key={i}
-                          className={`bi bi-star-fill ${
-                            i < Math.floor(product.average_rating)
-                              ? "text-warning"
-                              : ""
-                          }`}
+                          className={`bi bi-star-fill ${i < Math.floor(product.average_rating)
+                            ? "text-warning"
+                            : ""
+                            }`}
                         ></i>
                       ))}
                     </div>
@@ -322,23 +354,170 @@ const ProductPage = () => {
                 </ul>
               </div>
 
-              <div className="tab-content row">
-                <h3>Product Reviews</h3>
-                <div className="review-item">
-                  <p>
-                    <strong>John Doe</strong> - ★★★★☆
-                  </p>
-                  <p>This product is amazing!</p>
+              <div className="tab-content">
+                <div className="row">
+                  <div className="col-3">
+                    <div className="rating-content">
+                      <div className="rating-avg d-flex">
+                        <span>4.5</span>
+                        <div className="rating-star">
+                          <i className="bi bi-star-fill"></i>
+                          <i className="bi bi-star-fill"></i>
+                          <i className="bi bi-star-fill"></i>
+                          <i className="bi bi-star-fill"></i>
+                          <i className="bi bi-star-fill"></i>
+                        </div>
+                      </div>
+                      <ul className="rating-content">
+                        <li>
+                          <div className="rating-stars">
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                          </div>
+
+                          <span className="sum-1">(3)</span>
+                        </li>
+                        <li>
+                          <div className="rating-stars">
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star"></i>
+                          </div>
+
+                          <span className="sum-1">(3)</span>
+                        </li>
+                        <li>
+                          <div className="rating-stars">
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star"></i>
+                            <i className="bi bi-star"></i>
+                          </div>
+                          <span className="sum-1">(3)</span>
+                        </li>
+                        <li>
+                          <div className="rating-stars">
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star"></i>
+                            <i className="bi bi-star"></i>
+                            <i className="bi bi-star"></i>
+                          </div>
+
+                          <span className="sum-1">(3)</span>
+                        </li>
+                        <li>
+                          <div className="rating-stars">
+                            <i className="bi bi-star-fill"></i>
+                            <i className="bi bi-star"></i>
+                            <i className="bi bi-star"></i>
+                            <i className="bi bi-star"></i>
+                            <i className="bi bi-star"></i>
+                          </div>
+                          <span className="sum-1">(3)</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-6">
+                    <div className="review-1">
+                      <ul className="reviews-1">
+                        <li>
+                          <div className="review-heading">
+                            <h5 className="name">John</h5>
+                            <p className="date">27 DEC 2018, 8:0 PM</p>
+                            <div className="review-rating">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                          </div>
+                          <div className="review-body">
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div className="review-heading">
+                            <h5 className="name">John</h5>
+                            <p className="date">27 DEC 2018, 8:0 PM</p>
+                            <div className="review-rating">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                          </div>
+                          <div className="review-body">
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div className="review-heading">
+                            <h5 className="name">John</h5>
+                            <p className="date">27 DEC 2018, 8:0 PM</p>
+                            <div className="review-rating">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                          </div>
+                          <div className="review-body">
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-3">
+                    <div id="review-form">
+                      <form className="review-form" onSubmit={handleReview}>
+                        <textarea
+                          className="input"
+                          placeholder="Your Review"
+                          value={review}
+                          onChange={(e) => setReview(e.target.value)}
+                        ></textarea>
+                        <div className="input-rating">
+
+                          <div className="stars">  <span>Your Rating: </span>
+                            {[1, 2, 3, 4, 5].map((value) => (
+                              <React.Fragment key={value}>
+                                <input
+                                  id={`star${value}`}
+                                  name="rating"
+                                  value={value}
+                                  type="radio"
+                                  checked={rating === value}
+                                  onChange={() => setRating(value)}
+                                />
+                                <label htmlFor={`star${value}`}>
+                                  <i className={`bi bi-star${rating >= value ? '-fill' : ''}`}></i>
+                                </label>
+                              </React.Fragment>
+                            ))}
+                          </div>
+                        </div>
+                        <button className="primary-btn" type="submit">
+                          Submit
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <div className="review-item">
-                  <p>
-                    <strong>Jane Smith</strong> - ★★★☆☆
-                  </p>
-                  <p>Good value for the price.</p>
-                </div>
-                <p>
-                  <a href="#">Add your review</a>
-                </p>
               </div>
             </div>
           </div>

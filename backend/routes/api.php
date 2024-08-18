@@ -65,6 +65,7 @@ Route::get('/top-selling', [ProductAuthController::class, 'topselling']);
 Route::get('/products/{slug}', [ProductAuthController::class, 'getProductCategory']);
 Route::get('/products/details/{slug}', [ProductAuthController::class, 'getProductCategoryDetail']);
 Route::get('/products_details/{id}', [ProductAuthController::class, 'getDetailProduct']);
+Route::post('/products_details/review/product', [ProductAuthController::class, 'reviewStatusorder']);
 
 
 //addToCart
