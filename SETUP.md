@@ -11,7 +11,7 @@ The project is built using Laravel and React.js.
 ### **Step 1: Upload the Database to Localhost**
 Upload the database from the file {File:databasenew.sql}
 
-### **Bước 2: Download and Extract the Project**
+### **Step 2: Download and Extract the Project**
 Run the following commands in the backend directory:
 
     cd ./backend
@@ -21,7 +21,7 @@ Run the following commands in the backend directory:
     cp .env.example .env
     ⇒ php artisan serve
 
-Select cd ./backend
+Select cd ./backend/public/storage
 In the storage 'folder', extract the image.this folder (which contains product images).
   
 Then, run the following commands in the frontend directory:
