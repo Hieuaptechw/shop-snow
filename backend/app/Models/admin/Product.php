@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\admin\ProductDetails;
 use App\Models\admin\ProductImages;
+use App\Models\admin\Categori;
 class Product extends Model
 {
     protected $table = "products";
@@ -34,5 +35,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductDetails::class, 'product_id');
     }
-
+    public function category()
+    {
+        return $this->belongsTo(Categori::class, 'category_id', 'category_id');
+    }
 }

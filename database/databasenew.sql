@@ -380,3 +380,10 @@ VALUES
 (50,'color','Black'),
 (50,'color','Red'),
 (50,'color','White');
+
+
+INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '$2y$10$7x88liiEN.VgUHeM3pdx8.zdumcMLCyeKFei1Ao0Icai351IMADzq', 'admin@com.vn', '0333333333', 'Ha noi', 'admin', '2024-08-19 03:56:58', '2024-08-19 03:56:58');
+
+INSERT INTO `carts` (`cart_id`, `user_id`, `total_price`, `created_at`, `updated_at`) VALUES
+(1, 1, 0.00, '2024-08-19 03:56:58', '2024-08-19 03:56:58');

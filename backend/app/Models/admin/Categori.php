@@ -5,6 +5,7 @@ namespace App\Models\admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\admin\Product;
 use Illuminate\Http\Request;
 
 class Categori extends Model
@@ -23,6 +24,10 @@ class Categori extends Model
     public function insert($arrData)
     {
        DB::table($this->table)->insert($arrData);
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'category_id');
     }
     
 }

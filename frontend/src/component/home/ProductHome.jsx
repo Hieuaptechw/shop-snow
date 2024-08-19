@@ -1,31 +1,9 @@
 import React from "react";
 import api from "../../api/api";
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductHome = ({ newproduct }) => {
-  const handleAddToCart = () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      toast.warning("You must be logged in to add products to the cart.");
-      return;
-    }
-    const productId = newproduct.product_id;
-    const quantity = 1;
-    const price = newproduct.price_sale;
-    const color = newproduct.color || "";
-    const size = newproduct.size || ""; 
-    const weight = newproduct.weight || ""; 
-    api
-      .AddToCart(productId,quantity,price,size,color,weight)
-      .then((response) => {
-        toast.success("Product added to cart successfully!")
-      })
-      .catch((error) => {
-        console.error("Error adding product to cart:", error.message);
-        toast.error("Failed to add product to cart.");
-      });
-  };
   const averageRating = parseFloat(newproduct.average_rating) || 0;
   const imageUrl = `http://127.0.0.1:8000/${newproduct.avatar_product}`;
 
@@ -56,29 +34,24 @@ const ProductHome = ({ newproduct }) => {
               ></i>
             ))}
           </div>
-        </Link>
 
-        <div className="product-btns">
-          <button>
-            <i className="bi bi-heart"></i>
-          </button>
-          <button>
-            <i className="bi bi-arrow-left-right"></i>
-          </button>
-          <button>
-            <i className="bi bi-eye"></i>
-          </button>
-        </div>
-        <div className="product-addtc">
-          <div className="product-addtc">
-            <button
-              className="btn btn-danger"
-              onClick={() => handleAddToCart(newproduct.product_id)}
-            >
-              ADD TO CART
+          <div className="product-btns">
+            <button>
+              <i className="bi bi-heart"></i>
+            </button>
+            <button>
+              <i className="bi bi-arrow-left-right"></i>
+            </button>
+            <button>
+              <i className="bi bi-eye"></i>
             </button>
           </div>
-        </div>
+          <div className="product-addtc">
+            <div className="product-addtc">
+              <button className="btn btn-danger">ADD TO CART</button>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
