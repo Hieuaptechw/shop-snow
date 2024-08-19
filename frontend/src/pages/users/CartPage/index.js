@@ -82,9 +82,9 @@ const CartPage = () => {
                         />
                       </div>
                       <div className="card-product-name col-2">
-                        <h5>{productCartItem.name}</h5>
+                        <h6>{productCartItem.name}</h6>
                         <p>{productCartItem.size ? productCartItem.size : ''}</p>
-                        <p>{productCartItem.weight ? productCartItem.weight : ''}</p>
+                        <p>{productCartItem.weight ? productCartItem.weight + " Kg": ''}</p>
                         <p>{productCartItem.color ? productCartItem.color : ''}</p>
                       </div>
                       <div className="input-container col-2">                       

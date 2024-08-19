@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,Link} from "react-router-dom";
 import "./style.css";
 import api from "../../../api/api";
 import ProductDetails from "../../../component/product_details/ProductDetails";
@@ -10,7 +10,7 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [quantitys, setQuantity] = useState(1);
   const [colors, setColor] = useState(null);
-  const [sizess, setSize] = useState(null);
+  const [sizes, setSize] = useState(null);
   const [weights, setWeight] = useState(null);
   const [priceSale, setPriceSale] = useState(null);
   const [imgProductDetails, setImgProductDetails] = useState([]);
@@ -45,12 +45,24 @@ const ProductPage = () => {
     const productId = id;
     const quantity = quantitys;
     const price = priceSale;
-    const size = sizess;
-    const color = colors;
-    const weight = weights;
+    const sizee = sizes;
+    const colorr = colors;
+    const weightt = weights;
+    if (size && size.length > 0 && !sizee) {
+      toast.warning("Please select a inch!");
+      return;
+    }
+    if (color && color.length > 0 && !colorr) {
+      toast.warning("Please select a color!");
+      return;
+    }
+    if (weight && weight.length > 0 && !weightt) {
+      toast.warning("Please select a weight!");
+      return;
+    }
 
     api
-      .AddToCart(productId, quantity, price, size, color, weight)
+      .AddToCart(productId, quantity, price, sizee, colorr, weightt)
       .then((response) => {
         toast.success("Product added to cart successfully!");
       })
@@ -93,7 +105,6 @@ const ProductPage = () => {
       setLoading(false);
     }
   };
-
 
   useEffect(() => {
     const fetchDetailsProduct = async () => {
@@ -152,12 +163,12 @@ const ProductPage = () => {
     fetchProducts();
     fetchReview();
     fetchReviewStats();
-  }, [id]);
+  }, [id, category]);
   const color = attributeProductDetails.filter(
     (attributeProductDetails) =>
       attributeProductDetails.attribute_name === "color"
   );
-  const sizes = attributeProductDetails.filter(
+  const size = attributeProductDetails.filter(
     (attributeProductDetails) =>
       attributeProductDetails.attribute_name === "inch"
   );
@@ -168,11 +179,10 @@ const ProductPage = () => {
   const displayStars = (rating) => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      stars.push(i < rating ? 'bi-star-fill' : 'bi-star');
+      stars.push(i < rating ? "bi-star-fill" : "bi-star");
     }
     return stars;
   };
-
   return (
     <>
       <div className="section">
@@ -190,7 +200,7 @@ const ProductPage = () => {
                     <div key={index} className="product-image-item">
                       <img
                         src={`http://127.0.0.1:8000/${imgDetail.image_url}`}
-                        alt={`Product Image ${index + 1}`}
+                        alt={product.name}
                       />
                     </div>
                   ))}
@@ -220,12 +230,6 @@ const ProductPage = () => {
                         ></i>
                       ))}
                     </div>
-                    <a
-                      className="review-link align-items-center d-flex"
-                      href="#"
-                    >
-                      {product.average_rating} Review(s) | Add your review
-                    </a>
                   </div>
                   <div className="d-flex align-items-center">
                     <h3 className="product-price m-0">
@@ -238,16 +242,17 @@ const ProductPage = () => {
                     dangerouslySetInnerHTML={{ __html: product.description }}
                   ></p>
                   <div className="product-options">
-                    {sizes.length > 0 && (
+                    {size.length > 0 && (
                       <label>
-                        SIZE :
+                        INCH :
                         <select
                           className="input-select"
                           onChange={handleSize}
-                          value={sizess || ""}
+                          value={sizes || ""}
+                          required
                         >
                           <option value="">Select</option>
-                          {sizes.map((size, index) => (
+                          {size.map((size, index) => (
                             <option key={index} value={size.attribute_value}>
                               {size.attribute_value}
                             </option>
@@ -262,6 +267,7 @@ const ProductPage = () => {
                           className="input-select"
                           onChange={handleColor}
                           value={colors || ""}
+                          required
                         >
                           <option value="">Select</option>
                           {color.map((color, index) => (
@@ -279,6 +285,7 @@ const ProductPage = () => {
                           className="input-select"
                           onChange={handleWeight}
                           value={weights || ""}
+                          required
                         >
                           <option value="">Select</option>
                           {weight.map((weight, index) => (
@@ -290,7 +297,6 @@ const ProductPage = () => {
                       </label>
                     )}
                   </div>
-
                   <div className="add-to-cart">
                     <div className="qty-label d-flex align-items-center">
                       <label>QTY</label>
@@ -325,10 +331,15 @@ const ProductPage = () => {
                     <ul className="product-links d-flex">
                       <li>CATEGORY:</li>
                       <li>
-                        <a href="#">{product.category_name}</a>
+                        <Link to={`/shop/${category}`}>
+                          {product.category_name}
+                        </Link>
                       </li>
+
                       <li>
-                        <a href="#">{product.subcategory_name}</a>
+                      <Link to={`/shop/${category}`}>
+                          {product.category_name}
+                        </Link>
                       </li>
                     </ul>
                     <ul className="product-links d-flex">
@@ -368,7 +379,7 @@ const ProductPage = () => {
               <div id="product-tab">
                 <ul className="tab-nav d-flex justify-content-center">
                   <li>
-                    <a>Description</a>
+                    <span>Description</span>
                   </li>
                 </ul>
               </div>
@@ -389,7 +400,7 @@ const ProductPage = () => {
               <div id="product-tab">
                 <ul className="tab-nav d-flex justify-content-center">
                   <li>
-                    <a>Reviews</a>
+                    <span>Reviews</span>
                   </li>
                 </ul>
               </div>
