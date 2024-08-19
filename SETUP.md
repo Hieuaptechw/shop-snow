@@ -1,18 +1,18 @@
 
-# Hướng Dẫn SetUp và Phân Công Công Việc !
+# Work Assignment and Setup Guide
 
-Chào mừng bạn đến với dự án của chúng tôi! Dưới đây là  phân công công việc 
+Welcome to our project! Below is the work assignment and setup guide.
 
-## 1. Tổng Quan Dự Án
+## 1. Project Overview
 
-Được xây dựng trên Laravel và Reactjs
+The project is built using Laravel and React.js.
 
-## 2. Cách Thức Làm Việc
-### **Bước 1: Upload database lên localhost**
-Ở mục database {File:database.sql}
+## 2. Workflow
+### **Step 1: Upload the Database to Localhost**
+Upload the database from the file {File:databasenew.sql}
 
-### **Bước 2: Tải  dự án trên và giải nén**
-Chạy các lệnh sau với thư mục backend
+### **Bước 2: Download and Extract the Project**
+Run the following commands in the backend directory:
 
     cd ./backend
     npm install
@@ -21,21 +21,17 @@ Chạy các lệnh sau với thư mục backend
     cp .env.example .env
     ⇒ php artisan serve
 
+Select cd ./backend
+In the storage 'folder', extract the image.this folder (which contains product images).
   
-Chạy các lệnh sau với thư mục frontend
+Then, run the following commands in the frontend directory:
 
     cd ./frontend
     npm i
     npm start
 
+## 3. Note
 
-### **Bước 3: Tiến hành code theo mục công việc được giao**
+- Download the file according to the branches assigned.
 
-Mục công việc được giao   [ở đây ! ](https://docs.google.com/spreadsheets/d/1JG5Byow_HZ_T5juyp5gRzgHd74a0UcCB6ixVBDehBMI/edit?usp=sharing) 
-## 3. Lưu ý
-
-### **Những điểm cần lưu ý thêm:**
-
-- **Lưu ý**: Tải File theo các nhánh được giao
-
-
+After downloading, extract the file and follow the steps outlined above.
