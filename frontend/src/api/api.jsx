@@ -74,6 +74,12 @@ const getCategory = () => {
 const getSubcategory = (category_slug) => {
   return axios.get(`category/${category_slug}`);
 };
+const getProductReview =(product_id)=>{
+  return axios.get(`products/${product_id}/reviews`);
+}
+const getProductReviewStats =(product_id)=>{
+  return axios.get(`products/${product_id}/stats`);
+}
 const getProducts =()=>{
   return axios.get('category');
 }
@@ -128,5 +134,5 @@ export default
  { Login ,Register,Product_Details, getCategory ,getProfile,
   logout,getSubcategory,getBrand,getProducts,getNewProducts,getTopSelling,getProductsCategory,
   getProductsDetails,getProductsCart,getSearch,ForgotPassword,setPassword,getProductsCategoryDetails,
-  AddToCart,orderProduct,DeleteToCart,getUserOrders,ReviewProduct
+  AddToCart,orderProduct,DeleteToCart,getUserOrders,ReviewProduct,getProductReview,getProductReviewStats
 };

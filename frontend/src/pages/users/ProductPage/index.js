@@ -17,8 +17,11 @@ const ProductPage = () => {
   const [attributeProductDetails, setAttributeProductDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState("");
+  const [reviewProduct, setReviewProduct] = useState([]);
   const [rating, setRating] = useState(null);
+  const [reviewStats, setReviewStats] = useState({});
+  const [averageRating, setAverageRating] = useState(0);
 
   const handleQuantity = (e) => {
     setQuantity(e.target.value);
@@ -46,7 +49,8 @@ const ProductPage = () => {
     const color = colors;
     const weight = weights;
 
-    api.AddToCart(productId, quantity, price, size, color, weight)
+    api
+      .AddToCart(productId, quantity, price, size, color, weight)
       .then((response) => {
         toast.success("Product added to cart successfully!");
       })
@@ -67,18 +71,23 @@ const ProductPage = () => {
     const comment = review;
 
     try {
-      const response = await api.ReviewProduct(product_id, rating, comment, token);
+      const response = await api.ReviewProduct(
+        product_id,
+        rating,
+        comment,
+        token
+      );
       if (response.data.status) {
         toast.success("Review submitted successfully!");
-        setReview('');
+        setReview("");
         setRating(0);
       } else {
-        console.log('Error response:', response.data);
+        console.log("Error response:", response.data);
         toast.error(response.data.message || "Failed to submit review.");
       }
     } catch (error) {
-      const errorMessage =  error.response.data.message ;
-      console.error('Error caught in catch block:', errorMessage);
+      const errorMessage = error.response.data.message;
+      console.error("Error caught in catch block:", errorMessage);
       toast.error(errorMessage || "Failed to submit review.");
     } finally {
       setLoading(false);
@@ -86,10 +95,6 @@ const ProductPage = () => {
   };
 
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-  const [activeTab, setActiveTab] = useState("description");
   useEffect(() => {
     const fetchDetailsProduct = async () => {
       setLoading(true);
@@ -118,9 +123,35 @@ const ProductPage = () => {
         setLoading(false);
       }
     };
+    const fetchReview = async () => {
+      setLoading(true);
+      try {
+        const review = await api.getProductReview(id);
+        setReviewProduct(review.data.reviews);
+        console.log(review.data.reviews);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const fetchReviewStats = async () => {
+      setLoading(true);
+      try {
+        const reviewstats = await api.getProductReviewStats(id);
+        setReviewStats(reviewstats.data.review_stats);
+        setAverageRating(parseFloat(reviewstats.data.average_rating) || 0);
+        console.log(reviewstats.data.average_rating);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchDetailsProduct();
     fetchProducts();
-
+    fetchReview();
+    fetchReviewStats();
   }, [id]);
   const color = attributeProductDetails.filter(
     (attributeProductDetails) =>
@@ -134,6 +165,14 @@ const ProductPage = () => {
     (attributeProductDetails) =>
       attributeProductDetails.attribute_name === "weight"
   );
+  const displayStars = (rating) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      stars.push(i < rating ? 'bi-star-fill' : 'bi-star');
+    }
+    return stars;
+  };
+
   return (
     <>
       <div className="section">
@@ -173,10 +212,11 @@ const ProductPage = () => {
                       {[...Array(5)].map((_, i) => (
                         <i
                           key={i}
-                          className={`bi bi-star-fill ${i < Math.floor(product.average_rating)
-                            ? "text-warning"
-                            : ""
-                            }`}
+                          className={`bi bi-star-fill ${
+                            i < Math.floor(product.average_rating)
+                              ? "text-warning"
+                              : ""
+                          }`}
                         ></i>
                       ))}
                     </div>
@@ -294,22 +334,22 @@ const ProductPage = () => {
                     <ul className="product-links d-flex">
                       <li>SHARE:</li>
                       <li>
-                        <a href="#">
+                        <a href="https://facebook.com">
                           <i className="bi bi-facebook"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="https://x.com/?lang=vi">
                           <i className="bi bi-twitter"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="https://google.com">
                           <i className="bi bi-google"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="https://example.com">
                           <i className="bi bi-envelope-fill"></i>
                         </a>
                       </li>
@@ -328,7 +368,7 @@ const ProductPage = () => {
               <div id="product-tab">
                 <ul className="tab-nav d-flex justify-content-center">
                   <li>
-                    <a href="#">Description</a>
+                    <a>Description</a>
                   </li>
                 </ul>
               </div>
@@ -349,7 +389,7 @@ const ProductPage = () => {
               <div id="product-tab">
                 <ul className="tab-nav d-flex justify-content-center">
                   <li>
-                    <a href="#">Reviews</a>
+                    <a>Reviews</a>
                   </li>
                 </ul>
               </div>
@@ -359,126 +399,72 @@ const ProductPage = () => {
                   <div className="col-3">
                     <div className="rating-content">
                       <div className="rating-avg d-flex">
-                        <span>4.5</span>
+                        <span>{averageRating.toFixed(1)}</span>
                         <div className="rating-star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
+                          {displayStars(Math.round(averageRating)).map(
+                            (starClass, index) => (
+                              <i key={index} className={`bi ${starClass}`}></i>
+                            )
+                          )}
                         </div>
                       </div>
                       <ul className="rating-content">
-                        <li>
-                          <div className="rating-stars">
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                          </div>
-
-                          <span className="sum-1">(3)</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star"></i>
-                          </div>
-
-                          <span className="sum-1">(3)</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star"></i>
-                            <i className="bi bi-star"></i>
-                          </div>
-                          <span className="sum-1">(3)</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star"></i>
-                            <i className="bi bi-star"></i>
-                            <i className="bi bi-star"></i>
-                          </div>
-
-                          <span className="sum-1">(3)</span>
-                        </li>
-                        <li>
-                          <div className="rating-stars">
-                            <i className="bi bi-star-fill"></i>
-                            <i className="bi bi-star"></i>
-                            <i className="bi bi-star"></i>
-                            <i className="bi bi-star"></i>
-                            <i className="bi bi-star"></i>
-                          </div>
-                          <span className="sum-1">(3)</span>
-                        </li>
+                        {Object.entries(reviewStats)
+                          .reverse()
+                          .map(([rating, count]) => (
+                            <li key={rating}>
+                              <div className="rating-stars">
+                                {displayStars(parseInt(rating)).map(
+                                  (starClass, index) => (
+                                    <i
+                                      key={index}
+                                      className={`bi ${starClass}`}
+                                    ></i>
+                                  )
+                                )}
+                              </div>
+                              <span className="sum-1">({count})</span>
+                            </li>
+                          ))}
                       </ul>
                     </div>
                   </div>
                   <div className="col-6">
                     <div className="review-1">
                       <ul className="reviews-1">
-                        <li>
-                          <div className="review-heading">
-                            <h5 className="name">John</h5>
-                            <p className="date">27 DEC 2018, 8:0 PM</p>
-                            <div className="review-rating">
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
+                        {reviewProduct.map((review, index) => (
+                          <li key={index}>
+                            <div className="review-heading">
+                              <h5 className="name">{review.user_name}</h5>
+                              <p className="date">
+                                {new Date(review.created_at).toLocaleDateString(
+                                  "en-VN",
+                                  {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  }
+                                )}
+                              </p>
+                              <div className="review-rating">
+                                {[...Array(review.rating)].map((_, i) => (
+                                  <i key={i} className="bi bi-star-fill"></i>
+                                ))}
+                                {[...Array(5 - review.rating)].map((_, i) => (
+                                  <i
+                                    key={i + review.rating}
+                                    className="bi bi-star"
+                                  ></i>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                          <div className="review-body">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="review-heading">
-                            <h5 className="name">John</h5>
-                            <p className="date">27 DEC 2018, 8:0 PM</p>
-                            <div className="review-rating">
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
+                            <div className="review-body">
+                              <p>{review.comment}</p>
                             </div>
-                          </div>
-                          <div className="review-body">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="review-heading">
-                            <h5 className="name">John</h5>
-                            <p className="date">27 DEC 2018, 8:0 PM</p>
-                            <div className="review-rating">
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                              <i className="bi bi-star-fill"></i>
-                            </div>
-                          </div>
-                          <div className="review-body">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                            </p>
-                          </div>
-                        </li>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -492,8 +478,9 @@ const ProductPage = () => {
                           onChange={(e) => setReview(e.target.value)}
                         ></textarea>
                         <div className="input-rating">
-
-                          <div className="stars">  <span>Your Rating: </span>
+                          <div className="stars">
+                            {" "}
+                            <span>Your Rating: </span>
                             {[1, 2, 3, 4, 5].map((value) => (
                               <React.Fragment key={value}>
                                 <input
@@ -505,7 +492,11 @@ const ProductPage = () => {
                                   onChange={() => setRating(value)}
                                 />
                                 <label htmlFor={`star${value}`}>
-                                  <i className={`bi bi-star${rating >= value ? '-fill' : ''}`}></i>
+                                  <i
+                                    className={`bi bi-star${
+                                      rating >= value ? "-fill" : ""
+                                    }`}
+                                  ></i>
                                 </label>
                               </React.Fragment>
                             ))}

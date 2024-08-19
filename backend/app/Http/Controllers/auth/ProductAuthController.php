@@ -5,7 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Models\admin\ProductDetails;
 use App\Models\admin\ProductImages;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\auth\Product;
 use Illuminate\Support\Facades\DB;
@@ -294,5 +294,81 @@ class ProductAuthController extends Controller
             ], 403);
         }
     }
+    public function getProductReviews($productId)
+    {
+    
+        $productExists = DB::table('products')->where('product_id', $productId)->exists();
+    
+        if (!$productExists) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Product not found',
+            ], 404);
+        }
+    
+    
+        $reviews = DB::table('reviews')
+            ->where('product_id', $productId)
+            ->join('users', 'reviews.user_id', '=', 'users.id')
+            ->select('reviews.rating', 'reviews.comment', 'users.name as user_name', 'reviews.created_at')
+            ->orderBy('reviews.created_at', 'desc')
+            ->get();
+    
+        return response()->json([
+            'status' => true,
+            'reviews' => $reviews,
+        ], 200);
+    }
+    public function getReviewStats($productId)
+    {
+   
+        $productExists = DB::table('products')->where('product_id', $productId)->exists();
 
+        if (!$productExists) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Product not found',
+            ], 404);
+        }
+
+        $reviewCounts = DB::select("
+            SELECT 
+                rating,
+                COUNT(*) AS count
+            FROM 
+                reviews
+            WHERE 
+                product_id = ?
+            GROUP BY 
+                rating
+            ORDER BY 
+                rating DESC
+        ", [$productId]);
+
+        $averageRating = DB::select("
+            SELECT 
+                AVG(rating) AS average_rating
+            FROM 
+                reviews
+            WHERE 
+                product_id = ?
+        ", [$productId]);
+
+   
+        $reviewCounts = collect($reviewCounts)->mapWithKeys(function ($item) {
+            return [$item->rating => $item->count];
+        })->toArray();
+
+        for ($i = 5; $i >= 1; $i--) {
+            if (!isset($reviewCounts[$i])) {
+                $reviewCounts[$i] = 0;
+            }
+        }
+
+        return response()->json([
+            'status' => true,
+            'review_stats' => $reviewCounts,
+            'average_rating' => $averageRating[0]->average_rating ?? 0,
+        ], 200);
+    }
 }

@@ -63,6 +63,8 @@ Route::get('/category/{category_name}', [CategoriauthController::class, 'getSubc
 Route::get('/new-products', [ProductAuthController::class, 'getNewProducts']);
 Route::get('/top-selling', [ProductAuthController::class, 'topselling']);
 Route::get('/products/{slug}', [ProductAuthController::class, 'getProductCategory']);
+Route::get('/products/{product_id}/reviews', [ProductAuthController::class, 'getProductReviews']);
+Route::get('/products/{product_id}/stats', [ProductAuthController::class, 'getReviewStats']);
 Route::get('/products/details/{slug}', [ProductAuthController::class, 'getProductCategoryDetail']);
 Route::get('/products_details/{id}', [ProductAuthController::class, 'getDetailProduct']);
 Route::post('/products_details/review/product', [ProductAuthController::class, 'reviewStatusorder']);
