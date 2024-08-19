@@ -18,7 +18,9 @@ Run the following commands in the backend directory:
     npm install
     composer install
     php artisan key:generate
+    php artisan migrate
     cp .env.example .env
+    php artisan storage:link
     ⇒ php artisan serve
 
 Select cd ./backend/public/storage
@@ -28,6 +30,8 @@ Then, run the following commands in the frontend directory:
 
     cd ./frontend
     npm i
+    npm install react-slick slick-carousel
+    npm install react-toastify
     npm start
 
 ## 3. Note
