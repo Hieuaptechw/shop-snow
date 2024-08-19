@@ -127,3 +127,6 @@ The project is built using Laravel and React.js.
 ## 3. Note
 
 - After downloading and extracting the project, follow the steps outlined above to set up and run the project.
+- - **Admin Login Credentials**:
+  - **Username**: `admin@com.vn`
+  - **Password**: `admin1234`
