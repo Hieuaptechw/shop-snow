@@ -52,6 +52,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="mt-3">
+                {{ $userOrders->links() }}
+            </div>
         </div>
     </div>
 </div>

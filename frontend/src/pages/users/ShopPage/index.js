@@ -66,7 +66,6 @@ const ShopPage = () => {
   }, [category, selectedCategories, selectedBrands,minPrice,maxPrice]);
 
   const handleCategoryChange = (categoryId) => {
-    console.log("Category changed:", categoryId);
     setSelectedCategories((prev) => {
       if (prev.includes(categoryId)) {
         return prev.filter((id) => id !== categoryId);
@@ -77,7 +76,6 @@ const ShopPage = () => {
   };
 
   const handleBrandChange = (brandId) => {
-    console.log("Brand changed:", brandId);
     setSelectedBrands((prev) => {
       if (prev.includes(brandId)) {
         return prev.filter((id) => id !== brandId);
@@ -91,7 +89,6 @@ const ShopPage = () => {
     setMaxPrice(max);
     setActiveRange(range);
   };
-  console.log(maxPrice);
   return (
     <div className="section">
       {loading && (

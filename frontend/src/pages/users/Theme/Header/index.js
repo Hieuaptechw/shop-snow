@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate,Link  } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import "./style.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from "../assets/logo.png";
 import api from "../../../../api/api";
 
 const Header = () => {
@@ -11,19 +10,28 @@ const Header = () => {
   const [categorys, setCategorys] = useState([]);
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
-  const [isLogout, setisLogout] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [query, setQuery] = useState('');
-  const navigate = useNavigate(); 
-  const handeLogout = async () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogout = async () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
     try {
       await api.logout();
       localStorage.removeItem('token');
-      setisLogout(true);
-      setUser("");
+      toast.success("Logout successful");
+      setUser(null);
+      setRole("");
+      navigate('/login');
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsProcessing(false);
     }
-  }
+  };
+
   useEffect(() => {
     const fetchCategory = async () => {
       try {
@@ -33,7 +41,6 @@ const Header = () => {
         setError(error.message);
       }
     };
-
 
     const fetchProfile = async () => {
       try {
@@ -47,21 +54,20 @@ const Header = () => {
       } catch (error) {
         setError("An error occurred while fetching profile data.");
       }
-      if (isLogout) {
-        navigate('/login');
-    }
     };
+
     fetchCategory();
     fetchProfile();
 
-  }, [isLogout,useNavigate]);
+  }, [location]);
+
   return (
     <header className="header">
       {/* START-HEADER-TOP */}
       <div className="top-header">
         <div className="container">
           <div className="row">
-            <div className="col-12 d-flex justify-content-between">
+            <div className="col-12 d-flex justify-content-between top-header-item">
               <ul className="d-flex list-unstyled header-link">
                 <li>
                   <Link to="#">
@@ -95,7 +101,9 @@ const Header = () => {
                       <>
                         {role === 'admin' && (
                           <li>
-                            <Link to="/admin">Admin</Link>
+                            <a href="http://127.0.0.1:8000" target="_blank">
+                              Admin
+                            </a>
                           </li>
                         )}
                         <li>
@@ -106,7 +114,7 @@ const Header = () => {
                             to="/logout"
                             onClick={(e) => {
                               e.preventDefault();
-                               handeLogout();
+                              handleLogout();
                             }}
                           >
                             Log Out
@@ -139,7 +147,7 @@ const Header = () => {
             <div className="col-md-3 m-0">
               <div className="header-logo">
                 <Link className="logo" to="/">
-                  <img src={logo} alt="Logo" />
+                  <img src="https://admin.hieuaptech.com/img/logo/logoauth-1.png" alt="Logo" />
                 </Link>
               </div>
             </div>
@@ -182,6 +190,7 @@ const Header = () => {
                   </Link>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -199,9 +208,8 @@ const Header = () => {
                     {category.name}
                   </Link>
                 </li>
-                
               ))}
-                <li>
+              <li>
                 <Link to="/address">Store Address</Link>
               </li>
             </ul>
@@ -211,7 +219,7 @@ const Header = () => {
       {/* END MENU */}
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

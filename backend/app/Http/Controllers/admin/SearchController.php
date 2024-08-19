@@ -15,32 +15,61 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
+        $keywords = explode(' ', $query);
+        $products = Product::query();
+        foreach ($keywords as $keyword) {
+            $products->where(function ($q) use ($keyword) {
+                $q->where('product_id', 'like', '%' . $keyword . '%')
+                    ->orWhere('name', 'like', '%' . $keyword . '%')
+                    ->orWhere('description', 'like', '%' . $keyword . '%');
+            });
+        }
+        $products = $products->get();
 
-        $products = Product::where('product_id', 'like', '%' . $query . '%')
-            ->orWhere('name', 'like', '%' . $query . '%')
-            ->orWhere('description', 'like', '%' . $query . '%')
-            ->get();
+        $categories = Categori::query();
+        foreach ($keywords as $keyword) {
+            $categories->where(function ($q) use ($keyword) {
+                $q->where('category_id', 'like', '%' . $keyword . '%')
+                    ->orWhere('name', 'like', '%' . $keyword . '%');
+            });
+        }
+        $categories = $categories->get();
 
-        $categories = Categori::where('category_id', 'like', '%' . $query . '%')
-            ->orWhere('name', 'like', '%' . $query . '%')
-            ->get();
+        $subcategories = Subcategori::query();
+        foreach ($keywords as $keyword) {
+            $subcategories->where(function ($q) use ($keyword) {
+                $q->where('subcategory_id', 'like', '%' . $keyword . '%')
+                    ->orWhere('name', 'like', '%' . $keyword . '%');
+            });
+        }
+        $subcategories = $subcategories->get();
 
-            $subcategories = Subcategori::where('subcategory_id', 'like', '%' . $query . '%')
-            ->orWhere('name', 'like', '%' . $query . '%')
-            ->get();
-
-        $brands = Brand::where('brand_id', 'like', '%' . $query . '%')
-            ->orWhere('name', 'like', '%' . $query . '%')
-            ->get();
-
-        return view('admin.layouts.searchresult', compact('products', 'categories', 'subcategories', 'brands', 'query'));
+        $brands = Brand::query();
+        foreach ($keywords as $keyword) {
+            $brands->where(function ($q) use ($keyword) {
+                $q->where('brand_id', 'like', '%' . $keyword . '%')
+                    ->orWhere('name', 'like', '%' . $keyword . '%');
+            });
+        }
+        $brands = $brands->get();
+        $orders = Order::where('order_code', 'like', '%' . $query . '%')
+        ->where('total_price', '>', 0)
+        ->with(['orderItems.product', 'user'])
+        ->get();
+        return view('admin.layouts.searchresult', compact('products', 'categories', 'subcategories', 'brands','orders','query'));
     }
     public function searchapi($query)
     {
-        $products = Product::where('product_id', 'like', '%' . $query . '%')
-            ->orWhere('name', 'like', '%' . $query . '%')
-            ->orWhere('description', 'like', '%' . $query . '%')
-            ->get();
+        $keywords = explode(' ', $query);
+        $products = Product::query();
+        foreach ($keywords as $keyword) {
+            $products->where(function($q) use ($keyword) {
+                $q->where('product_id', 'like', '%' . $keyword . '%')
+                  ->orWhere('name', 'like', '%' . $keyword . '%')
+                  ->orWhere('description', 'like', '%' . $keyword . '%');
+            });
+        }
+        $products = $products->get();
         return response()->json([
             'status' => true,
             'products' => $products,

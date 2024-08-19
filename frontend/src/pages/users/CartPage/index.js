@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../../../api/api";
 import "./style.css";
+import { toast } from 'react-toastify';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -10,18 +11,21 @@ const CartPage = () => {
   const [error, setError] = useState(null);
   const [totalPrice, setTotalprice] = useState("");
 
-  const handleDelete = (productId) => {
-    api
-      .DeleteToCart(productId)
+  const handleDelete = (product_id, size, color, weight) => {
+    api.DeleteToCart({ product_id, size, color, weight })
       .then((response) => {
-        alert("Product removed from cart successfully!");
+        toast.success("Product removed from cart successfully!");
         setProductCart((prevCart) =>
-          prevCart.filter((item) => item.product_id !== productId)
+          prevCart.filter((item) => 
+            item.product_id !== product_id ||
+            item.size !== size ||
+            item.color !== color ||
+            item.weight !== weight
+          )
         );
       })
       .catch((error) => {
-        console.error("Error removing product from cart:", error.message);
-        alert("Failed to remove product from cart.");
+        toast.error("Failed to remove product from cart.");
       });
   };
 
@@ -35,15 +39,7 @@ const CartPage = () => {
       try {
         const productData = await api.getProductsCart();
         setProductCart(productData.data.products);
-        console.log(productData);
-        setTotalprice(
-          productData.data.products
-            .reduce(
-              (acc, item) => acc + item.quantity * parseFloat(item.price_sale),
-              0
-            )
-            .toFixed(2)
-        );
+        setTotalprice( productData.data.cart.total_price );
       } catch (error) {
         setError(error.message);
       } finally {
@@ -77,28 +73,29 @@ const CartPage = () => {
                   productCart.map((productCartItem, index) => (
                     <div
                       key={index}
-                      className="card-product d-flex justify-content-between align-items-center"
+                      className="card-product d-flex justify-content-between align-items-center row"
                     >
-                      <div className="card-product-img">
+                      <div className="card-product-img col-2">
                         <img
                           src={`http://127.0.0.1:8000/${productCartItem.avatar_product}`}
                           alt={productCartItem.name}
                         />
                       </div>
-                      <div className="card-product-name">
-                        <p>{productCartItem.name}</p>
+                      <div className="card-product-name col-2">
+                        <h5>{productCartItem.name}</h5>
+                        <p>{productCartItem.size ? productCartItem.size : ''}</p>
+                        <p>{productCartItem.weight ? productCartItem.weight : ''}</p>
+                        <p>{productCartItem.color ? productCartItem.color : ''}</p>
                       </div>
-                      <div className="input-container">
-                        <button className="btn-decrement">-</button>
+                      <div className="input-container col-2">                       
                         <input
                           type="text"
                           className="input-field"
                           value={productCartItem.quantity}
                           readOnly
-                        />
-                        <button className="btn-increment">+</button>
+                        />                      
                       </div>
-                      <div className="card-product-price">
+                      <div className="card-product-price col-2">
                         <p className="m-0">
                           $
                           {(
@@ -107,11 +104,16 @@ const CartPage = () => {
                           ).toFixed(2)}
                         </p>
                       </div>
-                      <div className="card-product-delete">
+                      <div className="card-product-delete col-2">
                         <i
                           className="bi bi-trash"
                           onClick={() =>
-                            handleDelete(productCartItem.product_id)
+                            handleDelete(
+                              productCartItem.product_id,
+                              productCartItem.size,
+                              productCartItem.color,
+                              productCartItem.weight
+                            )
                           }
                         ></i>
                       </div>

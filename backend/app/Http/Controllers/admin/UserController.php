@@ -15,8 +15,6 @@ class UserController extends Controller
 
     $users = DB::table('users')
         ->leftJoin('orders', 'users.id', '=', 'orders.user_id')
-        ->leftJoin('carts', 'users.id', '=', 'carts.cart_id')
-        ->leftJoin('carts_items', 'carts.cart_id', '=', 'carts_items.cart_id')
         ->select(
             'users.id',
             'users.name',
@@ -24,12 +22,13 @@ class UserController extends Controller
             'users.phone',
             'users.address',
             DB::raw('COUNT(DISTINCT orders.order_id) AS total_orders'),
-            DB::raw('COUNT(DISTINCT carts_items.cart_items_id) AS total_cart_items')
+            DB::raw('SUM(orders.total_price) AS total_spent')
         )
         ->groupBy('users.id', 'users.name', 'users.email', 'users.phone', 'users.address')
         ->orderBy('users.id', 'desc')
         ->paginate($perPage);
         $perPage = 5;
+      
         return view('admin.listuser', compact('users'));
     }
 }

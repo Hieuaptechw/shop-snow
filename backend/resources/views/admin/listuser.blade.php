@@ -11,7 +11,7 @@
                     <td>Phone</td>
                     <td>Address</td>
                     <td>Order</td>
-                    <td>Cart</td>
+                    <td>Total </td>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->address }}</td>    
                     <td>{{ $user->total_orders }}</td> 
-                    <td>{{ $user->total_cart_items }}</td>                     
+                    <td>${{ $user->total_spent }}</td>                     
                     </tr>
                 @endforeach
             </tbody>

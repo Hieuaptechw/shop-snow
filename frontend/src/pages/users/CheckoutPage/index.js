@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api/api";
 import "./style.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -14,18 +14,24 @@ const CheckoutPage = () => {
   const [shippingAddress, setShippingAddress] = useState('');
   const [notes, setNotes] = useState('');
   const [payment, setPayment] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const handlePaymentChange = (event) => {
     setPayment(event.target.value);
   };
 
   const handleCheckOut = () => {
+    if (!isChecked) {
+      toast.warning("Please accept the terms & conditions to proceed.");
+      return;
+    }
+
     if (tolalPrice > 0 && shippingAddress.trim() !== '' && payment.trim() !== '') {
       api.orderProduct(shippingAddress, notes, payment)
         .then(response => {
           toast.success('Success to checkout!')
           localStorage.setItem('order_code', response.data.order.order_code);
           const thankYouUrl = `/checkout/thanksyou/${response.data.order.order_code}`;
-          setTimeout(() => window.location.href = thankYouUrl, 1000);
+          navigate(thankYouUrl);
 
         })
         .catch(error => {
@@ -34,7 +40,7 @@ const CheckoutPage = () => {
         });
     } else if (shippingAddress.trim() === '') {
       toast.warning('Shipping address cannot be empty!');
-    }else if (payment.trim()=== ''){
+    } else if (payment.trim() === '') {
       toast.warning('Please select a payment method!');
     } else if (tolalPrice <= 0) {
       toast.warning('Total price must be greater than 0 to proceed with checkout!');
@@ -78,11 +84,11 @@ const CheckoutPage = () => {
   return (
     <>
       <div className="section">
-      {loading && (
-        <div className="overlay">
-          <div className="spinner"></div>
-        </div>
-      )}
+        {loading && (
+          <div className="overlay">
+            <div className="spinner"></div>
+          </div>
+        )}
         <div className="container">
           <form>
             <div className="row">
@@ -183,6 +189,9 @@ const CheckoutPage = () => {
                       <div className="order-col" key={index}>
                         <div>
                           <span>{productCartItem.quantity}x  | {productCartItem.name}</span>
+                          <span>|{productCartItem.size ? productCartItem.size : ''}</span>
+                          <span>|{productCartItem.weight ? productCartItem.weight : ''}</span>
+                          <span>|{productCartItem.color ? productCartItem.color : ''}</span>
                         </div>
                         <div><span>${productCartItem.price_sale * productCartItem.quantity}</span></div>
                       </div>
@@ -228,9 +237,10 @@ const CheckoutPage = () => {
                   </div>
                 </div>
                 <div className="input-checkbox">
-                  <input type="checkbox" id="terms" />
+                  <input type="checkbox" id="terms" checked={isChecked}
+                    onChange={() => setIsChecked(!isChecked)} />
                   <label for="terms">
-                    I've read and accpet the <a href="#">terms & conditions</a>
+                    I've read and accpet the  <a href="#">-terms & conditions</a>
                   </label>
                 </div>
 

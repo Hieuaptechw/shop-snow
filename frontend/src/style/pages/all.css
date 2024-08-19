@@ -50,9 +50,9 @@ body {
     padding: 0;
     list-style: none
   }
-  .container{
+  /* .container{
     width: 1190px;
-  }
+  } */
   .overlay {
     position: fixed;
     top: 210px;
@@ -79,4 +79,22 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+@media only screen and (max-width: 1201px) {}
+
+@media only screen and (max-width: 991px) {
+  .top-header-item {
+    display: block!important;
+  }
+ 
+}
+
+@media only screen and (max-width: 767px) {
+ .header-search{
+  display: none;
+ }
+}
+
+@media only screen and (max-width: 480px) {
+
 }
