@@ -1,54 +1,108 @@
+# Setup Guide
 
-# Work Assignment and Setup Guide
 
-Welcome to our project! Below is the work assignment and setup guide.
+Welcome to our project! Below is the setup guide.
 
 ## 1. Project Overview
 
 The project is built using Laravel and React.js.
 
 ## 2. Workflow
+
 ### **Step 1: Download and Extract the Project**
-Run the following commands in the backend directory:
 
-    cd ./backend
-    composer install
-    cp .env.example .env
-Ensure the database connection settings in your .env file are correctly configured for your hosting environment:
+1. **Set Up Backend**
+   - Navigate to the `backend` directory:
 
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=enter_database_name_here
-    DB_USERNAME=enter_database_user_here
-    DB_PASSWORD=enter_database_password_here
+     ```bash
+     cd ./backend
+     ```
+
+   - Install PHP dependencies:
+
+     ```bash
+     composer install
+     ```
+
+   - Copy the example environment file to create your `.env` file:
+
+     ```bash
+     cp .env.example .env
+     ```
+
+   - Ensure the database connection settings in your `.env` file are correctly configured for your hosting environment:
+
+     ```plaintext
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=enter_database_name_here
+     DB_USERNAME=enter_database_user_here
+     DB_PASSWORD=enter_database_password_here
+     ```
+
+   - Generate the application key:
+
+     ```bash
+     php artisan key:generate
+     ```
+
+   - Create the symbolic link for storage:
+
+     ```bash
+     php artisan storage:link
+     ```
+
+   - Run migrations to set up the database schema:
+
+     ```bash
+     php artisan migrate
+     ```
+   - Navigate to the storage directory and unzip product images:
+
+     ```bash
+     cd ./backend/public/storage
+     ```
+
+   - In the archive folder, unzip `images.zip` (containing product images).
+   
+     ```bash
+     cd ./backend/public/storage/images/product.jpg
+     ```
+   - Start the Laravel development server:
+
+     ```bash
+     php artisan serve
+     ```
 
 
-Extract the image product
 
-    cd ./backend/public/storage
+2. **Set Up Frontend**
+   - Navigate to the `frontend` directory:
 
-In the archive 'folder', unzip images.zip(containing product images).
+     ```bash
+     cd ./frontend
+     ```
 
-    cd ./backend/public/storage/images/product.jpg
-    
-Continue running the following command
+   - Install Node.js dependencies:
 
-    php artisan key:generate
-    php artisan storage:link
-    php artisan migrate
-    php artisan serve
+     ```bash
+     npm install
+     ```
 
+   - Install additional packages:
 
-    
-Then, run the following commands in the frontend directory:
+     ```bash
+     npm install react-slick slick-carousel
+     npm install react-toastify
+     ```
 
-    cd ./frontend
-    npm i
-    npm install react-slick slick-carousel
-    npm install react-toastify
-    npm start
-    
+   - Start the React development server:
+
+     ```bash
+     npm start
+     ```
+
 ### **Step 2: Upload the Database to Localhost**
 
 1. **Using phpMyAdmin**:
@@ -72,6 +126,4 @@ Then, run the following commands in the frontend directory:
 
 ## 3. Note
 
-- After downloading, extract the file and follow the steps outlined above.
-
-
+- After downloading and extracting the project, follow the steps outlined above to set up and run the project.
