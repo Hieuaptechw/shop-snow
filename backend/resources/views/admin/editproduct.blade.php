@@ -130,21 +130,21 @@
                         </div>
                         <div class="col-md-4">
                             <h5>Weight</h5>
-                            @foreach (['5kg', '10kg', '15kg'] as $weight)
+                            @foreach (['5', '10', '15'] as $weight)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="{{ $weight }}" id="{{ $weight }}" name="weight[]"
                                         @if(in_array($weight, $selectedWeightArray)) checked @endif>
-                                    <label class="form-check-label" for="{{ $weight }}">{{ $weight }}</label>
+                                    <label class="form-check-label" for="{{ $weight }}">{{ $weight . "kg" }}</label>
                                 </div>
                             @endforeach
                         </div>
                         <div class="col-md-4">
                             <h5>Inch</h5>
-                            @foreach (['5inch', '10inch', '16inch', '20inch', '32inch', '37inch'] as $inch)
+                            @foreach (['5', '10', '16', '20', '32', '37'] as $inch)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="{{ $inch }}" id="{{ $inch }}" name="inch[]"
                                         @if(in_array($inch, $selectedInchArray)) checked @endif>
-                                    <label class="form-check-label" for="{{ $inch }}">{{ $inch }}</label>
+                                    <label class="form-check-label" for="{{ $inch }}">{{ $inch . "inch"}}</label>
                                 </div>
                             @endforeach
                         </div>

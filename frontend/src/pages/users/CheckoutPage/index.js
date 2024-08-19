@@ -189,9 +189,9 @@ const CheckoutPage = () => {
                       <div className="order-col" key={index}>
                         <div>
                           <span>{productCartItem.quantity}x  | {productCartItem.name}</span>
-                          <span>|{productCartItem.size ? productCartItem.size : ''}</span>
-                          <span>|{productCartItem.weight ? productCartItem.weight : ''}</span>
-                          <span>|{productCartItem.color ? productCartItem.color : ''}</span>
+                          <span>{productCartItem.size ? "|"+ productCartItem.size : ''}</span>
+                          <span>{productCartItem.weight ? "|"+ productCartItem.weight : ''}</span>
+                          <span>{productCartItem.color ? "|"+ productCartItem.color : ''}</span>
                         </div>
                         <div><span>${productCartItem.price_sale * productCartItem.quantity}</span></div>
                       </div>

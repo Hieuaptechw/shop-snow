@@ -59,21 +59,27 @@ class SearchController extends Controller
         return view('admin.layouts.searchresult', compact('products', 'categories', 'subcategories', 'brands','orders','query'));
     }
     public function searchapi($query)
-    {
-        $keywords = explode(' ', $query);
-        $products = Product::query();
-        foreach ($keywords as $keyword) {
-            $products->where(function($q) use ($keyword) {
-                $q->where('product_id', 'like', '%' . $keyword . '%')
-                  ->orWhere('name', 'like', '%' . $keyword . '%')
-                  ->orWhere('description', 'like', '%' . $keyword . '%');
-            });
-        }
-        $products = $products->get();
-        return response()->json([
-            'status' => true,
-            'products' => $products,
-            'query' => $query
-        ]);
-    }
+{
+    $keywords = explode(' ', $query);
+    $products = Product::query()
+        ->where(function($q) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $q->where(function($q) use ($keyword) {
+                    $q->where('product_id', 'like', '%' . $keyword . '%')
+                      ->orWhere('name', 'like', '%' . $keyword . '%')
+                      ->orWhere('description', 'like', '%' . $keyword . '%');
+                });
+            }
+        })
+        ->with('category')
+        ->get();
+
+    return response()->json([
+        'status' => true,
+        'products' => $products,
+        'query' => $query
+    ]);
+}
+
+    
 }
