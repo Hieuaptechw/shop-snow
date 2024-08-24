@@ -79,33 +79,9 @@ const ProfilePage = () => {
                   <p className="text-muted mb-4">{user.address}</p>
                 </div>
               </div>
-              <div className="card card-infor mb-4 mb-lg-0">
-                <div className="card-body p-0">
-                  <ul className="list-group list-group-flush rounded-3">
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fas fa-globe fa-lg text-warning"></i>
-                      <p className="mb-0">{user.email}</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-github fa-lg text-body"></i>
-                      <p className="mb-0">{user.phone}</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-twitter fa-lg text-twitter"></i>
-                      <p className="mb-0">Order: {userOrder.length}</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-instagram fa-lg text-instagram"></i>
-                      <p className="mb-0">Cart: {cartItem}</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-facebook-f fa-lg text-facebook"></i>
-                      <p className="mb-0"></p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              
             </div>
+           
             <div className="col-lg-8">
               {userOrder.map(order => (
                 <div key={order.order_id} className="card mb-4">
@@ -142,6 +118,32 @@ const ProfilePage = () => {
                   </div>
                 </div>
               ))}
+               <div className="card card-infor mb-4 mb-lg-0">
+                <div className="card-body p-0">
+                  <ul className="list-group list-group-flush rounded-3">
+                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i className="fas fa-globe fa-lg text-warning"></i>
+                      <p className="mb-0">{user.email}</p>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i className="fab fa-github fa-lg text-body"></i>
+                      <p className="mb-0">{user.phone}</p>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i className="fab fa-twitter fa-lg text-twitter"></i>
+                      <p className="mb-0">Order: {userOrder.length}</p>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i className="fab fa-instagram fa-lg text-instagram"></i>
+                      <p className="mb-0">Cart: {cartItem}</p>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                      <i className="fab fa-facebook-f fa-lg text-facebook"></i>
+                      <p className="mb-0"></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
