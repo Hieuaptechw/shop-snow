@@ -64,7 +64,7 @@ const CheckoutPage = () => {
         }
       } catch (error) {
         setError("An error occurred while fetching profile data.");
-      }
+      } 
     };
     const fetchProductCart = async () => {
       try {
@@ -80,7 +80,6 @@ const CheckoutPage = () => {
     fetchProductCart();
     fetchProfile();
   }, [navigate]);
-  console.log(tolalPrice);
   return (
     <>
       <div className="section">

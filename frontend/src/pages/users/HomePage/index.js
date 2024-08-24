@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import  { Link } from "react-router-dom";
 import "./style.css";
 import api from "../../../api/api";
 import product from "../Theme/assets/product01.png";
@@ -94,10 +95,10 @@ const HomePage = () => {
                     <img src={product} alt="Product" />
                   </div>
                   <div className="shop-body">
-                    <h3>Laptop Collection</h3>
-                    <a className="cta-btn" href="#">
+                    <h3>Consumer Electronics</h3>
+                    <Link className="cta-btn" to="shop/consumer-electronics">
                       SHOP NOW <i className="bi bi-arrow-right-circle-fill"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -107,10 +108,10 @@ const HomePage = () => {
                     <img src={product} alt="Product" />
                   </div>
                   <div className="shop-body">
-                    <h3>Laptop Collection</h3>
-                    <a className="cta-btn" href="#">
+                    <h3>Home Appliances</h3>
+                    <Link className="cta-btn" to="shop/consumer-electronics">
                       SHOP NOW <i className="bi bi-arrow-right-circle-fill"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -120,8 +121,8 @@ const HomePage = () => {
                     <img src={product} alt="Product" />
                   </div>
                   <div className="shop-body">
-                    <h3>Laptop Collection</h3>
-                    <a className="cta-btn" href="#">
+                    <h3>Cooling Devices</h3>
+                    <a className="cta-btn" href="shop/cooling-devices">
                       SHOP NOW <i className="bi bi-arrow-right-circle-fill"></i>
                     </a>
                   </div>
